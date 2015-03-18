@@ -6,6 +6,7 @@
 2. Run `npm install` for that folder
 3. Build by running `grunt generate` from that folder's root
 4. This will create a **build** folder. Point your browser at this to test
+5. Run `grunt watch` to trigger `generate` whenever you change files in `src/`
 
 ## What everything is
 
