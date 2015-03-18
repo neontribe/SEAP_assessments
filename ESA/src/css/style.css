@@ -1,0 +1,284 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,300);
+
+/* vars
+---------------------------------------------
+
+COLORS
+dark blue = #003555
+mid blue = #3389c1
+light blue = #79bde9
+lightest blue = #dcf0fd
+dark green = #006541
+mid green = #008556
+light green = #00a56b
+lightest green = #6fe9bf
+
+OTHER
+line height = 1.5
+
+---------------------------------------------
+*/
+
+/* normalize and flow
+---------------------------------------------*/
+
+*, *:before, *:after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+:empty {
+	display: none;
+}
+
+[tabindex="-1"]:focus {
+	outline: none;
+}
+
+body {
+	font-size: 20px;
+	color: #003555;
+	line-height: 1.5;
+}
+
+body * + * {
+	margin-top: 30px;
+	margin-top: 1.5rem;
+}
+
+li, option, dt, dd, tr, td {
+	margin-top: 0;
+}
+
+p + p {
+	margin-top: 0.75em;
+}
+
+.question-text {
+	font-style: italic;
+}
+
+.question-text:before { content: '\201c'; }
+.question-text:after { content: '\201d'; }
+
+
+/* headings
+---------------------------------------------*/
+
+h1, h2, h3, h4 {
+	font-weight: 700;
+	line-height: 1;
+}
+
+h1, h2 {
+	font-weight: 300;
+}
+
+h1 { font-size: 3.5em }
+h2 { font-size: 2.5em }
+h3 { font-size: 1.75em }
+h4 { font-size: 1em }
+
+/* lists
+---------------------------------------------*/
+
+ul {
+	margin-left: 1.5em;
+}
+
+/* buttons
+---------------------------------------------*/
+
+button, .button-shaped, [type="radio"] + span {
+	display: inline-block;
+	font-size: 1.25em;
+	background: #6fe9bf;
+	font-weight: bold;
+	border: 0;
+	box-shadow: 0px 4px 0 #008556;
+	padding: 0.25em 0.75em;
+	cursor: pointer;
+	margin: 0.5em;
+	color: #006541;
+}
+
+button:focus, .button-shaped:focus, [type="radio"]:focus + span {
+	outline: 1px solid #006541;
+	outline-offset: 0.25em;
+}
+
+button:active, .button-shaped:active,
+button[aria-pressed="true"], [type="radio"]:checked + span {
+	box-shadow: 0px 1px 0 #008556;
+	position: relative;
+	top: 3px;
+}
+
+button[aria-pressed="true"], [type="radio"]:checked + span {
+	background: #006541;
+	color: #6fe9bf;
+	border: 0 !important;
+}
+
+button::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+button:only-of-type {
+	font-size: 1.25em;
+}
+
+/* links
+---------------------------------------------*/
+
+a, a:visited {
+	text-decoration: none;
+	border-color: #00a56b;
+	border-bottom: 1px solid;
+	color: #006541;
+}
+
+a:hover {
+	border-bottom-width: 2px;
+}
+
+a:focus {
+	border: 0;
+	outline: 2px solid #008556;
+}
+
+a.nav-link, button.nav-link {
+	display: inline-block;
+	font-size: 1em;
+	color: #006541;
+	border: 2px solid #006541;
+	padding: 0.5em 1em;
+	font-weight: 700;
+	box-shadow: none;
+	background: transparent;
+}
+
+a.nav-link:hover, button.nav-link:hover {
+	border-color: #00a56b;
+}
+
+a.nav-link:active, button.nav-link:active {
+	position: static;
+	top: 0;
+}
+
+[aria-label$="menu"] li {
+	display: inline-block;
+	margin: 0.25em;
+}
+
+/* answers
+---------------------------------------------*/
+
+.answers {
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.answers [type="radio"], .checklist [type="checkbox"] {
+	border: 0; 
+	clip: rect(0 0 0 0); 
+	height: 1px; 
+	margin: -1px; overflow: 
+	hidden; padding: 0; 
+	position: absolute; 
+	width: 1px;
+}
+
+.answers [type="radio"] + span {
+	margin: 0.25em;
+}
+
+/* checklists
+---------------------------------------------*/
+
+.checklist {
+	margin-left: 1.5em;
+}
+
+.checklist li {
+	list-style: disc outside;
+	font-size: 1.5em;
+	line-height: 1.125;
+}
+
+.checklist li + li {
+	margin-top: 0.33em;
+}
+
+.checklist [type="checkbox"] + span {
+	cursor: pointer;
+}
+
+[type="checkbox"]:hover + span {
+	color: #008556;
+}
+
+[type="checkbox"]:focus + span {
+	outline: thin dotted;
+}
+
+.checklist [type="checkbox"]:checked + span {
+	text-decoration: line-through;
+}
+
+/* utilities
+---------------------------------------------*/
+
+
+/* for hiding things but not from assistive tech */
+.vh {
+	border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px;
+}
+
+/* layout
+---------------------------------------------*/
+
+body {
+	display: table;
+	table-layout: fixed;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.slide {
+	display: table-cell;
+	width: 100%;
+	vertical-align: middle;
+	text-align: center;
+	display: none;
+	background: #dcf0fd;
+}
+
+.slide h2 {
+	margin-top: 0;
+}
+
+.slide:target {
+	display: table-cell;
+}
+
+.main-menu {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 3em;
+	line-height: 3em;
+	padding: 20px;
+	padding: 1.5rem;
+	text-align: right;
+}

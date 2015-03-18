@@ -1,0 +1,69 @@
+{
+	"questions": [
+		{		
+			"question": "Can you do x comfortably?",
+			"hint": "By comfortably, the question means \'without pain\'.",
+			"category": "Mobility",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": 6
+				},
+				{
+					"label": "I don\'t know",
+					"value": null
+				}
+			],
+			"followUp": "followup-83673628"
+		},
+		{		
+			"question": "Can you stand?",
+			"hint": "As in \'can you stand up?\'",
+			"category": "Mobility",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": 6
+				},
+				{
+					"label": "It varies",
+					"value": null
+				}
+			],
+			"followUp": "followup-83658619"
+		}
+	],
+	"advice": [
+		{
+			"title": "Your Assessment Form",
+			"description": "Some things to remember when filling out your assessment form.",
+			"tips": [
+				"Remember to describe your worst day as well as an average day",
+				"Include medical evidence from your doctor",
+				"Try not to leave anything out. It\'s important to include everything you experience"
+			]
+		},
+		{
+			"title": "Travel",
+			"description": "You\'ll need to be able to get to the venue. Some ideas on how best to prepare for this.",
+			"tips": [
+				"Try to arrive ten minutes early",
+				"Plan your route to the assessment in advance",
+				"Keep hold of your bus / train tickets to claim money back"
+			]
+		},
+		{
+			"title": "Why do I need to be assessed?",
+			"description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut malesuada leo in velit iaculis, ac feugiat lorem venenatis. Vivamus dapibus metus et eros tincidunt, sit amet scelerisque ipsum porttitor.</p> <p>Nullam imperdiet orci sapien, eget vehicula tortor pellentesque id. Cras fringilla urna in dignissim condimentum. Maecenas fringilla accumsan massa vitae efficitur. Curabitur non dui eget eros sodales finibus. Integer vulputate at est eu semper. Mauris eu sem lobortis, maximus turpis congue, porta lacus. Mauris vulputate cursus scelerisque. In convallis a orci nec volutpat. Phasellus ac tellus quam. Nulla facilisi.</p>",
+			"tips": []
+		}
+	]
+}

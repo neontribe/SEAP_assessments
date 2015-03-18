@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-GB">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="css/style.css" rel="stylesheet" media="all" />
+		<title>ESA Assessment</title>
+		<!--[if lt IE 9]>
+			<script src="js/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		{{#each questions}}
+			<div class="slide question" id="{{sluggify question}}" data-category="{{sluggify category}}">
+				<img src="path/to/question-icon.svg" alt="" />
+				<h2 class="question-text" tabindex="-1">
+					<span class="vh">Question:</span> 
+					<em>{{question}}</em>
+				</h2>
+				<div class="answers" aria-label="choose an answer">
+					{{#each answers}}
+						<label>
+				            <input type="radio" value="{{value}}" name="{{sluggify ../question}}"> <span>{{label}}</span>
+				        </label>
+					{{/each}}
+				</div>
+				<div aria-label="question menu">
+					<ul>
+						<li>
+							<a href="#{{followUp}}" class="nav-link another">Ask me another question</a>
+						</li>
+						<li>
+							<a href="#my-stats" class="nav-link progress">How am I doing?</a>
+						</li>
+						<li>
+							<a href="#break-time" class="nav-link break">I need a break</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		{{/each}}
+		{{#each advice}}
+			<div class="slide advice" id="{{sluggify title}}">
+				<img src="path/to/advice-icon.svg" alt="" />
+				<h2 class="advice" tabindex="-1">
+					<em>{{title}}</em>
+				</h2>
+				<p class="description">{{description}}</p>
+				{{#if are-there-tips}}
+					<ul class="checklist" aria-label="Tips">
+						{{#each tips}}
+							<li>
+								<label>
+									<input type="checkbox" value="save" data-tip-id="{{sluggify this}}"> <span>{{this}}</span>
+								</label>
+							</li>
+						{{/each}}
+					</ul>
+				{{/if}}
+				<div aria-label="menu">
+					<ul>
+						<li>
+						<button class="nav-link another">More</button>
+						</li>
+						<li>
+							<a href="#my-stats" class="nav-link progress">How am I doing?</a>
+						</li>
+						<li>
+							<a href="#break-time" class="nav-link break">I need a break</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		{{/each}}
+		<script src="js/all-scripts.js"></script>
+	</body>
+</html>
