@@ -10,6 +10,9 @@
 		<![endif]-->
 	</head>
 	<body>
+		<header role="banner">
+			<a href="#" aria-label="SEAP Assessments homepage">SEAP Assessments</a>
+		</header>
 		<div class="slide question" id="can-you-do-x-comfortably" data-category="mobility">
 			<img src="path/to/question-icon.svg" alt="" />
 			<h2 class="question-text" tabindex="-1">
@@ -30,10 +33,10 @@
 			<div aria-label="question menu">
 				<ul>
 					<li>
-						<a href="#followup-83673628" class="nav-link another">Ask me another question</a>
+						<button data-followup="#followup-83673628" class="nav-link" data-action="pick">Ask me another</button>
 					</li>
 					<li>
-						<a href="#my-stats" class="nav-link progress">How am I doing?</a>
+						<button class="nav-link" data-action="stats">My stats</button>
 					</li>
 					<li>
 						<a href="#break-time" class="nav-link break">I need a break</a>
@@ -61,10 +64,10 @@
 			<div aria-label="question menu">
 				<ul>
 					<li>
-						<a href="#followup-83658619" class="nav-link another">Ask me another question</a>
+						<button data-followup="#followup-83658619" class="nav-link" data-action="pick">Ask me another</button>
 					</li>
 					<li>
-						<a href="#my-stats" class="nav-link progress">How am I doing?</a>
+						<button class="nav-link" data-action="stats">My stats</button>
 					</li>
 					<li>
 						<a href="#break-time" class="nav-link break">I need a break</a>
@@ -81,10 +84,10 @@
 			<div aria-label="menu">
 				<ul>
 					<li>
-					<button class="nav-link another">More</button>
+						<button class="nav-link">More</button>
 					</li>
 					<li>
-						<a href="#my-stats" class="nav-link progress">How am I doing?</a>
+						<button class="nav-link progress" data-action="stats">My stats</button>
 					</li>
 					<li>
 						<a href="#break-time" class="nav-link break">I need a break</a>
@@ -101,10 +104,10 @@
 			<div aria-label="menu">
 				<ul>
 					<li>
-					<button class="nav-link another">More</button>
+						<button class="nav-link">More</button>
 					</li>
 					<li>
-						<a href="#my-stats" class="nav-link progress">How am I doing?</a>
+						<button class="nav-link progress" data-action="stats">My stats</button>
 					</li>
 					<li>
 						<a href="#break-time" class="nav-link break">I need a break</a>
@@ -121,10 +124,10 @@
 			<div aria-label="menu">
 				<ul>
 					<li>
-					<button class="nav-link another">More</button>
+						<button class="nav-link">More</button>
 					</li>
 					<li>
-						<a href="#my-stats" class="nav-link progress">How am I doing?</a>
+						<button class="nav-link progress" data-action="stats">My stats</button>
 					</li>
 					<li>
 						<a href="#break-time" class="nav-link break">I need a break</a>
@@ -132,6 +135,68 @@
 				</ul>
 			</div>
 		</div>
+		<div class="slide qualify" id="qualify">
+			/* qualification */
+		</div>
+		<div class="slide main-menu" id="main-menu">
+			/* main menu */
+		</div>
+		<div class="slide break-time" id="break-time">
+			<div class="box">
+				<img src="images/tea.png" alt="steaming cup of tea" />
+				<h2>You&#x2019;re on a break</h2>
+				<ul aria-label="menu">
+					<li>	
+						<button class="nav-link" data-action="resume">Continue</button>
+					</li>
+					<li>
+						<button class="nav-link" data-action="restart">Restart</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="slide get-started" id="start">
+			<div class="box">
+				<h2>Let&#x2019;s start</h2>
+				<p>In your real assessment you'll be asked questions about your ability to do things. Here, you can try out some of these questions and get an idea of how you'd do in the real assessment. You can <a href="#break-time">take a break</a> at any time and come back later :-)</p>
+				<p><button class="nav-link" data-action="pick">Try a question</button></p>
+			</div>
+		</div>
+		<div class="slide get-started" id="seen-all">
+			<h2>No more new questions</h2>
+			<p>You've seen all the questions we have available (so you're pretty familiar with the assessment now!) but you skipped some. What would you like to do?</p>
+			<ul aria-label="menu">
+				<li>	
+					<button class="nav-link" data-action="resume">Try skipped questions</button>
+				</li>
+				<li>
+					<button class="nav-link" data-action="stats">My stats</button>
+				</li>
+				<li>
+					<button class="nav-link" data-action="restart">Restart</button>
+				</li>
+			</ul>
+		</div>
+		<div class="slide get-started" id="resume">
+			<div class="box">
+				<h2>Hello again?</h2>
+				<p>Looks like you've been here before. Press &#x201c;continue&#x201d; if you want to carry on. Not been here before or want to start again? Press &#x201c;restart&#x201d;.</p>
+				<div aria-label="menu">
+					<li>	
+						<button class="nav-link" data-action="resume">Continue</button>
+					</li>
+					<li>
+						<button class="nav-link" data-action="restart">Restart</button>
+					</li>
+				</div>
+			</div>
+		</div>
+		<nav role="navigation" class="to-main-menu">
+			<a href="#main-menu">Main Menu</a>
+		</nav>
+		<script>
+			window.allQuestions = ['can-you-do-x-comfortably','can-you-stand',];
+		</script>
 		<script src="js/all-scripts.js"></script>
 	</body>
 </html>

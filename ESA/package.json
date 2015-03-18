@@ -1,7 +1,7 @@
 {
-  "name": "SampleGrunt",
+  "name": "SEAP Assessments (ESA)",
   "version": "0.1.0",
-  "author": "Brandon Random",
+  "author": "Heydon Pickering",
   "private": true,
   "devDependencies": {
     "grunt": "~0.4.0",

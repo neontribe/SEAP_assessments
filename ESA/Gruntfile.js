@@ -17,25 +17,12 @@ module.exports = function(grunt){
                 'head-script-disabled': true,
                 'style-disabled': true
             },
-            src: ['*.html']
+            src: ['build/*.html']
         }
       },
       watch: {
-        html: {
-            files: ['src/*.html', 'src/*.handlebars'],
-            tasks: ['generate']
-        },
-        scripts: {
-            files: ['src/js/*.js'],
-            tasks: ['generate']
-        },
-        css: {
-            files: ['src/css/*.css'],
-            tasks: ['generate']
-        },
-        options: {
-          livereload: true
-        }
+        files: ['src/**'],
+        tasks: ['generate']
       },
       copy: {
         generate: {
@@ -72,7 +59,7 @@ module.exports = function(grunt){
       },
       concat: {
         js: {
-          src: ['build/js/*.js', '!build/js/html5.js'],
+          src: ['build/js/jquery.js','build/js/underscore.js', 'build/js/storageapi.js', 'build/js/scripts.js'],
           dest: 'build/js/all-scripts.js'
         }
       },
@@ -96,18 +83,14 @@ module.exports = function(grunt){
       },
       'compile-handlebars': {
         allStatic: {
-          template: 'src/assessment.handlebars',
-          templateData: 'src/assessment-data.json',
-          helpers: 'src/helpers/*.js',
-          output: 'src/index.html'
+          template: 'build/assessment.handlebars',
+          templateData: 'build/assessment-data.json',
+          helpers: 'build/helpers/*.js',
+          output: 'build/index.html'
         }
       }
     });
   
-    grunt.registerTask('compile', ['compile-handlebars']);
-    grunt.registerTask('default', []);
-    grunt.registerTask('css', ['copy', 'autoprefixer', 'cssmin']);
-    grunt.registerTask('js', ['copy', 'concat', 'uglify']);
-    grunt.registerTask('generate', ['clean:initial','compile-handlebars', 'htmlhint', 'jshint', 'copy', 'concat', 'autoprefixer', 'clean:tidyup']);
+    grunt.registerTask('generate', ['clean:initial', 'copy','compile-handlebars', 'htmlhint', 'jshint', 'concat', 'autoprefixer', 'clean:tidyup']);
     grunt.registerTask('generate-production', ['clean:initial','compile-handlebars', 'htmlhint', 'jshint', 'copy', 'concat', 'uglify', 'autoprefixer','cssmin', 'clean:tidyup']);
 };
