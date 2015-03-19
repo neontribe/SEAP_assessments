@@ -1,3 +1,7 @@
+/**********************************************************************
+START UP
+**********************************************************************/
+
 // define the database
 var db = $.localStorage;
 
@@ -12,8 +16,38 @@ if (db.isEmpty('ass')) {
 var unseenQuestions = db.get('ass.unseenQuestions') || db.set('ass.unseenQuestions', allQuestions);
 
 /**********************************************************************
+GLOBALS
+**********************************************************************/
+
+// The id of the current slide where applicable
+window.context = null;
+// The points earned for a question
+window.points = null;
+
+/**********************************************************************
 FUNCTIONS
 **********************************************************************/
+
+function loadSlide(id) {
+
+	console.log('slide loaded');
+
+	window.points = null;
+
+	// go to picked question
+	window.location.hash = '#' + id;
+
+	// Record where the user is for resuming purposes
+	db.set('ass.whereIAm', id);
+
+	// focus title to announce title in AT
+	$('#' + id)
+		.find('h2')
+		.focus();
+
+	window.context = $('#' + id);
+
+}
 
 // show a random unseen question
 function pickQuestion() {
@@ -32,19 +66,14 @@ function pickQuestion() {
 	// set unseenQuestions with this question removed
 	db.set('ass.unseenQuestions', _.without(questions, question));
 
-	// go to picked question
-	window.location.hash = '#' + question;
-
-	// Record where the user is for resuming purposes
-	db.set('ass.whereIAm', 'questions');
-
-	$(window.location.hash)
-		.find('h2')
-		.focus();
+	loadSlide(question);
 
 }
 
+// clear data and go to start screen
 function restart() {
+
+	console.log('restarting');
 
 	// reinitialize the master object
 	db.set('ass', {});
@@ -57,19 +86,60 @@ function restart() {
 
 }
 
+// go to slide you were last at
 function resume() {
 
-	// find out which part of the app the user was in before
-	var whereWasI = db.get('ass.whereIAm');
+	console.log('resuming');
 
-	if (whereWasI === 'questions') {
-		pickQuestion();
-	}	
+	// get the stored slide id
+	var whereIWas = db.get('ass.whereIAm');
 
-	if (whereWasI === 'advice') {
-		/* TODO */
+	loadSlide(whereIWas);
+
+}
+
+// set high score per category
+function setScore(points, category) {
+
+	// initialize the answers object if it doesn't exist
+	if (db.isEmpty('ass.answers')) {
+		db.set('ass.answers', {});
 	}
 
+	// set anwers.category name to points if it doesn't exist
+	var recordedScore = db.get('ass.answers.' + category) || db.set('ass.answers.' + category, points);
+	
+	if (window.points && points > window.points) {
+		db.set('ass.answers.' + category, recordedScore - window.points);
+		window.points = points;
+	}
+
+	// change recorded score to new score if new score is higher
+	if (recordedScore < points) {
+
+		// The new score is higher for the category
+		db.set('ass.answers.' + category, points);
+		
+		// get the user's total score by adding category high scores together
+	
+	}
+
+	var total = tally(db.get('ass.answers'));
+
+	// compare values for testing
+	console.log('new: ' + points + '\nstored: ' + db.get('ass.answers.' + category) + 'total: ' + total);
+
+}
+
+// tally up the points
+function tally(object) {
+	var sum = 0;
+	for( var el in object ) {
+		if( object.hasOwnProperty( el ) ) {
+			sum += parseFloat( object[el] );
+		}
+	}
+	return sum;	
 }
 
 /**********************************************************************
@@ -97,5 +167,24 @@ $('[data-action="resume"]').on('click', function() {
 
 	// run resume function defined in FUNCTIONS block
 	resume();
+
+});
+
+$('[type="radio"]').on('change', function() {
+
+	// get checked answer's value and the category the question belongs to
+	var points = $(':checked', window.context).val();
+	var category = $(':checked').attr('name');
+
+	// convert to a true number or null (from empty string)
+	if (points !== '') {
+		points = +points;
+	} else {
+		points = null;
+	}
+
+	if (points !== null) {
+		setScore(points, category);
+	}
 
 });

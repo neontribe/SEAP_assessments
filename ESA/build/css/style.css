@@ -149,7 +149,8 @@ a:hover {
 
 a:focus {
 	border: 0;
-	outline: 2px solid #008556;
+	outline: 1px solid #008556;
+	outline-offset: 0.25em;
 }
 
 a.nav-link, button.nav-link {
@@ -170,6 +171,10 @@ a.nav-link:hover, button.nav-link:hover {
 a.nav-link:active, button.nav-link:active {
 	position: static;
 	top: 0;
+}
+
+[aria-label$="menu"] {
+	margin-left: 0;
 }
 
 [aria-label$="menu"] li {

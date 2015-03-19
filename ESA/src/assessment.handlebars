@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<header role="banner">
-			<a href="#" aria-label="SEAP Assessments homepage">SEAP Assessments</a>
+			<a href="#main-menu" aria-label="ESA Assessment homepage">SEAP Assessments : ESA</a>
 		</header>
 		{{#each questions}}
 		<div class="slide question" id="{{sluggify question}}" data-category="{{sluggify category}}">
@@ -23,23 +23,21 @@
 			<div class="answers" aria-label="choose an answer">
 				{{#each answers}}
 				<label>
-		            <input type="radio" value="{{value}}" name="{{sluggify ../question}}"> <span>{{label}}</span>
+		            <input type="radio" value="{{value}}" name="{{sluggify ../category}}"> <span>{{label}}</span>
 		        </label>
 				{{/each}}
 			</div>
-			<div aria-label="question menu">
-				<ul>
-					<li>
-						<button data-followup="#{{followUp}}" class="nav-link" data-action="pick">Ask me another</button>
-					</li>
-					<li>
-						<button class="nav-link" data-action="stats">My stats</button>
-					</li>
-					<li>
-						<a href="#break-time" class="nav-link break">I need a break</a>
-					</li>
-				</ul>
-			</div>
+			<ul aria-label="menu">
+				<li>
+					<button data-followup="#{{followUp}}" class="nav-link" data-action="pick">Ask me another</button>
+				</li>
+				<li>
+					<button class="nav-link" data-action="stats">My stats</button>
+				</li>
+				<li>
+					<a href="#break-time" class="nav-link break">I need a break</a>
+				</li>
+			</ul>
 		</div>
 		{{/each}}
 		{{#each advice}}
@@ -60,19 +58,17 @@
 				{{/each}}
 			</ul>
 			{{/if}}
-			<div aria-label="menu">
-				<ul>
-					<li>
-						<button class="nav-link">More</button>
-					</li>
-					<li>
-						<button class="nav-link progress" data-action="stats">My stats</button>
-					</li>
-					<li>
-						<a href="#break-time" class="nav-link break">I need a break</a>
-					</li>
-				</ul>
-			</div>
+			<ul aria-label="menu">
+				<li>
+					<button class="nav-link">More</button>
+				</li>
+				<li>
+					<button class="nav-link progress" data-action="stats">My stats</button>
+				</li>
+				<li>
+					<a href="#break-time" class="nav-link break">I need a break</a>
+				</li>
+			</ul>
 		</div>
 		{{/each}}
 		<div class="slide qualify" id="qualify">
@@ -85,6 +81,7 @@
 			<div class="box">
 				<img src="images/tea.png" alt="steaming cup of tea" />
 				<h2>You&#x2019;re on a break</h2>
+				<p>Feel free to close the window or turn off your computer and come back when you&#x2019;re ready :-)</p>
 				<ul aria-label="menu">
 					<li>	
 						<button class="nav-link" data-action="resume">Continue</button>
@@ -121,14 +118,14 @@
 			<div class="box">
 				<h2>Hello again?</h2>
 				<p>Looks like you've been here before. Press &#x201c;continue&#x201d; if you want to carry on. Not been here before or want to start again? Press &#x201c;restart&#x201d;.</p>
-				<div aria-label="menu">
+				<ul aria-label="menu">
 					<li>	
 						<button class="nav-link" data-action="resume">Continue</button>
 					</li>
 					<li>
 						<button class="nav-link" data-action="restart">Restart</button>
 					</li>
-				</div>
+				</ul>
 			</div>
 		</div>
 		<nav role="navigation" class="to-main-menu">
