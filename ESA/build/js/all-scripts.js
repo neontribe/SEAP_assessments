@@ -10407,6 +10407,7 @@ function loadSlide(id) {
 // show a random unseen question
 function pickQuestion() {
 
+	// reset "in hand" answer points
 	window.points = null;
 
 	// get questions array
