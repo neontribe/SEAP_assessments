@@ -52,6 +52,8 @@ function loadSlide(id) {
 // show a random unseen question
 function pickQuestion() {
 
+	window.points = null;
+
 	// get questions array
 	var questions = db.get('ass.unseenQuestions');
 
@@ -108,26 +110,19 @@ function setScore(points, category) {
 
 	// set anwers.category name to points if it doesn't exist
 	var recordedScore = db.get('ass.answers.' + category) || db.set('ass.answers.' + category, points);
-	
-	if (window.points && points > window.points) {
-		db.set('ass.answers.' + category, recordedScore - window.points);
-		window.points = points;
-	}
 
 	// change recorded score to new score if new score is higher
 	if (recordedScore < points) {
 
 		// The new score is higher for the category
 		db.set('ass.answers.' + category, points);
-		
-		// get the user's total score by adding category high scores together
 	
 	}
 
 	var total = tally(db.get('ass.answers'));
 
 	// compare values for testing
-	console.log('new: ' + points + '\nstored: ' + db.get('ass.answers.' + category) + 'total: ' + total);
+	console.log('new: ' + points + '\nstored: ' + db.get('ass.answers.' + category) + '\ntotal: ' + total);
 
 }
 
@@ -162,7 +157,6 @@ $('[data-action="restart"]').on('click', function() {
 
 });
 
-
 $('[data-action="resume"]').on('click', function() {
 
 	// run resume function defined in FUNCTIONS block
@@ -183,8 +177,11 @@ $('[type="radio"]').on('change', function() {
 		points = null;
 	}
 
-	if (points !== null) {
-		setScore(points, category);
+	if (window.points) {
+		db.set('ass.answers.' + category, db.get('ass.answers.' + category) - window.points);
 	}
+
+	setScore(points, category);
+	window.points = points;
 
 });
