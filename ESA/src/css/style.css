@@ -274,6 +274,11 @@ body {
 	margin-top: 0;
 }
 
+.question h2 {
+	font-size: 1.75em;
+	line-height: 1.25;
+}
+
 .slide:target {
 	display: table-cell;
 }
@@ -296,7 +301,7 @@ body {
 }
 
 .box {
-	margin: 0 30%;
+	margin: 0 20%;
 	display: inline-block;
 	border: 5px solid #3389c1;
 	padding: 20px;

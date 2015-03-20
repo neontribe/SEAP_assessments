@@ -6,10 +6,10 @@ START UP
 var db = $.localStorage;
 
 if (db.isEmpty('ass')) {
-	window.location.hash = '#start';
+	loadSlide('start');
 	db.set('ass', {});
 } else {
-	window.location.hash = '#resume';
+	loadSlide('resume');
 }
 
 // set unseen questions to all questions if none are seen
@@ -32,19 +32,32 @@ function loadSlide(id) {
 
 	console.log('slide loaded');
 
+	// clear points from previous question answer
 	window.points = null;
 
 	// go to picked question
 	window.location.hash = '#' + id;
-
-	// Record where the user is for resuming purposes
-	db.set('ass.whereIAm', id);
 
 	// focus title to announce title in AT
 	$('#' + id)
 		.find('h2')
 		.focus();
 
+	// find out if we've gone to one of the locations that don't need saving
+	var exclude = _.find(['resume', 'break-time'], 
+		function(unsaveable) { 
+			return unsaveable === id;
+	});
+
+	// If it's not an excluded location, save location
+	if (!exclude) {
+
+		// Record where the user is for resuming purposes
+		db.set('ass.whereIAm', id);
+
+	}
+
+	// Set context reference
 	window.context = $('#' + id);
 
 }
@@ -59,7 +72,7 @@ function pickQuestion() {
 	var questions = db.get('ass.unseenQuestions');
 
 	if (questions.length < 1) {
-		window.location.hash = "#seen-all";
+		loadSlide('seen-all');
 		return;
 	}
 
@@ -115,12 +128,16 @@ function setScore(points, category) {
 	// change recorded score to new score if new score is higher
 	if (recordedScore < points) {
 
-		// The new score is higher for the category
+		// The new score is higher for the category so set it as the new value
 		db.set('ass.answers.' + category, points);
 	
 	}
 
 	var total = tally(db.get('ass.answers'));
+
+	if (total >= 15) {
+		loadSlide('qualify-low');
+	}
 
 	// compare values for testing
 	console.log('new: ' + points + '\nstored: ' + db.get('ass.answers.' + category) + '\ntotal: ' + total);
@@ -158,6 +175,14 @@ $('[data-action="restart"]').on('click', function() {
 
 });
 
+$('[data-action="break"]').on('click', function() {
+
+	// run resume function defined in FUNCTIONS block
+	db.set('ass.whereIAm', window.location.hash.slice(1));
+	loadSlide('break-time');
+
+});
+
 $('[data-action="resume"]').on('click', function() {
 
 	// run resume function defined in FUNCTIONS block
@@ -182,7 +207,15 @@ $('[type="radio"]').on('change', function() {
 		db.set('ass.answers.' + category, db.get('ass.answers.' + category) - window.points);
 	}
 
-	setScore(points, category);
-	window.points = points;
+	if (points === 15) {
+
+		loadSlide('qualify-high');
+
+	} else {
+
+		setScore(points, category);
+		window.points = points;
+
+	}
 
 });

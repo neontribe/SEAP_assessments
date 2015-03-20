@@ -29,13 +29,13 @@
 			</div>
 			<ul aria-label="menu">
 				<li>
-					<button data-followup="#{{followUp}}" class="nav-link" data-action="pick">Ask me another</button>
+					<button data-followup="#{{followUp}}" class="nav-link pick" data-action="pick">Ask me another</button>
 				</li>
 				<li>
-					<button class="nav-link" data-action="stats">My stats</button>
+					<button class="nav-link stats" data-action="stats">My stats</button>
 				</li>
 				<li>
-					<a href="#break-time" class="nav-link break">I need a break</a>
+					<button class="nav-link break" data-action="break">I need a break</button>
 				</li>
 			</ul>
 		</div>
@@ -66,13 +66,50 @@
 					<button class="nav-link progress" data-action="stats">My stats</button>
 				</li>
 				<li>
-					<a href="#break-time" class="nav-link break">I need a break</a>
+					<button class="nav-link break" data-action="break">I need a break</button>
 				</li>
 			</ul>
 		</div>
 		{{/each}}
-		<div class="slide qualify" id="qualify">
-			/* qualification */
+		<div class="slide qualify" id="qualify-high">
+			<div class="box">
+				<h2>
+					You qualify for<br/>
+					<strong>Support group</strong>
+				</h2>
+				<p>Your answer to the last question shows that you may qualify for the highest ESA rate, placing you in the &#x201c;Support Group&#x201d;. Do you want to try more questions?</p>
+				<ul aria-label="menu">
+					<li>	
+						<button class="nav-link" data-action="pick">Another question</button>
+					</li>
+					<li>
+						<a href="#main-menu" class="nav-link">Main menu</a>
+					</li>
+					<li>
+						<button class="nav-link" data-action="break">Take a break</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="slide qualify" id="qualify-low">
+			<div class="box">
+				<h2>
+					You qualify for<br/>
+					<strong>Work Related Activity Group</strong>
+				</h2>
+				<p>Your answer to the last question shows that you may qualify for the standard ESA rate, placing you in the &#x201c;Work Related Activity Group&#x201d;. Do you want to try more questions?</p>
+				<ul aria-label="menu">
+					<li>	
+						<button class="nav-link" data-action="pick">Another question</button>
+					</li>
+					<li>
+						<a href="#main-menu" class="nav-link">Main menu</a>
+					</li>
+					<li>
+						<button class="nav-link" data-action="break">Take a break</button>
+					</li>
+				</ul>
+			</div>
 		</div>
 		<div class="slide main-menu" id="main-menu">
 			/* main menu */
@@ -95,7 +132,7 @@
 		<div class="slide get-started" id="start">
 			<div class="box">
 				<h2>Let&#x2019;s start</h2>
-				<p>In your real assessment you'll be asked questions about your ability to do things. Here, you can try out some of these questions and get an idea of how you'd do in the real assessment. You can <a href="#break-time">take a break</a> at any time and come back later :-)</p>
+				<p>In your real assessment you'll be asked questions about your ability to do things. Here, you can try out some of these questions and get an idea of how you'd do in the real assessment. You can <a role="button" href="#break-time" data-action="break">take a break</a> at any time and come back later :-)</p>
 				<p><button class="nav-link" data-action="pick">Try a question</button></p>
 			</div>
 		</div>

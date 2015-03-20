@@ -1,9 +1,9 @@
 {
 	"questions": [
 		{		
-			"question": "Can you do x comfortably?",
-			"hint": "By comfortably, the question means \'without pain\'.",
-			"category": "Mobility",
+			"question": "Can you move around and use steps without difficulty?",
+			"hint": null,
+			"category": "Mobilising unaided by another person with or without a walking stick, manual wheelchair or other aid if such aid is normally or could reasonably be worn or used",
 			"answers": [
 				{
 					"label": "Yes",
@@ -11,19 +11,60 @@
 				},
 				{
 					"label": "No",
+					"value": "Question text of follow-up question (string)"
+				}
+			]
+		},
+		{		
+			"question": "What is the furthest you can move safely on level ground without needing to stop?",
+			"hint": "Answer this question even if you need a walking stick, manual wheelchair or other aid to help you.",
+			"category": "Mobilising unaided by another person with or without a walking stick, manual wheelchair or other aid if such aid is normally or could reasonably be worn or used",
+			"answers": [
+				{
+					"label": "0 - 50 metres",
+					"value": 15
+				},
+				{
+					"label": "51 - 100 metres",
+					"value": 9
+				},
+				{
+					"label": "101 - 200 metres",
 					"value": 6
 				},
 				{
-					"label": "I don\'t know",
-					"value": null
+					"label": "More than 200 metres",
+					"value": 0
 				}
-			],
-			"followUp": "followup-83673628"
+			]
 		},
 		{		
-			"question": "Can you stand?",
-			"hint": "As in \'can you stand up?\'",
-			"category": "Mobility",
+			"question": "After moving once, how far can you move again within a short time without it causing you significant discomfort or exhaustion?",
+			"hint": null,
+			"category": "Mobilising unaided by another person with or without a walking stick, manual wheelchair or other aid if such aid is normally or could reasonably be worn or used",
+			"answers": [
+				{
+					"label": "0 - 50 metres",
+					"value": 15
+				},
+				{
+					"label": "51 - 100 metres",
+					"value": 9
+				},
+				{
+					"label": "101 - 200 metres",
+					"value": 6
+				},
+				{
+					"label": "More than 200 metres",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Can you go up or down two steps without being helped by another person even with the support of a handrail?",
+			"hint": null,
+			"category": "Mobilising unaided by another person with or without a walking stick, manual wheelchair or other aid if such aid is normally or could reasonably be worn or used",
 			"answers": [
 				{
 					"label": "Yes",
@@ -37,8 +78,68 @@
 					"label": "It varies",
 					"value": null
 				}
-			],
-			"followUp": "followup-83658619"
+			]
+		},
+		{		
+			"question": "Can you stand and sit without difficulty?",
+			"hint": null,
+			"category": "Sitting and standing",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": "Question text of follow-up question (string)"
+				},
+				{
+					"label": "It varies",
+					"value": null
+				}				
+			]
+		},
+		{		
+			"question": "If two seats are placed next to each other could you move from one to the other without help from someone else?",
+			"hint": null,
+			"category": "Sitting and standing",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": 15
+				},
+				{
+					"label": "It varies",
+					"value": null
+				}				
+			]
+		},
+		{		
+			"question": "How long could you either sit or stand or both at a workstation for the majority of time without help from someone else before it caused you significant discomfort or exhaustion and you had to move away?",
+			"hint": null,
+			"category": "Sitting and standing",
+			"answers": [
+				{
+					"label": "0 - 30 mins",
+					"value": 6
+				},
+				{
+					"label": "30 mins to 1 hour",
+					"value": 9
+				},
+				{
+					"label": "Over an hour",
+					"value": 0
+				},
+				{
+					"label": "It varies",
+					"value": null
+				}					
+			]
 		}
 	],
 	"advice": [
