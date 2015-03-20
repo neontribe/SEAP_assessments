@@ -268,6 +268,7 @@ body {
 	text-align: center;
 	display: none;
 	background: #dcf0fd;
+	padding: 1.5em;
 }
 
 .slide h2 {
@@ -306,6 +307,10 @@ body {
 	border: 5px solid #3389c1;
 	padding: 20px;
 	padding: 1.5rem;
+}
+
+.green {
+	border-color: #008556;
 }
 
 .break-time img {
