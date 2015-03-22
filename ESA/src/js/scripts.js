@@ -84,7 +84,7 @@ function pickQuestion() {
 		// put the unanswered question into the array of skipped questions
 		var skipped = db.get('ass.skippedQuestions') || [];
 		skipped.push(window.question);
-		db.set('ass.skippedQuestions.', skipped);
+		db.set('ass.skippedQuestions', skipped);
 
 	}
 
