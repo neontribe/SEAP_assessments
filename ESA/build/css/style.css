@@ -317,3 +317,70 @@ body {
 	max-width: 8rem;
 	max-width: 160px;
 }
+
+/* transitions
+---------------------------------------------*/
+
+.slide > * {
+	-webkit-transition: all 0.5s ease;
+	        transition: all 0.5s ease;
+}
+
+.slide > .box {
+	-webkit-transition: none;
+	        transition: none;
+}
+
+.question-container {
+	-webkit-transform: scale(0.5);
+	    -ms-transform: scale(0.5);
+	        transform: scale(0.5);
+	opacity: 0;
+}
+
+.question-container.loaded {
+	-webkit-transform: scale(1);
+	    -ms-transform: scale(1);
+	        transform: scale(1);
+	opacity: 1;
+}
+
+@-webkit-keyframes wobble {
+	0% { -webkit-transform: rotate(2deg); transform: rotate(2deg); }
+	25% { -webkit-transform: rotate(-2deg); transform: rotate(-2deg); }
+	50% { -webkit-transform: rotate(2deg); transform: rotate(2deg); }
+	75% { -webkit-transform: rotate(-2deg); transform: rotate(-2deg); }
+	100% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+}
+
+@keyframes wobble {
+	0% { -webkit-transform: rotate(2deg); transform: rotate(2deg); }
+	25% { -webkit-transform: rotate(-2deg); transform: rotate(-2deg); }
+	50% { -webkit-transform: rotate(2deg); transform: rotate(2deg); }
+	75% { -webkit-transform: rotate(-2deg); transform: rotate(-2deg); }
+	100% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+}
+
+@-webkit-keyframes zoomzoom {
+	0% { -webkit-transform: scale(0.95); transform: scale(0.95) }
+	25% { -webkit-transform: scale(1); transform: scale(1) }
+	50% { -webkit-transform: scale(0.95); transform: scale(0.95) }
+	100% { -webkit-transform: scale(1); transform: scale(1); }
+}
+
+@keyframes zoomzoom {
+	0% { -webkit-transform: scale(0.95); transform: scale(0.95) }
+	25% { -webkit-transform: scale(1); transform: scale(1) }
+	50% { -webkit-transform: scale(0.95); transform: scale(0.95) }
+	100% { -webkit-transform: scale(1); transform: scale(1); }
+}
+
+.box.loaded {
+	-webkit-animation: wobble 0.25s linear 1;
+	        animation: wobble 0.25s linear 1;
+}
+
+.box.green.loaded {
+	-webkit-animation: zoomzoom 0.5s linear 1;
+	        animation: zoomzoom 0.5s linear 1;
+}

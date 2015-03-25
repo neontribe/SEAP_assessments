@@ -10362,11 +10362,12 @@ var db = $.localStorage;
 
 if (db.isEmpty('ass')) {
 
+	// setup the database ass object
+	initAss();
+	window.answered = false;
+
 	// load the intro slide
 	loadSlide('start');
-
-	// initialize the ass(essment) object
-	db.set('ass', {});
 
 } else {
 
@@ -10374,35 +10375,38 @@ if (db.isEmpty('ass')) {
 	loadSlide('resume');
 }
 
-// set unseen questions to all questions if none are seen
-var unseenQuestions = db.get('ass.unseenQuestions') || db.set('ass.unseenQuestions', allQuestions);
-
-/**********************************************************************
-GLOBALS
-**********************************************************************/
-
-// The id of the current slide where applicable
-window.context = null;
-
-// The type of slide showing if pertinent
-window.slideType = null;
-
-// The points earned for a question
-window.points = null;
-
 /**********************************************************************
 FUNCTIONS
 **********************************************************************/
 
+function initAss() {
+
+	// model the database 'ass' object
+	var assTemplate = { // the questions which haven't been viewed
+		unseenQuestions: window.allQuestions,
+		skippedQuestions: [], // the questions which have been viewed but not answered
+		context: null, // the jQuery object for the slide in hand
+		slideType: null, // null or 'question' etc.
+		mode: 'unseenQuestions', // 'unseenQuestions' or 'skippedQuestions' (for switching between viewing unseen questions or seen but skipped)
+		answers: {} // the master object of category high scores for tallying
+	};
+
+	// Save the virgin ass to local storage
+	db.set('ass', assTemplate);
+}
+
 function loadSlide(id, type) {
+
+	$('.slide > *').removeClass('loaded');
 
 	console.log('slide loaded');
 
-	// set type global (eg. 'question') or reset to null
-	window.slideType = type ? type : null;
-
-	// clear working points value from previous question answer
-	window.points = null;
+	// set type in local storage or reset to null
+	if (type) {
+		db.set('ass.slideType', type);
+	} else {
+		db.set('ass.slideType', null);
+	}
 
 	// go to picked question
 	window.location.hash = '#' + id;
@@ -10426,46 +10430,89 @@ function loadSlide(id, type) {
 
 	}
 
-	// Set context reference
-	window.context = $('#' + id);
+	// Set context reference (jQuery object)
+	db.set('ass.context', id);
+
+	// add the loaded class for transitions
+	$('#' + id + ' > *').addClass('loaded');
 
 }
 
 // show a random unseen question
 function pickQuestion() {
 
-	if (window.slideType === 'question' && !window.points) {
-		
+	// the type of the previous slide if any
+	var type = db.get('ass.slideType');
+	// the last slide seen
+	var context = db.get('ass.context');
+	// get mode
+	var mode = db.get('ass.mode');
+
+	if (type === 'question' && !window.answered && mode === 'unseenQuestions') {
+
 		// put the unanswered question into the array of skipped questions
-		var skipped = db.get('ass.skippedQuestions') || [];
-		skipped.push(window.question);
-		db.set('ass.skippedQuestions', skipped);
+		var skipped = db.get('ass.skippedQuestions');
+		skipped.push(db.get('ass.context'));
+		console.log(skipped);
+		db.set('ass.skippedQuestions', _.uniq(skipped));
 
 	}
 
-	// reset "in hand" answer points and question global
-	window.points = null;
-	window.question = null; 
+	// get the appropriate set
+	var questions = db.get('ass.' + mode);
 
-	// get questions array
-	var questions = db.get('ass.unseenQuestions');
-
-	if (questions.length < 1) {
+	if (questions.length < 1 && mode === 'unseenQuestions') {
 		loadSlide('seen-all');
 		return;
 	}
 
-	// use underscore to get random question slug
-	var question = _.sample(questions);
+	// init individual question var
+	var question;
 
-	// set question to global scope
-	window.question = question;
+	if (mode === 'unseenQuestions') {
 
-	// set unseenQuestions with this question removed
-	db.set('ass.unseenQuestions', _.without(questions, question));
+		// use underscore to get random question slug
+		question = _.sample(questions);
+
+		// set collection with this question removed
+		db.set('ass.' + mode, _.without(questions, question));
+
+	} else {
+
+		console.log(db.get('ass.skippedQuestions'));
+
+		if (window.answered) {		
+
+			questions = _.without(questions, context);
+
+			question = _.sample(questions);
+
+			// if the array is empty, all the skipped questions are answered
+			if (question === undefined) {
+
+				loadSlide('seen-all-even-skipped');
+				return;
+			}
+
+			db.set('ass.' + mode, questions);
+
+
+		} else {
+
+			// remove last question seen from random sample
+			// so two questions don't show at once
+			questions = _.without(questions, context);
+			question = _.sample(questions);
+
+		}
+
+	}
 
 	// load question slide and set slide type global to 'question' 
 	loadSlide(question, 'question');
+
+	// set to false until button pressed
+	window.answered = false;
 
 }
 
@@ -10475,10 +10522,7 @@ function restart() {
 	console.log('restarting');
 
 	// reinitialize the master object
-	db.set('ass', {});
-
-	// reinitialize unseen questions
-	db.set('ass.unseenQuestions', allQuestions);
+	initAss();
 
 	// go to start screen
 	loadSlide('start');
@@ -10497,53 +10541,34 @@ function resume() {
 
 }
 
-// set high score per category
-function setScore(points, category) {
-
-	// initialize the answers object if it doesn't exist
-	if (db.isEmpty('ass.answers')) {
-		db.set('ass.answers', {});
-	}
-
-	// get previous total
-	var oldTotal = tally(db.get('ass.answers'));
-
-	// set anwers.category name to points if it doesn't exist
-	var recordedScore = db.get('ass.answers.' + category) || db.set('ass.answers.' + category, points);
-
-	// change recorded score to new score if new score is higher
-	if (recordedScore < points) {
-
-		// The new score is higher for the category so set it as the new value
-		db.set('ass.answers.' + category, points);
+// add the high scores for each category together
+function tally() {
 	
-	}
+	// get all the answers
+	var answers = db.get('ass.answers');
 
-	// use tally function to add up high scores
-	var total = tally(db.get('ass.answers'));
+	// init the total
+	total = 0;
 
-	if (total >= 15 && oldTotal < 15) {
-		loadSlide('qualify-low');
-	}
+	// add up the highest values for each category
+	$.each(answers, function(index, value) {
+	    total += _.max(value);
+	});
 
-	// compare values for testing
-	// console.log('new: ' + points + '\nstored: ' + db.get('ass.answers.' + category) + '\ntotal: ' + total);
+	if (total >= 15) {
 
-}
+		if (!db.get('ass.high')) {
 
-// tally up the category points
-function tally(object) {
-	var sum = 0;
-	for( var el in object ) {
-		if( object.hasOwnProperty( el ) ) {
-			sum += parseFloat( object[el] );
+			loadSlide('qualify-low');
+
 		}
+
 	}
-	return sum;	
+
 }
 
 // helper function to test numeric strings
-function isNumeric(num){
+function isNumeric(num) {
     return !isNaN(num);
 }
 
@@ -10555,6 +10580,20 @@ EVENTS
 $('body').on('click','[data-action="pick"]', function() {
 
 	// run pickQuestion function to get a random unseen question
+	pickQuestion();
+
+});
+
+// click to see a random question
+$('body').on('click','[data-action="skipped"]', function() {
+
+	// the first skipped question cannot have been answered
+	window.answered = false;
+
+	// set mode to skipped questions
+	db.set('ass.mode', 'skippedQuestions');
+
+	// pick a question
 	pickQuestion();
 
 });
@@ -10584,34 +10623,47 @@ $('body').on('click','[data-action="resume"]', function() {
 
 $('body').on('change','[type="radio"]', function() {
 
+	// record that change has been made
+	window.answered = true;
+
 	// get checked answer's value and the category the question belongs to
-	var points = $(':checked', window.context).val();
-	var category = $(':checked').attr('name');
+	var context = db.get('ass.context');
+	var points = $(':checked', '#' + context).val();
+	var category = $(':checked', '#' + context).attr('name');
 
-	// convert to a true number or null (from empty string)
-	if (points) {
+	if (isNumeric(points)) {
 
-		// cast as real
+		// cast to real number
 		points = +points;
 
-		if (window.points) {
-			db.set('ass.answers.' + category, db.get('ass.answers.' + category) - window.points);
-		}
+		if (points === 15) {
 
-		if (isNumeric(points)) {
+			// no need to add up, just tell the user
+			loadSlide('qualify-high');
 
-			if (points === 15) {
+			// record that the high qualification is true
+			db.set('ass.high', true);
+			
+		} else {
 
-				loadSlide('qualify-high');
-
-			} else {
-
-				setScore(points, category);
-				window.points = points;
-
+			// check if the category object exists
+			// and, if not, set it
+			if (!db.isSet('ass.answers.' + category)) {
+				db.set('ass.answers.' + category, category);
 			}
 
+			// set the new points for this question in this category
+			db.set('ass.answers.' + category + '.' + context, points);
+
+			// fire the adding up function
+			// to see if there are enough points to qualify
+			tally();
+
 		}
+
+	} else {
+
+		// handle follow up questions
 
 	}
 

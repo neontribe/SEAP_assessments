@@ -15,29 +15,31 @@
 		</header>
 		{{#each questions}}
 		<div class="slide question" id="{{sluggify question}}" data-category="{{sluggify category}}">
-			<img src="path/to/question-icon.svg" alt="" />
-			<h2 class="question-text" tabindex="-1">
-				<span class="vh">Question:</span> 
-				<em>{{question}}</em>
-			</h2>
-			<div class="answers" aria-label="choose an answer">
-				{{#each answers}}
-				<label>
-		            <input type="radio" value="{{value}}" name="{{sluggify ../category}}"> <span>{{label}}</span>
-		        </label>
-				{{/each}}
+			<div class="question-container">
+				<img src="path/to/question-icon.svg" alt="" />
+				<h2 class="question-text" tabindex="-1">
+					<span class="vh">Question:</span> 
+					<em>{{question}}</em>
+				</h2>
+				<div class="answers" aria-label="choose an answer">
+					{{#each answers}}
+					<label>
+			            <input type="radio" value="{{value}}" name="{{sluggify ../category}}"> <span>{{label}}</span>
+			        </label>
+					{{/each}}
+				</div>
+				<ul aria-label="menu">
+					<li>
+						<button data-followup="#{{followUp}}" class="nav-link pick" data-action="pick">Ask me another</button>
+					</li>
+					<li>
+						<button class="nav-link stats" data-action="stats">My stats</button>
+					</li>
+					<li>
+						<button class="nav-link break" data-action="break">I need a break</button>
+					</li>
+				</ul>
 			</div>
-			<ul aria-label="menu">
-				<li>
-					<button data-followup="#{{followUp}}" class="nav-link pick" data-action="pick">Ask me another</button>
-				</li>
-				<li>
-					<button class="nav-link stats" data-action="stats">My stats</button>
-				</li>
-				<li>
-					<button class="nav-link break" data-action="break">I need a break</button>
-				</li>
-			</ul>
 		</div>
 		{{/each}}
 		{{#each advice}}
@@ -139,7 +141,7 @@
 		<div class="slide get-started" id="seen-all">
 			<div class="box green">
 				<h2>No more new questions</h2>
-				<p>You've seen all the questions (so you're pretty familiar with the assessment now!) but you skipped some. What would you like to do?</p>
+				<p>You&#x2019;ve seen all the questions (so you're pretty familiar with the assessment now!) but you skipped some. What would you like to do?</p>
 				<ul aria-label="menu">
 					<li>	
 						<button class="nav-link" data-action="skipped">Skipped questions</button>
@@ -149,6 +151,23 @@
 					</li>
 					<li>
 						<button class="nav-link" data-action="restart">Restart</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="slide get-started" id="seen-all-even-skipped">
+			<div class="box green">
+				<h2>Assessment complete!</h2>
+				<p>You&#x2019;ve answered all the practise questions available, so you&#x2019;re pretty well versed now. What would you like to do next?</p>
+				<ul aria-label="menu">
+					<li>
+						<button class="nav-link" data-action="main-menu">Main Menu</button>
+					</li>
+					<li>
+						<button class="nav-link" data-action="stats">My stats</button>
+					</li>
+					<li>
+						<button class="nav-link" data-action="restart">Practise again</button>
 					</li>
 				</ul>
 			</div>
