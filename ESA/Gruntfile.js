@@ -17,7 +17,7 @@ module.exports = function(grunt){
                 'head-script-disabled': true,
                 'style-disabled': true
             },
-            src: ['build/*.html']
+            src: ['build/*.html', '!build/stats-template.html']
         }
       },
       watch: {
@@ -59,7 +59,7 @@ module.exports = function(grunt){
       },
       concat: {
         js: {
-          src: ['build/js/jquery.js','build/js/underscore.js', 'build/js/storageapi.js', 'build/js/scripts.js'],
+          src: ['build/js/jquery.js', 'build/js/underscore.js', 'build/js/storageapi.js', 'build/js/handlebars.js', 'build/js/scripts.js'],
           dest: 'build/js/all-scripts.js'
         }
       },
@@ -88,9 +88,19 @@ module.exports = function(grunt){
           helpers: 'build/helpers/*.js',
           output: 'build/index.html'
         }
+      },
+      bake: {
+        options: {
+          process: false
+        },
+        create: {
+          files: {
+            'build/index.html': 'build/index.html'
+          }
+        }
       }
     });
   
-    grunt.registerTask('generate', ['clean:initial', 'copy','compile-handlebars', 'htmlhint', 'jshint', 'concat', 'autoprefixer', 'clean:tidyup']);
+    grunt.registerTask('generate', ['clean:initial', 'copy','compile-handlebars','bake', 'htmlhint', 'jshint', 'concat', 'autoprefixer', 'clean:tidyup']);
     grunt.registerTask('generate-production', ['clean:initial','compile-handlebars', 'htmlhint', 'jshint', 'copy', 'concat', 'uglify', 'autoprefixer','cssmin', 'clean:tidyup']);
 };

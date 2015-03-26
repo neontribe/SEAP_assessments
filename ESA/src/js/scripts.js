@@ -42,9 +42,15 @@ function initAss() {
 
 function loadSlide(id, type) {
 
+	if (id === 'stats') {
+
+		// compile the stats before showing slide
+		compileStats();
+
+	}
+
 	$('.slide > *').removeClass('loaded');
 
-	console.log('slide loaded');
 
 	// set type in local storage or reset to null
 	if (type) {
@@ -55,6 +61,8 @@ function loadSlide(id, type) {
 
 	// go to picked question
 	window.location.hash = '#' + id;
+
+	console.log('slide loaded');
 
 	// focus title to announce title in AT
 	$('#' + id)
@@ -93,6 +101,8 @@ function pickQuestion() {
 	// get mode
 	var mode = db.get('ass.mode');
 
+	console.log(window.answered);
+
 	if (type === 'question' && !window.answered && mode === 'unseenQuestions') {
 
 		// put the unanswered question into the array of skipped questions
@@ -124,11 +134,13 @@ function pickQuestion() {
 
 	} else {
 
-		console.log(db.get('ass.skippedQuestions'));
+		console.log('Initial', db.get('ass.skippedQuestions'));
 
-		if (window.answered) {		
+		if (window.answered) {
 
 			questions = _.without(questions, context);
+
+			console.log('Removed 1', questions);
 
 			question = _.sample(questions);
 
@@ -144,9 +156,15 @@ function pickQuestion() {
 
 		} else {
 
+			console.log('Didn\'t remove one', questions);
+
 			// remove last question seen from random sample
 			// so two questions don't show at once
-			questions = _.without(questions, context);
+			// unless this is the last one
+			if (questions.length !== 1) {
+				questions = _.without(questions, context);
+			}
+
 			question = _.sample(questions);
 
 		}
@@ -197,16 +215,28 @@ function tally() {
 
 	// add up the highest values for each category
 	$.each(answers, function(index, value) {
+
+		// find the highest value under 15 and increment the total
 	    total += _.max(value);
+
 	});
 
 	if (total >= 15) {
 
-		if (!db.get('ass.high')) {
+		// don't show the slide if you have already
+		if (!db.get('ass.high') && !db.get('ass.low')) {
 
 			loadSlide('qualify-low');
 
 		}
+
+		// record that low qualification is possible
+		db.set('ass.low', true);
+
+	} else {
+
+		// reset to false
+		db.set('ass.low', false);
 
 	}
 
@@ -216,6 +246,48 @@ function tally() {
 function isNumeric(num) {
     return !isNaN(num);
 }
+
+function compileStats() {
+
+	// template up the stats with handlebars and 
+	// write to the stats file 
+	var template = Handlebars.compile(document.getElementById("stats-template").innerHTML);
+	var assData = db.get('ass');
+	var output = template(assData);
+	$('#stats-content').html(output);
+
+}
+
+/**********************************************************************
+HELPERS
+**********************************************************************/
+
+Handlebars.registerHelper('count', function(array) {
+	return array.length || 0;
+});
+
+Handlebars.registerHelper('seen', function(array) {
+	return window.allQuestions.length - db.get('ass.unseenQuestions').length;
+});
+
+Handlebars.registerHelper('seenPercentage', function(array) {
+	console.log('all questions length:', window.allQuestions.length);
+	var seen = window.allQuestions.length - db.get('ass.unseenQuestions').length;
+	var percent = Math.round((seen / window.allQuestions.length) * 100) + '%';
+	return percent;
+});
+
+Handlebars.registerHelper('qualifyHigh', function(array) {
+	return db.get('ass.high') ? true : false;
+});
+
+Handlebars.registerHelper('qualifyLow', function(array) {
+	return db.get('ass.low') ? true : false;
+});
+
+Handlebars.registerHelper('qualifyEither', function(array) {
+	return db.get('ass.low') && db.get('ass.high') ? true : false;
+});
 
 /**********************************************************************
 EVENTS
@@ -266,6 +338,20 @@ $('body').on('click','[data-action="resume"]', function() {
 
 });
 
+$('body').on('click','[data-action="menu"]', function() {
+
+	// run resume function defined in FUNCTIONS block
+	loadSlide('main-menu');
+
+});
+
+$('body').on('click','[data-action="stats"]', function() {
+
+	// load the stats slide
+	loadSlide('stats');
+
+});
+
 $('body').on('change','[type="radio"]', function() {
 
 	// record that change has been made
@@ -275,6 +361,7 @@ $('body').on('change','[type="radio"]', function() {
 	var context = db.get('ass.context');
 	var points = $(':checked', '#' + context).val();
 	var category = $(':checked', '#' + context).attr('name');
+	var label = $(':checked + span', '#' + context).text();
 
 	if (isNumeric(points)) {
 
@@ -285,6 +372,9 @@ $('body').on('change','[type="radio"]', function() {
 
 			// no need to add up, just tell the user
 			loadSlide('qualify-high');
+
+			// Set the points. We exclude integers of 15 in the tally
+			// db.set('ass.answers.' + category + '.' + context, points);
 
 			// record that the high qualification is true
 			db.set('ass.high', true);

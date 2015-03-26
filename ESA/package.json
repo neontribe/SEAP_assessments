@@ -1,11 +1,12 @@
 {
-  "name": "SEAP Assessments (ESA)",
+  "name": "ESA",
   "version": "0.1.0",
   "author": "Heydon Pickering",
   "private": true,
   "devDependencies": {
     "grunt": "~0.4.0",
     "grunt-autoprefixer": "*",
+    "grunt-bake": "^0.3.12",
     "grunt-compile-handlebars": "^1.0.1",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-concat": "*",

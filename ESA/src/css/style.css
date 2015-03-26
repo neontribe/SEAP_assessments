@@ -54,6 +54,10 @@ li, option, dt, dd, tr, td {
 	margin-top: 0;
 }
 
+p {
+	text-align: left;
+}
+
 p + p {
 	margin-top: 0.75em;
 }
@@ -107,8 +111,7 @@ button, .button-shaped, [type="radio"] + span {
 }
 
 button:focus, .button-shaped:focus, [type="radio"]:focus + span {
-	outline: 1px solid #006541;
-	outline-offset: 0.25em;
+	outline: 4px solid #006541;
 }
 
 button:active, .button-shaped:active,
@@ -165,7 +168,7 @@ a.nav-link, button.nav-link {
 }
 
 a.nav-link:hover, button.nav-link:hover {
-	border-color: #00a56b;
+	outline: 2px solid #006541;
 }
 
 a.nav-link:active, button.nav-link:active {
@@ -246,6 +249,54 @@ a.nav-link:active, button.nav-link:active {
 	border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px;
 }
 
+.flow {
+	max-width: 850px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.flow h2 {
+	font-size: 3em;
+	text-align: center;
+}
+
+.row {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.row > * {
+	display: table-cell;
+	text-align: center;
+}
+
+.row p {
+	text-align: center;
+}
+
+.row.boxes > * {
+	background: #79bde9;
+	padding: 1.5em;
+	border-spacing: 0.5em;
+}
+
+.massive {
+	font-size: 3.5em;
+	line-height: 1;
+	font-weight: bold;
+}
+
+.massive span {
+	font-family: monospace;
+	font-weight: normal;
+}
+
+small {
+	font-size: 0.85em;
+	font-style: italic;
+}
+
 /* layout
 ---------------------------------------------*/
 
@@ -268,7 +319,8 @@ body {
 	text-align: center;
 	display: none;
 	background: #dcf0fd;
-	padding: 1.5em;
+	padding: 90px 30px;
+	padding: 4.5rem 1.5rem;
 }
 
 .slide h2 {
@@ -285,20 +337,49 @@ body {
 }
 
 .to-main-menu, [role="banner"] {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	padding: 20px;
-	padding: 1.5rem;
+	height: 60px;
+	line-height: 60px;
+	height: 3rem;
+	line-height: 3rem;
+	padding: 0 30px;
+	padding: 0 1.5rem;
 	text-align: right;
 	margin: 0 !important;
+	border-top: 2px solid #79bde9;
+	background: #dcf0fd;
 }
 
 [role="banner"] {
 	top: 0;
 	bottom: auto;
 	text-align: left;
+	border-bottom: 2px solid #79bde9;
+	border-top: 0;
+}
+
+.to-main-menu button {
+	font-size: 1em;
+	background: none;
+	padding: 0;
+	box-shadow: none;
+	position: static !important;
+	font-weight: normal;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.to-main-menu button:active, .to-main-menu button:focus {
+	outline-width: 1px;
+	outline-offset: 0.25em;
+}
+
+.to-main-menu a, [role="banner"] a {
+	border: 0;
+	text-transform: uppercase;
 }
 
 .box {
