@@ -14111,10 +14111,12 @@ if (db.isEmpty('ass')) {
 
 	// setup the database ass object
 	initAss();
+
+	// set answered global to false
 	window.answered = false;
 
 	// load the intro slide
-	loadSlide('start');
+	loadSlide('main-menu');
 
 } else {
 
@@ -14132,10 +14134,13 @@ function initAss() {
 	var assTemplate = { // the questions which haven't been viewed
 		unseenQuestions: window.allQuestions,
 		skippedQuestions: [], // the questions which have been viewed but not answered
+		started: false, // whether a practise has been started
 		context: null, // the jQuery object for the slide in hand
 		slideType: null, // null or 'question' etc.
 		mode: 'unseenQuestions', // 'unseenQuestions' or 'skippedQuestions' (for switching between viewing unseen questions or seen but skipped)
-		answers: {} // the master object of category high scores for tallying
+		answers: {}, // the master object of category high scores for tallying
+		low: false, // low qualification?
+		high: false // high qualification?
 	};
 
 	// Save the virgin ass to local storage
@@ -14242,6 +14247,8 @@ function pickQuestion() {
 
 			questions = _.without(questions, context);
 
+			db.set('ass.' + mode, questions);
+
 			console.log('Removed 1', questions);
 
 			question = _.sample(questions);
@@ -14252,8 +14259,6 @@ function pickQuestion() {
 				loadSlide('seen-all-even-skipped');
 				return;
 			}
-
-			db.set('ass.' + mode, questions);
 
 
 		} else {
@@ -14372,23 +14377,35 @@ Handlebars.registerHelper('seen', function(array) {
 	return window.allQuestions.length - db.get('ass.unseenQuestions').length;
 });
 
-Handlebars.registerHelper('seenPercentage', function(array) {
+Handlebars.registerHelper('seenPercentage', function() {
 	console.log('all questions length:', window.allQuestions.length);
 	var seen = window.allQuestions.length - db.get('ass.unseenQuestions').length;
 	var percent = Math.round((seen / window.allQuestions.length) * 100) + '%';
 	return percent;
 });
 
-Handlebars.registerHelper('qualifyHigh', function(array) {
-	return db.get('ass.high') ? true : false;
+Handlebars.registerHelper('qualifyHigh', function() {
+	if (db.get('ass.high') && !db.get('ass.low')) {
+		return "<p>You may qualify for the high rate, placing you in <strong>Support Group</strong>.</p>";
+	}
 });
 
-Handlebars.registerHelper('qualifyLow', function(array) {
-	return db.get('ass.low') ? true : false;
+Handlebars.registerHelper('qualifyLow', function() {
+	if (!db.get('ass.high') && db.get('ass.low')) {
+		return "<p>You may qualify for the standard rate, placing you in <strong>Work Related Activity Group</strong>.</p>";
+	}
 });
 
-Handlebars.registerHelper('qualifyEither', function(array) {
-	return db.get('ass.low') && db.get('ass.high') ? true : false;
+Handlebars.registerHelper('qualifyEither', function() {
+	if (db.get('ass.high') && db.get('ass.low')) {
+		return "<p>It looks like you'll qualify for the standard rate (<strong>Support Group</strong>) or possibly the higher rate (<strong>Work Related Activity Group</strong>)</p>";
+	}
+});
+
+Handlebars.registerHelper('qualifyNone', function() {
+	if (!db.get('ass.high') && !db.get('ass.low')) {
+		return "<p>Based on the questions you've answered, it looks unlikely that you'll qualify</p>";
+	}
 });
 
 /**********************************************************************
@@ -14422,6 +14439,23 @@ $('body').on('click','[data-action="restart"]', function() {
 
 	// run restart function defined in FUNCTIONS block
 	restart();
+
+});
+
+// restart the app
+$('body').on('click','[data-action="start-or-resume"]', function() {
+
+	// has the user (or _a_ user) been to the questions section before?
+	if (db.get('ass.started')) {
+
+		loadSlide('resume-practise');
+
+	} else {
+
+		loadSlide('start');
+		db.set('ass.started', true);
+
+	}
 
 });
 

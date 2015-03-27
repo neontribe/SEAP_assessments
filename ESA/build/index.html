@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<header role="banner">
-			<a href="#main-menu" aria-label="ESA Assessment homepage">SEAP Assessments : ESA</a>
+			SEAP Assessments : ESA
 		</header>
 		<div class="slide question" id="can-you-move-around-and-use-steps-without-difficulty" data-category="mobilising-unaided-by-another-person-with-or-without-a-walking-stick-manual-wheelchair-or-other-aid-if-such-aid-is-normally-or-could-reasonably-be-worn-or-used">
 			<div class="question-container">
@@ -331,7 +331,21 @@
 			</div>
 		</div>
 		<div class="slide main-menu" id="main-menu">
-			/* main menu */
+			<div class="flow">
+				<h1>ESA Assessment Trainer <span>from SEAP</span></h1>
+				<p>Welcome to your <abbr title="Employment And Support Allowance">ESA</abbr> training website, designed to help you get ready for your ESA medical assessment. This website&hellip;</p>
+				<ul class="ticks">
+					<li>Is run independently and impartially by the charity, <a href="http://www.seap.org.uk/">SEAP</a></li>
+					<li>Does not collect any personal data from you</li>
+					<li>Is not another big, boring form for you to fill in!</li>
+				</ul>
+				<div role="toolbar" aria-label="menu options">
+					<ul>
+						<li><button data-action="start-or-resume">Practise <span>by assessing yourself</span></button></li>
+						<li><button data-action="advice">Find out more <span>about the ESA assessment</span></button></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<div class="slide break-time" id="break-time">
 			<div class="box">
@@ -350,7 +364,7 @@
 		</div>
 		<div class="slide get-started" id="start">
 			<div class="box">
-				<h2 tabindex="-1">Let&#x2019;s start</h2>
+				<h2 tabindex="-1">Let&#x2019;s begin</h2>
 				<p>In your real assessment you'll be asked questions about your ability to do things. Here, you can try out some of these questions and get an idea of how you'd do in the real assessment. You can <a role="button" href="#break-time" data-action="break">take a break</a> at any time and come back later :-)</p>
 				<div><button class="nav-link" data-action="pick">Try a question</button></div>
 			</div>
@@ -391,8 +405,22 @@
 		</div>
 		<div class="slide get-started" id="resume">
 			<div class="box">
-				<h2>Hello again?</h2>
-				<p>Looks like you've been here before. Press &#x201c;continue&#x201d; if you want to carry on. Not been here before or want to start again? Press &#x201c;restart&#x201d;.</p>
+				<h2 tabindex="-1">Hello again?</h2>
+				<p>Looks like you've been here before. Press &#x201c;continue&#x201d; if you want to carry on where you left off. Not been here before? Choose &#x201c;main menu&#x201d;.</p>
+				<ul aria-label="menu">
+					<li>	
+						<button class="nav-link" data-action="resume">Continue</button>
+					</li>
+					<li>
+						<button class="nav-link" data-action="menu">Main menu</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="slide get-started" id="resume-practise">
+			<div class="box">
+				<h2 tabindex="-1">Continue?</h2>
+				<p>Looks like you&#x2019;ve already done some practice. Would you like to continue from where you left off or restart? (Restarting will clear all the saved question data from your computer).</p>
 				<ul aria-label="menu">
 					<li>	
 						<button class="nav-link" data-action="resume">Continue</button>
@@ -431,6 +459,10 @@
 			</div>
 			<h3>Would I qualify?</h3>
 			
+			{{{qualifyHigh}}}
+			{{{qualifyLow}}}
+			{{{qualifyEither}}}
+			{{{qualifyNone}}}
 		</script>
 	</body>
 </html>
