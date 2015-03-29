@@ -15,7 +15,7 @@
 		</header>
 		<div class="slide question" id="can-you-move-around-and-use-steps-without-difficulty" data-category="mobilising-unaided-by-another-person-with-or-without-a-walking-stick-manual-wheelchair-or-other-aid-if-such-aid-is-normally-or-could-reasonably-be-worn-or-used">
 			<div class="question-container">
-				<img src="path/to/question-icon.svg" alt="" />
+				<!--<img src="path/to/question-icon.svg" alt="" />-->
 				<h2 class="question-text" tabindex="-1">
 					<span class="vh">Question:</span> 
 					<em>Can you move around and use steps without difficulty?</em>
@@ -43,7 +43,7 @@
 		</div>
 		<div class="slide question" id="what-is-the-furthest-you-can-move-safely-on-level-ground-without-needing-to-stop" data-category="mobilising-unaided-by-another-person-with-or-without-a-walking-stick-manual-wheelchair-or-other-aid-if-such-aid-is-normally-or-could-reasonably-be-worn-or-used">
 			<div class="question-container">
-				<img src="path/to/question-icon.svg" alt="" />
+				<!--<img src="path/to/question-icon.svg" alt="" />-->
 				<h2 class="question-text" tabindex="-1">
 					<span class="vh">Question:</span> 
 					<em>What is the furthest you can move safely on level ground without needing to stop?</em>
@@ -77,7 +77,7 @@
 		</div>
 		<div class="slide question" id="after-moving-once-how-far-can-you-move-again-within-a-short-time-without-it-causing-you-significant-discomfort-or-exhaustion" data-category="mobilising-unaided-by-another-person-with-or-without-a-walking-stick-manual-wheelchair-or-other-aid-if-such-aid-is-normally-or-could-reasonably-be-worn-or-used">
 			<div class="question-container">
-				<img src="path/to/question-icon.svg" alt="" />
+				<!--<img src="path/to/question-icon.svg" alt="" />-->
 				<h2 class="question-text" tabindex="-1">
 					<span class="vh">Question:</span> 
 					<em>After moving once, how far can you move again within a short time without it causing you significant discomfort or exhaustion?</em>
@@ -111,7 +111,7 @@
 		</div>
 		<div class="slide question" id="can-you-go-up-or-down-two-steps-without-being-helped-by-another-person-even-with-the-support-of-a-handrail" data-category="mobilising-unaided-by-another-person-with-or-without-a-walking-stick-manual-wheelchair-or-other-aid-if-such-aid-is-normally-or-could-reasonably-be-worn-or-used">
 			<div class="question-container">
-				<img src="path/to/question-icon.svg" alt="" />
+				<!--<img src="path/to/question-icon.svg" alt="" />-->
 				<h2 class="question-text" tabindex="-1">
 					<span class="vh">Question:</span> 
 					<em>Can you go up or down two steps without being helped by another person even with the support of a handrail?</em>
@@ -142,7 +142,7 @@
 		</div>
 		<div class="slide question" id="can-you-stand-and-sit-without-difficulty" data-category="sitting-and-standing">
 			<div class="question-container">
-				<img src="path/to/question-icon.svg" alt="" />
+				<!--<img src="path/to/question-icon.svg" alt="" />-->
 				<h2 class="question-text" tabindex="-1">
 					<span class="vh">Question:</span> 
 					<em>Can you stand and sit without difficulty?</em>
@@ -173,7 +173,7 @@
 		</div>
 		<div class="slide question" id="if-two-seats-are-placed-next-to-each-other-could-you-move-from-one-to-the-other-without-help-from-someone-else" data-category="sitting-and-standing">
 			<div class="question-container">
-				<img src="path/to/question-icon.svg" alt="" />
+				<!--<img src="path/to/question-icon.svg" alt="" />-->
 				<h2 class="question-text" tabindex="-1">
 					<span class="vh">Question:</span> 
 					<em>If two seats are placed next to each other could you move from one to the other without help from someone else?</em>
@@ -204,7 +204,7 @@
 		</div>
 		<div class="slide question" id="how-long-could-you-either-sit-or-stand-or-both-at-a-workstation-for-the-majority-of-time-without-help-from-someone-else-before-it-caused-you-significant-discomfort-or-exhaustion-and-you-had-to-move-away" data-category="sitting-and-standing">
 			<div class="question-container">
-				<img src="path/to/question-icon.svg" alt="" />
+				<!--<img src="path/to/question-icon.svg" alt="" />-->
 				<h2 class="question-text" tabindex="-1">
 					<span class="vh">Question:</span> 
 					<em>How long could you either sit or stand or both at a workstation for the majority of time without help from someone else before it caused you significant discomfort or exhaustion and you had to move away?</em>
@@ -423,7 +423,7 @@
 				<p>Looks like you&#x2019;ve already done some practice. Would you like to continue from where you left off or restart? (Restarting will clear all the saved question data from your computer).</p>
 				<ul aria-label="menu">
 					<li>	
-						<button class="nav-link" data-action="resume">Continue</button>
+						<button class="nav-link" data-action="pick">Continue</button>
 					</li>
 					<li>
 						<button class="nav-link" data-action="restart">Restart</button>
@@ -446,23 +446,28 @@
 		<script id="stats-template" type="text/x-handlebars-template">
 			<h2>How I&#x2019;m doing</h2>
 			
-			<h3>Practice questions</h3>
-			<div class="row boxes">
-				<div>
-					<h4>Seen questions</h4>
-					<p class="massive">{{seen}} <!--<span>({{seenPercentage}})</span>--></p>
-				</div>
-				<div>
-					<h4>Skipped questions</h4>
-					<p class="massive">{{count skippedQuestions}}</p>
-				</div>
-			</div>
 			<h3>Would I qualify?</h3>
 			
 			{{{qualifyHigh}}}
 			{{{qualifyLow}}}
 			{{{qualifyEither}}}
 			{{{qualifyNone}}}
+			
+			<h3>Question stats</h3>
+			<div class="row boxes">
+				<div>
+					<h4>Seen questions</h4>
+					<p class="massive">{{seen}} <!--<span>({{seenPercentage}})</span>--></p>
+				</div>
+				<div>
+					<h4>Answered questions</h4>
+					<p class="massive">{{answered}}</p>
+				</div>
+				<div>
+					<h4>Skipped questions</h4>
+					<p class="massive">{{count skippedQuestions}}</p>
+				</div>
+			</div>
 		</script>
 	</body>
 </html>

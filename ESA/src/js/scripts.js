@@ -43,6 +43,10 @@ function initAss() {
 
 	// Save the virgin ass to local storage
 	db.set('ass', assTemplate);
+
+	// reset radio buttons
+	$('[type="radio"]').prop('checked', false);
+
 }
 
 function loadSlide(id, type) {
@@ -75,7 +79,7 @@ function loadSlide(id, type) {
 		.focus();
 
 	// find out if we've gone to one of the locations that don't need saving
-	var exclude = _.find(['resume', 'break-time'], 
+	var exclude = _.find(['resume', 'break-time', 'resume-practise'], 
 		function(unsaveable) { 
 			return unsaveable === id;
 	});
@@ -215,16 +219,12 @@ function tally() {
 	// get all the answers
 	var answers = db.get('ass.answers');
 
-	// init the total
-	total = 0;
-
 	// add up the highest values for each category
-	$.each(answers, function(index, value) {
-
-		// find the highest value under 15 and increment the total
-	    total += _.max(value);
-
-	});
+	// by taking the max value that's not 15 from each
+	// category and adding them together
+	var total = _.reduce(answers, function(memo, cat){
+	    return memo + _.max(_.without( _.pluck(cat, 'points'), 15) );
+	}, 0);
 
 	if (total >= 15) {
 
@@ -275,6 +275,19 @@ Handlebars.registerHelper('seen', function(array) {
 	return window.allQuestions.length - db.get('ass.unseenQuestions').length;
 });
 
+Handlebars.registerHelper('answered', function(array) {
+
+	var answers = db.get('ass.answers');
+
+	var amount = 0;
+
+	$.each(answers, function(key, value) {
+	    amount += _.size(value); 
+	});
+
+	return amount;
+});
+
 Handlebars.registerHelper('seenPercentage', function() {
 	console.log('all questions length:', window.allQuestions.length);
 	var seen = window.allQuestions.length - db.get('ass.unseenQuestions').length;
@@ -302,7 +315,7 @@ Handlebars.registerHelper('qualifyEither', function() {
 
 Handlebars.registerHelper('qualifyNone', function() {
 	if (!db.get('ass.high') && !db.get('ass.low')) {
-		return "<p>Based on the questions you've answered, it looks unlikely that you'll qualify</p>";
+		return "<p>Based on the questions you've answered, it looks unlikely that you'd qualify.</p>";
 	}
 });
 
@@ -395,12 +408,30 @@ $('body').on('change','[type="radio"]', function() {
 	var context = db.get('ass.context');
 	var points = $(':checked', '#' + context).val();
 	var category = $(':checked', '#' + context).attr('name');
-	var label = $(':checked + span', '#' + context).text();
+	var question = $('h2 em', '#' + context).text();
+	var answer = $(':checked + span', '#' + context).text();
+
 
 	if (isNumeric(points)) {
 
 		// cast to real number
 		points = +points;
+
+		// initialize the answer object
+		var answerObject = {
+			question: question,
+			answer: answer,
+			points: points
+		};
+
+		// check if the category object exists
+		// and, if not, set it
+		if (!db.isSet('ass.answers.' + category)) {
+			db.set('ass.answers.' + category, category);
+		}
+
+		// set the new points for this question in this category
+		db.set('ass.answers.' + category + '.' + context, answerObject);
 
 		if (points === 15) {
 
@@ -414,15 +445,6 @@ $('body').on('change','[type="radio"]', function() {
 			db.set('ass.high', true);
 			
 		} else {
-
-			// check if the category object exists
-			// and, if not, set it
-			if (!db.isSet('ass.answers.' + category)) {
-				db.set('ass.answers.' + category, category);
-			}
-
-			// set the new points for this question in this category
-			db.set('ass.answers.' + category + '.' + context, points);
 
 			// fire the adding up function
 			// to see if there are enough points to qualify
