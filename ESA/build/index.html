@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="css/style.css" rel="stylesheet" media="all" />
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700,300" rel="stylesheet" type="text/css" media="none" onload="if(media!='all')media='all'">
 		<title>ESA Assessment</title>
 		<!--[if lt IE 9]>
 			<script src="js/html5.js"></script>
@@ -322,10 +323,10 @@
 						<button class="nav-link" data-action="pick">Another question</button>
 					</li>
 					<li>
-						<button href="#main-menu" class="nav-link">Main menu</button>
+						<button class="nav-link" data-action="stats">How I&#x2019;m doing</button>
 					</li>
 					<li>
-						<button class="nav-link" data-action="break">Take a break</button>
+						<button href="#main-menu" class="nav-link">Main menu</button>
 					</li>
 				</ul>
 			</div>
@@ -485,12 +486,16 @@
 			
 			<p>The important questions you answered and how you answered them:</p>
 			<ul class="q-and-a">
-				{{#each keyAnswers}}
-					<li>
-						<p><strong>Question:</strong> {{question}}</p> 
-						<p><strong>Your answer:</strong> {{answer}}</p>
-					</li>
-				{{/each}}
+				{{#if keyAnswers}}
+					{{#each keyAnswers}}
+						<li>
+							<p><strong>Question:</strong> {{question}}</p> 
+							<p><strong>Your answer:</strong> {{answer}}</p>
+						</li>
+					{{/each}}
+				{{else}}
+					<p><strong>So far, you haven&#x2019;t provided any answers to questions to be listed</strong>.</p>
+				{{/if}}
 			</ul>
 		</script>
 	</body>

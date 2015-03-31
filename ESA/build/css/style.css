@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,300);
+/*@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,300);
 
 /* vars
 ---------------------------------------------
@@ -273,6 +273,7 @@ a.nav-link:active, button.nav-link:active {
 .row > * {
 	display: table-cell;
 	text-align: center;
+	vertical-align: bottom;
 }
 
 .row p {
@@ -361,7 +362,8 @@ body {
 	text-align: right;
 	margin: 0 !important;
 	border-top: 2px solid #79bde9;
-	background: #dcf0fd;
+	background: #dcf0fd !important;
+	z-index: 2;
 }
 
 [role="banner"] {
@@ -380,7 +382,6 @@ body {
 	position: static !important;
 	font-weight: normal;
 	margin: 0;
-	text-transform: uppercase;
 }
 
 .to-main-menu button:active, .to-main-menu button:focus {
@@ -540,4 +541,32 @@ body {
 
 .q-and-a li + li {
 	margin-top: 0.75em;
+}
+
+/* break points
+---------------------------------------------*/
+
+@media (max-width: 800px) {
+
+	body {
+		font-size: 18px;
+	}
+
+}
+
+@media (max-width: 650px) {
+
+	body {
+		font-size: 16px;
+	}
+
+	[aria-label$="menu"] li {
+		display: block;
+	}
+
+	[aria-label$="menu"] button {
+		width: 100%;
+		margin: 0.25em 0;
+	}
+
 }

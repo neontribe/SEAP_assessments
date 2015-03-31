@@ -29,10 +29,14 @@
 
 <p>The important questions you answered and how you answered them:</p>
 <ul class="q-and-a">
-	{{#each keyAnswers}}
-		<li>
-			<p><strong>Question:</strong> {{question}}</p> 
-			<p><strong>Your answer:</strong> {{answer}}</p>
-		</li>
-	{{/each}}
+	{{#if keyAnswers}}
+		{{#each keyAnswers}}
+			<li>
+				<p><strong>Question:</strong> {{question}}</p> 
+				<p><strong>Your answer:</strong> {{answer}}</p>
+			</li>
+		{{/each}}
+	{{else}}
+		<p><strong>So far, you haven&#x2019;t provided any answers to questions to be listed</strong>.</p>
+	{{/if}}
 </ul>

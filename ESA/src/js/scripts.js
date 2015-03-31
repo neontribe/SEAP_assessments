@@ -262,9 +262,11 @@ function compileStats() {
 	// template up the stats with handlebars and 
 	// write to the stats file 
 	var template = Handlebars.compile(document.getElementById("stats-template").innerHTML);
+
 	var assData = db.get('ass');
 	var output = template(assData);
 	$('#stats-content').html(output);
+
 }
 
 // remove answers from category nesting for easy iteration
@@ -301,11 +303,11 @@ Handlebars.registerHelper('count', function(array) {
 	return array.length || 0;
 });
 
-Handlebars.registerHelper('seen', function(array) {
+Handlebars.registerHelper('seen', function() {
 	return window.allQuestions.length - db.get('ass.unseenQuestions').length;
 });
 
-Handlebars.registerHelper('answered', function(array) {
+Handlebars.registerHelper('answered', function() {
 
 	var answers = db.get('ass.answers');
 
@@ -318,7 +320,7 @@ Handlebars.registerHelper('answered', function(array) {
 	return amount;
 });
 
-Handlebars.registerHelper('accuracy', function(array) {
+Handlebars.registerHelper('accuracy', function() {
 
 	var answers = db.get('ass.answers');
 
