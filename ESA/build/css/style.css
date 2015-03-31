@@ -59,7 +59,7 @@ p {
 }
 
 p + p {
-	margin-top: 0.75em;
+	margin-top: 0.66em;
 }
 
 .question-text {
@@ -86,6 +86,7 @@ h1, h2 {
 h1 { font-size: 3em }
 h2 { font-size: 2.25em }
 h3 { font-size: 1.75em }
+h3 button { font-size: 0.75em !important; margin: 0; }
 h4 { font-size: 1em }
 
 /* lists
@@ -567,6 +568,56 @@ body {
 	[aria-label$="menu"] button {
 		width: 100%;
 		margin: 0.25em 0;
+	}
+
+}
+
+@media print {
+
+	body > * {
+		display: none;
+	}
+
+	#stats {
+		display: block;
+	}
+
+	[aria-label$="menu"] {
+		display: none;
+	}
+
+	#stats-content > * {
+		display: none;
+	}
+
+	#stats-content > .printable {
+		display: block;
+	}
+
+	.printable button {
+		display: none;
+	}
+
+	.q-and-a {
+		padding: 1em;
+		border: 2px solid;
+		color: #000;
+	}
+
+	.q-and-a li {
+		padding: 0;
+		background: none;
+		margin: 0;
+	}
+
+	.q-and-a li + li {
+		margin-top: 1.5em;
+		border-top: 1px solid;
+		padding-top: 1.5em;
+	}
+
+	.slide {
+		padding: 0;
 	}
 
 }

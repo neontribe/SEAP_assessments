@@ -320,21 +320,6 @@ Handlebars.registerHelper('answered', function() {
 	return amount;
 });
 
-Handlebars.registerHelper('accuracy', function() {
-
-	var answers = db.get('ass.answers');
-
-	var answered = 0;
-
-	$.each(answers, function(key, value) {
-	    answered += _.size(value); 
-	});
-
-	var accuracy = Math.round((answered / allQuestions.length) * 100) + "%";
-
-	return accuracy;
-});
-
 Handlebars.registerHelper('seenPercentage', function() {
 	console.log('all questions length:', window.allQuestions.length);
 	var seen = window.allQuestions.length - db.get('ass.unseenQuestions').length;
@@ -356,13 +341,13 @@ Handlebars.registerHelper('qualifyLow', function() {
 
 Handlebars.registerHelper('qualifyEither', function() {
 	if (db.get('ass.high') && db.get('ass.low')) {
-		return "<p>It looks like you'll qualify for the standard rate (<strong>Support Group</strong>) or possibly the higher rate (<strong>Work Related Activity Group</strong>)</p>";
+		return "<p>It looks like you'll qualify for the standard rate (<strong>Support Group</strong>) or possibly the higher rate (<strong>Work Related Activity Group</strong>).</p>";
 	}
 });
 
 Handlebars.registerHelper('qualifyNone', function() {
 	if (!db.get('ass.high') && !db.get('ass.low')) {
-		return "<p>So far, it does not look like you will qualify for ESA.</p>";
+		return "<p>It does not currently look like you will qualify for ESA.</p>";
 	}
 });
 
@@ -464,44 +449,40 @@ $('body').on('change','[type="radio"]', function() {
 		// cast to real number
 		points = +points;
 
-		// initialize the answer object
-		var answerObject = {
-			question: question,
-			answer: answer,
-			points: points
-		};
+	}
 
-		// check if the category object exists
-		// and, if not, set it
-		if (!db.isSet('ass.answers.' + category)) {
-			db.set('ass.answers.' + category, category);
-		}
+	// initialize the answer object
+	var answerObject = {
+		question: question,
+		answer: answer,
+		points: points
+	};
 
-		// set the new points for this question in this category
-		db.set('ass.answers.' + category + '.' + context, answerObject);
+	// check if the category object exists
+	// and, if not, set it
+	if (!db.isSet('ass.answers.' + category)) {
+		db.set('ass.answers.' + category, category);
+	}
 
-		if (points === 15) {
+	// set the new points for this question in this category
+	db.set('ass.answers.' + category + '.' + context, answerObject);
 
-			// no need to add up, just tell the user
-			loadSlide('qualify-high');
+	if (points === 15) {
 
-			// Set the points. We exclude integers of 15 in the tally
-			// db.set('ass.answers.' + category + '.' + context, points);
+		// no need to add up, just tell the user
+		loadSlide('qualify-high');
 
-			// record that the high qualification is true
-			db.set('ass.high', true);
-			
-		} else {
+		// Set the points. We exclude integers of 15 in the tally
+		// db.set('ass.answers.' + category + '.' + context, points);
 
-			// fire the adding up function
-			// to see if there are enough points to qualify
-			tally();
-
-		}
-
+		// record that the high qualification is true
+		db.set('ass.high', true);
+		
 	} else {
 
-		// handle follow up questions
+		// fire the adding up function
+		// to see if there are enough points to qualify
+		tally();
 
 	}
 

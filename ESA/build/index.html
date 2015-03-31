@@ -438,7 +438,10 @@
 				<div class="flow">
 					<ul aria-label="menu">
 						<li>
-							<button data-followup="#" class="nav-link pick" data-action="pick">Ask me a question</button>
+							<button data-followup="#" class="nav-link pick" data-action="pick">Ask me more questions</button>
+						</li>
+						<li>
+							<button class="nav-link break" data-action="break">I&#x2019;ll have a break</button>
 						</li>
 						<li>
 							<button class="nav-link break" data-action="menu">Main menu</button>
@@ -464,7 +467,22 @@
 			{{{qualifyEither}}}
 			{{{qualifyNone}}}
 			
-			<p class="message"><strong>Accuracy: {{accuracy}}</strong> (based on the number of questions you have answered)</p>
+			<div class="printable important-answers">
+				<h3>Important answers <button onClick="window.print()">PRINT</button></h3>
+				<p>These are the answers you gave that could mean you qualify. You should mention them in your assessment.</p>
+				<ul class="q-and-a">
+					{{#if keyAnswers}}
+						{{#each keyAnswers}}
+							<li>
+								<p><strong>Question:</strong> {{question}}</p> 
+								<p><strong>Your answer:</strong> {{answer}}</p>
+							</li>
+						{{/each}}
+					{{else}}
+						<p><strong>So far, you haven&#x2019;t provided any answers to questions to be listed</strong>.</p>
+					{{/if}}
+				</ul>
+			</div>
 			
 			<h3>Question stats</h3>
 			<div class="row boxes">
@@ -481,22 +499,6 @@
 					<p class="massive">{{count skippedQuestions}}</p>
 				</div>
 			</div>
-			
-			<h3>Key answers</h3>
-			
-			<p>The important questions you answered and how you answered them:</p>
-			<ul class="q-and-a">
-				{{#if keyAnswers}}
-					{{#each keyAnswers}}
-						<li>
-							<p><strong>Question:</strong> {{question}}</p> 
-							<p><strong>Your answer:</strong> {{answer}}</p>
-						</li>
-					{{/each}}
-				{{else}}
-					<p><strong>So far, you haven&#x2019;t provided any answers to questions to be listed</strong>.</p>
-				{{/if}}
-			</ul>
 		</script>
 	</body>
 </html>
