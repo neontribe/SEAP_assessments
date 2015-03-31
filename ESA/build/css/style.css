@@ -179,6 +179,8 @@ a.nav-link:active, button.nav-link:active {
 
 [aria-label$="menu"] {
 	margin-left: 0;
+	text-align: center;
+	margin-top: 1.5em;
 }
 
 [aria-label$="menu"] li {
@@ -297,6 +299,13 @@ a.nav-link:active, button.nav-link:active {
 small {
 	font-size: 0.85em;
 	font-style: italic;
+}
+
+.message {
+	background: #00a56b;
+	padding: 0.25em 0.5em;
+	color: #6fe9bf;
+	color: #fff;
 }
 
 /* layout
@@ -510,4 +519,25 @@ body {
 .box.green.loaded {
 	-webkit-animation: zoomzoom 0.5s linear 1;
 	        animation: zoomzoom 0.5s linear 1;
+}
+
+/* how I'm doing
+---------------------------------------------*/
+
+.q-and-a {
+	margin-left: 0;	
+}
+
+.q-and-a p {
+	margin-top: 0;
+}
+
+.q-and-a li {
+	background: #6fe9bf;
+	padding: 1em;
+	list-style: none;
+}
+
+.q-and-a li + li {
+	margin-top: 0.75em;
 }

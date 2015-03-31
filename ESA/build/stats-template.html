@@ -7,6 +7,8 @@
 {{{qualifyEither}}}
 {{{qualifyNone}}}
 
+<p class="message"><strong>Accuracy: {{accuracy}}</strong> (based on the number of questions you have answered)</p>
+
 <h3>Question stats</h3>
 <div class="row boxes">
 	<div>
@@ -22,3 +24,15 @@
 		<p class="massive">{{count skippedQuestions}}</p>
 	</div>
 </div>
+
+<h3>Key answers</h3>
+
+<p>The important questions you answered and how you answered them:</p>
+<ul class="q-and-a">
+	{{#each keyAnswers}}
+		<li>
+			<p><strong>Question:</strong> {{question}}</p> 
+			<p><strong>Your answer:</strong> {{answer}}</p>
+		</li>
+	{{/each}}
+</ul>

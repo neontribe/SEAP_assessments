@@ -85,10 +85,10 @@
 						<button class="nav-link" data-action="pick">Another question</button>
 					</li>
 					<li>
-						<button class="nav-link" data-action="menu">Main menu</button>
+						<button class="nav-link" data-action="stats">How I&#x2019;m doing</button>
 					</li>
 					<li>
-						<button class="nav-link" data-action="break">Take a break</button>
+						<button class="nav-link" data-action="menu">Main menu</button>
 					</li>
 				</ul>
 			</div>
@@ -217,6 +217,16 @@
 		<div class="slide stats" id="stats">
 			<div class="stats-container">
 				<div id="stats-content" class="flow"></div>
+				<div class="flow">
+					<ul aria-label="menu">
+						<li>
+							<button data-followup="#{{followUp}}" class="nav-link pick" data-action="pick">Ask me a question</button>
+						</li>
+						<li>
+							<button class="nav-link break" data-action="menu">Main menu</button>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<nav role="navigation" class="to-main-menu">

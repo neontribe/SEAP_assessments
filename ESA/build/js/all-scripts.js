@@ -14227,6 +14227,13 @@ function pickQuestion() {
 	// get the appropriate set
 	var questions = db.get('ass.' + mode);
 
+	// if you ran out of unseen questions and didn't skip any
+	if (_.isEmpty(db.get('ass.unseenQuestions')) && _.isEmpty(db.get('ass.skippedQuestions'))) {
+		loadSlide('seen-all-even-skipped');
+		return;
+	}
+
+	// if unseen questions have run out but there are skipped
 	if (questions.length < 1 && mode === 'unseenQuestions') {
 		loadSlide('seen-all');
 		return;
@@ -14245,15 +14252,11 @@ function pickQuestion() {
 
 	} else {
 
-		console.log('Initial', db.get('ass.skippedQuestions'));
-
 		if (window.answered) {
 
 			questions = _.without(questions, context);
 
 			db.set('ass.' + mode, questions);
-
-			console.log('Removed 1', questions);
 
 			question = _.sample(questions);
 
@@ -14356,12 +14359,39 @@ function isNumeric(num) {
 
 function compileStats() {
 
+	db.set('ass.keyAnswers', flattenAnswers());
+
 	// template up the stats with handlebars and 
 	// write to the stats file 
 	var template = Handlebars.compile(document.getElementById("stats-template").innerHTML);
 	var assData = db.get('ass');
 	var output = template(assData);
 	$('#stats-content').html(output);
+}
+
+// remove answers from category nesting for easy iteration
+function flattenAnswers() {
+	
+	var answers = db.get('ass.answers');
+
+	var set = [];
+
+	// ugly nested each to make a handelebars #each iterable array of question objects
+	$.each(answers, function(key, value) {
+		$.each(value, function(k, v) {
+			// exclude answers that have 0 points
+			if (v.points > 0) {
+				// push to flattened array
+				set.push({
+					question: v.question,
+					answer: v.answer,
+					points: v.points
+				});
+			}
+		});
+	});
+
+	return set;
 
 }
 
@@ -14388,6 +14418,21 @@ Handlebars.registerHelper('answered', function(array) {
 	});
 
 	return amount;
+});
+
+Handlebars.registerHelper('accuracy', function(array) {
+
+	var answers = db.get('ass.answers');
+
+	var answered = 0;
+
+	$.each(answers, function(key, value) {
+	    answered += _.size(value); 
+	});
+
+	var accuracy = Math.round((answered / allQuestions.length) * 100) + "%";
+
+	return accuracy;
 });
 
 Handlebars.registerHelper('seenPercentage', function() {
@@ -14417,7 +14462,7 @@ Handlebars.registerHelper('qualifyEither', function() {
 
 Handlebars.registerHelper('qualifyNone', function() {
 	if (!db.get('ass.high') && !db.get('ass.low')) {
-		return "<p>Based on the questions you've answered, it looks unlikely that you'd qualify.</p>";
+		return "<p>So far, it does not look like you will qualify for ESA.</p>";
 	}
 });
 

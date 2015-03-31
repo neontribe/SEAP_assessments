@@ -302,10 +302,10 @@
 						<button class="nav-link" data-action="pick">Another question</button>
 					</li>
 					<li>
-						<button class="nav-link" data-action="menu">Main menu</button>
+						<button class="nav-link" data-action="stats">How I&#x2019;m doing</button>
 					</li>
 					<li>
-						<button class="nav-link" data-action="break">Take a break</button>
+						<button class="nav-link" data-action="menu">Main menu</button>
 					</li>
 				</ul>
 			</div>
@@ -434,6 +434,16 @@
 		<div class="slide stats" id="stats">
 			<div class="stats-container">
 				<div id="stats-content" class="flow"></div>
+				<div class="flow">
+					<ul aria-label="menu">
+						<li>
+							<button data-followup="#" class="nav-link pick" data-action="pick">Ask me a question</button>
+						</li>
+						<li>
+							<button class="nav-link break" data-action="menu">Main menu</button>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<nav role="navigation" class="to-main-menu">
@@ -453,6 +463,8 @@
 			{{{qualifyEither}}}
 			{{{qualifyNone}}}
 			
+			<p class="message"><strong>Accuracy: {{accuracy}}</strong> (based on the number of questions you have answered)</p>
+			
 			<h3>Question stats</h3>
 			<div class="row boxes">
 				<div>
@@ -468,6 +480,18 @@
 					<p class="massive">{{count skippedQuestions}}</p>
 				</div>
 			</div>
+			
+			<h3>Key answers</h3>
+			
+			<p>The important questions you answered and how you answered them:</p>
+			<ul class="q-and-a">
+				{{#each keyAnswers}}
+					<li>
+						<p><strong>Question:</strong> {{question}}</p> 
+						<p><strong>Your answer:</strong> {{answer}}</p>
+					</li>
+				{{/each}}
+			</ul>
 		</script>
 	</body>
 </html>
