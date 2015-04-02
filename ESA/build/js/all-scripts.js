@@ -14140,7 +14140,8 @@ function initAss() {
 		mode: 'unseenQuestions', // 'unseenQuestions' or 'skippedQuestions' (for switching between viewing unseen questions or seen but skipped)
 		answers: {}, // the master object of category high scores for tallying
 		low: false, // low qualification?
-		high: false // high qualification?
+		high: false, // high qualification?
+		reminders: []
 	};
 
 	// Save the virgin ass to local storage
@@ -14587,5 +14588,40 @@ $('body').on('change','[type="radio"]', function() {
 		tally();
 
 	}
+
+});
+
+$('body').on('change','[type="checkbox"]', function() {
+
+	// get tip text from span
+	var tip = $(this).next().text();
+	// get slug
+	var slug = $(this).attr('data-tip-id');
+	// get or define reminders array
+	var reminders = db.get('ass.reminders') || [];
+
+	if ($(this).is(':checked')) {
+
+		reminders.push({
+				slug: slug,
+				tip: tip,
+				done: false
+			});
+
+		console.log('added', reminders);
+
+    } else {
+
+    	// get rid of this reminder
+    	reminders = _.reject(reminders, function(reminder) { 
+    		return reminder.slug === slug;
+    	});
+
+    	console.log('removed', reminders);
+
+    }
+
+    // set new reminders
+    db.set('ass.reminders', reminders);
 
 });

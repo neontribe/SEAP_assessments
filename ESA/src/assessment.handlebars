@@ -45,33 +45,26 @@
 		{{/each}}
 		{{#each advice}}
 		<div class="slide advice" id="{{sluggify title}}">
-			<img src="path/to/advice-icon.svg" alt="" />
-			<h2 class="advice" tabindex="-1">
-				<em>{{title}}</em>
-			</h2>
-			<p class="description">{{description}}</p>
-			{{#if are-there-tips}}
-			<ul class="checklist" aria-label="Tips">
-				{{#each tips}}
-				<li>
-					<label>
-						<input type="checkbox" value="save" data-tip-id="{{sluggify this}}"> <span>{{this}}</span>
-					</label>
-				</li>
-				{{/each}}
-			</ul>
-			{{/if}}
-			<ul aria-label="menu">
-				<li>
-					<button class="nav-link">More</button>
-				</li>
-				<li>
-					<button class="nav-link progress" data-action="stats">How I&#x2019;m doing</button>
-				</li>
-				<li>
-					<button class="nav-link break" data-action="break">I need a break</button>
-				</li>
-			</ul>
+			<div class="flow">
+				<!--<img src="path/to/advice-icon.svg" alt="" />-->
+				<h2 class="advice" tabindex="-1">
+					{{title}}
+				</h2>
+				<p class="description">{{description}}</p>
+				<div class="things-to-remember">
+					<h3>Things to remember</h3>
+					<p>Check any items you want added to your <a href="#"><strong>reminders checklist</strong></a>.</p>
+					<ul>
+						{{#each tips}}
+						<li>
+							<label>
+								<input type="checkbox" value="save" data-tip-id="{{sluggify this}}"> <span>{{this}}</span>
+							</label>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
 		</div>
 		{{/each}}
 		<div class="slide qualify" id="qualify-high">

@@ -544,6 +544,24 @@ body {
 	margin-top: 0.75em;
 }
 
+/* things to remember
+---------------------------------------------*/
+
+.things-to-remember {
+	padding: 1.5em;
+	background: #6fe9bf;
+}
+
+.things-to-remember ul {
+	font-size: 1.25em;
+	list-style: none;
+	margin-left: 0;
+}
+
+label span {
+	cursor: pointer;
+}
+
 /* break points
 ---------------------------------------------*/
 
