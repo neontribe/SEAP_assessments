@@ -14398,6 +14398,26 @@ function flattenAnswers() {
 
 }
 
+function checkReminders() {
+
+	var context = db.get('ass.context');
+
+	var reminders = db.get('ass.reminders');
+
+	$('.things-to-remember [type="checkbox"]', context).each(function() {
+
+		var slug = $(this).attr('data-tip-id');
+
+		if (_.find(reminders, function(reminder) { return reminder.slug === slug; })) {
+
+			$(this).attr('checked', 'checked');
+
+		}
+
+	});
+
+}
+
 /**********************************************************************
 HELPERS
 **********************************************************************/
@@ -14494,7 +14514,7 @@ $('body').on('click','[data-action="start-or-resume"]', function() {
 	// has the user (or _a_ user) been to the questions section before?
 	if (db.get('ass.started')) {
 
-		loadSlide('resume-practise');
+		pickQuestion();
 
 	} else {
 
@@ -14523,6 +14543,19 @@ $('body').on('click','[data-action="resume"]', function() {
 $('body').on('click','[data-action="menu"]', function() {
 
 	// run resume function defined in FUNCTIONS block
+	loadSlide('main-menu');
+
+});
+
+$('body').on('click','[data-action="clean-up"]', function() {
+
+	// set answered global to false
+	window.answered = false;
+
+	// initialize database
+	initAss();
+
+	// load the intro slide
 	loadSlide('main-menu');
 
 });
@@ -14591,7 +14624,7 @@ $('body').on('change','[type="radio"]', function() {
 
 });
 
-$('body').on('change','[type="checkbox"]', function() {
+$('body').on('change','.things-to-remember [type="checkbox"]', function() {
 
 	// get tip text from span
 	var tip = $(this).next().text();
@@ -14623,5 +14656,28 @@ $('body').on('change','[type="checkbox"]', function() {
 
     // set new reminders
     db.set('ass.reminders', reminders);
+
+});
+
+$('body').on('change','.checklist [type="checkbox"]', function() {
+
+	// get the id
+	var slug = $(this).attr('id');
+
+	var reminders = db.get('ass.reminders');
+
+	var reminder = _.findWhere(reminders, {slug: slug});
+
+	if ($(this).is(':checked')) {
+
+		reminder.done = true;
+
+	} else {
+
+		reminder.done = false;
+
+	}
+
+	db.set('ass.reminders', reminders);
 
 });

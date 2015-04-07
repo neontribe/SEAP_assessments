@@ -53,7 +53,7 @@
 				<p class="description">{{description}}</p>
 				<div class="things-to-remember">
 					<h3>Things to remember</h3>
-					<p>Check any items you want added to your <a href="#"><strong>reminders checklist</strong></a>.</p>
+					<p>Check any items you want added to your <a data-action="stats" href="javascript:void(0)"><strong>reminders checklist</strong></a>.</p>
 					<ul>
 						{{#each tips}}
 						<li>
@@ -79,7 +79,7 @@
 						<button class="nav-link" data-action="pick">Another question</button>
 					</li>
 					<li>
-						<button class="nav-link" data-action="stats">How I&#x2019;m doing</button>
+						<button class="nav-link" data-action="stats">My Assessment So Far</button>
 					</li>
 					<li>
 						<button class="nav-link" data-action="menu">Main menu</button>
@@ -189,21 +189,7 @@
 						<button class="nav-link" data-action="resume">Continue</button>
 					</li>
 					<li>
-						<button class="nav-link" data-action="menu">Main menu</button>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="slide get-started" id="resume-practise">
-			<div class="box">
-				<h2 tabindex="-1">Continue?</h2>
-				<p>Looks like you&#x2019;ve already done some practice. Would you like to continue from where you left off or restart? (Restarting will clear all the saved question data from your computer).</p>
-				<ul aria-label="menu">
-					<li>	
-						<button class="nav-link" data-action="pick">Continue</button>
-					</li>
-					<li>
-						<button class="nav-link" data-action="restart">Restart</button>
+						<button class="nav-link" data-action="clean-up">Main menu</button>
 					</li>
 				</ul>
 			</div>

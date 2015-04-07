@@ -24,6 +24,19 @@
 	</ul>
 </div>
 
+<h3>Your reminders</h3>
+<p>Tap items that you&#x2019;ve completed to check them off.</p>
+<ul class="checklist">
+{{#each reminders}}
+	<li>
+		<label>
+			<input type="checkbox" id="{{slug}}" value="done" {{#if done}}checked="checked"{{/if}} /> 
+			<span>{{tip}}</span>
+		</label>
+	</li>
+{{/each}}
+</ul>
+
 <h3>Question stats</h3>
 <div class="row boxes">
 	<div>

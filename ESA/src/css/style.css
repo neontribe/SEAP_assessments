@@ -581,15 +581,7 @@ label span {
 		display: none;
 	}
 
-	#stats-content > * {
-		display: none;
-	}
-
-	#stats-content > .printable {
-		display: block;
-	}
-
-	.printable button {
+	.no-print {
 		display: none;
 	}
 
