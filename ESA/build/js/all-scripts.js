@@ -14141,7 +14141,8 @@ function initAss() {
 		answers: {}, // the master object of category high scores for tallying
 		low: false, // low qualification?
 		high: false, // high qualification?
-		reminders: []
+		reminders: [], // list of reminders form "Things to remember" checkboxes
+		incomplete: true // whether all the questions have been answered
 	};
 
 	// Save the virgin ass to local storage
@@ -14230,6 +14231,7 @@ function pickQuestion() {
 
 	// if you ran out of unseen questions and didn't skip any
 	if (_.isEmpty(db.get('ass.unseenQuestions')) && _.isEmpty(db.get('ass.skippedQuestions'))) {
+		db.set('ass.incomplete', false);
 		loadSlide('seen-all-even-skipped');
 		return;
 	}
@@ -14299,8 +14301,8 @@ function restart() {
 
 	console.log('restarting');
 
-	// reinitialize the master object
-	initAss();
+	//
+
 
 	// go to start screen
 	loadSlide('start');
@@ -14398,18 +14400,19 @@ function flattenAnswers() {
 
 }
 
-function checkReminders() {
+function checkReminders(context) {
 
-	var context = db.get('ass.context');
-
-	var reminders = db.get('ass.reminders');
-
-	$('.things-to-remember [type="checkbox"]', context).each(function() {
+	$('.things-to-remember [type="checkbox"]', '#' + context).each(function() {
 
 		var slug = $(this).attr('data-tip-id');
 
+		var reminders = db.get('ass.reminders');
+
+		// find if the reminder has already been set
+		// ie. exists in the reminders db property
 		if (_.find(reminders, function(reminder) { return reminder.slug === slug; })) {
 
+			// IF SO, CHECK THE CORRESPONDING CHECKBOX
 			$(this).attr('checked', 'checked');
 
 		}
@@ -14437,14 +14440,28 @@ Handlebars.registerHelper('answered', function() {
 	var amount = 0;
 
 	$.each(answers, function(key, value) {
-	    amount += _.size(value); 
+	    amount += _.size(value);
 	});
 
 	return amount;
 });
 
+Handlebars.registerHelper('accuracy', function(array) {
+
+	var answers = db.get('ass.answers');
+
+	var answered = 0;
+
+	$.each(answers, function(key, value) {
+	    answered += _.size(value); 
+	});
+
+	var accuracy = Math.round((answered / allQuestions.length) * 100) + "%";
+
+	return accuracy;
+});
+
 Handlebars.registerHelper('seenPercentage', function() {
-	console.log('all questions length:', window.allQuestions.length);
 	var seen = window.allQuestions.length - db.get('ass.unseenQuestions').length;
 	var percent = Math.round((seen / window.allQuestions.length) * 100) + '%';
 	return percent;
@@ -14500,8 +14517,11 @@ $('body').on('click','[data-action="skipped"]', function() {
 
 });
 
-// restart the app
+// restart the questions part but keep the data
 $('body').on('click','[data-action="restart"]', function() {
+
+		db.set('ass.unseenQuestions', window.allQuestions);
+		db.set('ass.skippedQuestions', []);
 
 	// run restart function defined in FUNCTIONS block
 	restart();
@@ -14564,6 +14584,19 @@ $('body').on('click','[data-action="stats"]', function() {
 
 	// load the stats slide
 	loadSlide('stats');
+
+});
+
+$('body').on('click','[data-action="prep"]', function() {
+
+	// get id of slide to load
+	var id = $(this).attr('data-prep-slug');
+
+	// check checkboxes based on previous actions
+	checkReminders(id);
+
+	// load slide
+	loadSlide(id);
 
 });
 

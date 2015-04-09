@@ -1,15 +1,19 @@
 <h2>My Assessment</h2>
 
 <div class="print-box no-print">
-	<p><strong>Important:</strong> This page contains useful info about how you should be assessed. You can print it out and take it with you to your assessment!</p> <button onClick="window.print()">Print Now</button>
+	<p><button onClick="window.print()">Print Now</button> <strong>Important:</strong> This page contains useful info about how you should be assessed. You can print it out and take it with you to your assessment!</p> 
 </div>
 
 <h3>Would I qualify?</h3>
-<p>What the <strong>SEAP Assessment Trainer</strong> thinks I would qualify for.</p>
 {{{qualifyHigh}}}
 {{{qualifyLow}}}
 {{{qualifyEither}}}
 {{{qualifyNone}}}
+
+<div class="message">
+	<p>This is based on the questions you&#x2019;ve answered. You have answered <strong>{{accuracy}}</strong> of the questions available.</p>
+	{{#if incomplete}}<p style="margin-top: 0" class="no-print"><a href="javascript:void(0)" role="button" data-action="pick">Answer more questions <span aria-hidden="true">&#x2192;</span></a></p>{{/if}}
+</div>
 
 <h3>Important answers</h3>
 <p>These are the answers you gave that could mean you qualify. You should mention them in your assessment.</p>
@@ -28,6 +32,7 @@
 
 <h3>Your reminders</h3>
 <p>Things to prepare and remember for your assessment. <span class="no-print">Tap items that you&#x2019;ve completed to check them off.</span></p>
+{{#if reminders}}
 <ul class="checklist">
 {{#each reminders}}
 	<li>
@@ -38,3 +43,6 @@
 	</li>
 {{/each}}
 </ul>
+{{else}}
+	<p><strong>You haven&#x2019;t set any reminders yet.</strong></p>
+{{/if}}

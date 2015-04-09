@@ -1,31 +1,38 @@
-<h2>How I&#x2019;m doing</h2>
+<h2>My Assessment</h2>
+
+<div class="print-box no-print">
+	<p><button onClick="window.print()">Print Now</button> <strong>Important:</strong> This page contains useful info about how you should be assessed. You can print it out and take it with you to your assessment!</p> 
+</div>
 
 <h3>Would I qualify?</h3>
-
 {{{qualifyHigh}}}
 {{{qualifyLow}}}
 {{{qualifyEither}}}
 {{{qualifyNone}}}
 
-<div class="printable important-answers">
-	<h3>Important answers <button onClick="window.print()">PRINT</button></h3>
-	<p>These are the answers you gave that could mean you qualify. You should mention them in your assessment.</p>
-	<ul class="q-and-a">
-		{{#if keyAnswers}}
-			{{#each keyAnswers}}
-				<li>
-					<p><strong>Question:</strong> {{question}}</p> 
-					<p><strong>Your answer:</strong> {{answer}}</p>
-				</li>
-			{{/each}}
-		{{else}}
-			<p><strong>So far, you haven&#x2019;t provided any answers to questions to be listed</strong>.</p>
-		{{/if}}
-	</ul>
+<div class="message">
+	<p>This is based on the questions you&#x2019;ve answered. You have answered <strong>{{accuracy}}</strong> of the questions available.</p>
+	{{#if incomplete}}<p style="margin-top: 0" class="no-print"><a href="javascript:void(0)" role="button" data-action="pick">Answer more questions <span aria-hidden="true">&#x2192;</span></a></p>{{/if}}
 </div>
 
+<h3>Important answers</h3>
+<p>These are the answers you gave that could mean you qualify. You should mention them in your assessment.</p>
+<ul class="q-and-a">
+	{{#if keyAnswers}}
+		{{#each keyAnswers}}
+			<li>
+				<p><strong>Question:</strong> {{question}}</p> 
+				<p><strong>Your answer:</strong> {{answer}}</p>
+			</li>
+		{{/each}}
+	{{else}}
+		<p><strong>So far, you haven&#x2019;t provided any answers to questions to be listed</strong>.</p>
+	{{/if}}
+</ul>
+
 <h3>Your reminders</h3>
-<p>Tap items that you&#x2019;ve completed to check them off.</p>
+<p>Things to prepare and remember for your assessment. <span class="no-print">Tap items that you&#x2019;ve completed to check them off.</span></p>
+{{#if reminders}}
 <ul class="checklist">
 {{#each reminders}}
 	<li>
@@ -36,19 +43,6 @@
 	</li>
 {{/each}}
 </ul>
-
-<h3>Question stats</h3>
-<div class="row boxes">
-	<div>
-		<h4>Seen questions</h4>
-		<p class="massive">{{seen}} <!--<span>({{seenPercentage}})</span>--></p>
-	</div>
-	<div>
-		<h4>Answered questions</h4>
-		<p class="massive">{{answered}}</p>
-	</div>
-	<div>
-		<h4>Skipped questions</h4>
-		<p class="massive">{{count skippedQuestions}}</p>
-	</div>
-</div>
+{{else}}
+	<p><strong>You haven&#x2019;t set any reminders yet.</strong></p>
+{{/if}}

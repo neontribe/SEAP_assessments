@@ -34,7 +34,7 @@
 						<button data-followup="#{{followUp}}" class="nav-link pick" data-action="pick">Ask me another</button>
 					</li>
 					<li>
-						<button class="nav-link stats" data-action="stats">How I&#x2019;m doing</button>
+						<button class="nav-link stats" data-action="stats">My assessment so far</button>
 					</li>
 					<li>
 						<button class="nav-link break" data-action="break">I need a break</button>
@@ -79,7 +79,7 @@
 						<button class="nav-link" data-action="pick">Another question</button>
 					</li>
 					<li>
-						<button class="nav-link" data-action="stats">My Assessment So Far</button>
+						<button class="nav-link" data-action="stats">My assessment so far</button>
 					</li>
 					<li>
 						<button class="nav-link" data-action="menu">Main menu</button>
@@ -99,29 +99,12 @@
 						<button class="nav-link" data-action="pick">Another question</button>
 					</li>
 					<li>
-						<button class="nav-link" data-action="stats">How I&#x2019;m doing</button>
+						<button class="nav-link" data-action="stats">My assessment so far</button>
 					</li>
 					<li>
 						<button href="#main-menu" class="nav-link">Main menu</button>
 					</li>
 				</ul>
-			</div>
-		</div>
-		<div class="slide main-menu" id="main-menu">
-			<div class="flow">
-				<h1>ESA Assessment Trainer <span>from SEAP</span></h1>
-				<p>Welcome to your <abbr title="Employment And Support Allowance">ESA</abbr> training website, designed to help you get ready for your ESA medical assessment. This website&hellip;</p>
-				<ul class="ticks">
-					<li>Is run independently and impartially by the charity, <a href="http://www.seap.org.uk/">SEAP</a></li>
-					<li>Does not collect any personal data from you</li>
-					<li>Is not another big, boring form for you to fill in!</li>
-				</ul>
-				<div role="toolbar" aria-label="menu options">
-					<ul>
-						<li><button data-action="start-or-resume">Practise <span>by assessing yourself</span></button></li>
-						<li><button data-action="advice">Find out more <span>about the ESA assessment</span></button></li>
-					</ul>
-				</div>
 			</div>
 		</div>
 		<div class="slide break-time" id="break-time">
@@ -134,7 +117,7 @@
 						<button class="nav-link" data-action="resume">Continue</button>
 					</li>
 					<li>
-						<button class="nav-link" data-action="restart">Restart</button>
+						<button class="nav-link" data-action="menu">Main menu</button>
 					</li>
 				</ul>
 			</div>
@@ -155,10 +138,7 @@
 						<button class="nav-link" data-action="skipped">Skipped questions</button>
 					</li>
 					<li>
-						<button class="nav-link" data-action="stats">How I&#x2019;m doing</button>
-					</li>
-					<li>
-						<button class="nav-link" data-action="restart">Restart</button>
+						<button class="nav-link" data-action="stats">My assessment so far</button>
 					</li>
 				</ul>
 			</div>
@@ -169,13 +149,10 @@
 				<p>You&#x2019;ve answered all the practice questions available, so you&#x2019;re pretty well versed now. What would you like to do next?</p>
 				<ul aria-label="menu">
 					<li>
+						<button class="nav-link" data-action="stats">My assessment so far</button>
+					</li>
+					<li>
 						<button class="nav-link" data-action="menu">Main Menu</button>
-					</li>
-					<li>
-						<button class="nav-link" data-action="stats">How I&#x2019;m doing</button>
-					</li>
-					<li>
-						<button class="nav-link" data-action="restart">Practise again</button>
 					</li>
 				</ul>
 			</div>
@@ -212,8 +189,37 @@
 				</div>
 			</div>
 		</div>
+		<div class="slide main-menu" id="main-menu">
+			<div class="flow">
+				<h1>ESA Assessment Trainer <span>from SEAP</span></h1>
+				<p>Welcome to your <abbr title="Employment And Support Allowance">ESA</abbr> training website, designed to help you get ready for your ESA medical assessment. This website&hellip; is <strong class="tick">run independently and impartially</strong> by <a href="http://www.seap.org.uk/">SEAP</a>, <strong class="tick">does not collect your personal data</strong> and contains <strong class="tick">no long, boring forms!</strong></p>
+				<div role="toolbar" aria-label="menu options">
+					<ul>
+						<li class="half">
+							<button data-action="about">All about ESA <span>and your assessment</span></button>
+						</li>
+						<li class="half">
+							<button data-action="answering-questions">Answering <span>questions the right way</span></button>
+						</li>
+						<li>
+							<button data-action="start-or-resume">Practise <span>by assessing yourself</span></button>
+						</li>
+						<li class="half">
+							<button data-action="prep" data-prep-slug="travel">Travelling <span>to your assessment</span></button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 		<nav role="navigation" class="to-main-menu">
-			<button data-action="menu">Main Menu</button>
+			<ul>
+				<li>
+					<a href="javascript:void(0)" data-action="menu">Main Menu</a> 
+				</li>
+				<li>
+					<a href="javascript:void(0)" data-action="stats">My Assessment</a>
+				</li>
+			</ul>
 		</nav>
 		<script>
 			window.allQuestions = [{{#each questions}}'{{sluggify question}}',{{/each}}];

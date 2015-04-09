@@ -62,6 +62,10 @@ p + p {
 	margin-top: 0.66em;
 }
 
+#stats h3 {
+	margin-top: 1.5em;
+}
+
 .question-text {
 	font-style: italic;
 }
@@ -105,28 +109,29 @@ button, .button-shaped, [type="radio"] + span {
 	background: #6fe9bf;
 	font-weight: bold;
 	border: 0;
-	box-shadow: 0px 4px 0 #008556;
-	padding: 0.25em 0.75em;
+	padding: 0.5em 0.75em;
 	cursor: pointer;
 	margin: 0.5em;
 	color: #006541;
+	line-height: 1.125;
 }
 
-button:focus, .button-shaped:focus, [type="radio"]:focus + span {
+button:focus, .button-shaped:focus, [type="radio"]:focus + span, 
+button:hover, .button-shaped:hover, [type="radio"]:hover + span {
 	outline: 4px solid #006541;
-}
-
-button:active, .button-shaped:active,
-button[aria-pressed="true"], [type="radio"]:checked + span {
-	box-shadow: 0px 1px 0 #008556;
-	position: relative;
-	top: 3px;
 }
 
 button[aria-pressed="true"], [type="radio"]:checked + span {
 	background: #006541;
 	color: #6fe9bf;
 	border: 0 !important;
+}
+
+[type="radio"]:checked + span::before {
+	content: '\0020\2713';
+	padding-right: 0.25em;
+	color: #fff;
+	font-weight: bold;
 }
 
 button::-moz-focus-inner {
@@ -189,6 +194,11 @@ a.nav-link:active, button.nav-link:active {
 	margin: 0.25em;
 }
 
+nav li {
+	list-style: none;
+	display: inline;
+}
+
 /* answers
 ---------------------------------------------*/
 
@@ -220,7 +230,7 @@ a.nav-link:active, button.nav-link:active {
 
 .checklist li {
 	list-style: disc outside;
-	font-size: 1.5em;
+	font-weight: bold;
 	line-height: 1.125;
 }
 
@@ -305,8 +315,11 @@ small {
 
 .message {
 	background: #00a56b;
-	padding: 0.25em 0.5em;
-	color: #6fe9bf;
+	padding: 0.5em;
+	color: #fff;
+}
+
+.message a  {
 	color: #fff;
 }
 
@@ -332,8 +345,8 @@ body {
 	text-align: center;
 	display: none;
 	background: #dcf0fd;
-	padding: 90px 30px;
-	padding: 4.5rem 1.5rem;
+	padding: 120px 30px;
+	padding: 6rem 1.5rem;
 }
 
 .slide h2 {
@@ -385,14 +398,12 @@ body {
 	margin: 0;
 }
 
-.to-main-menu button:active, .to-main-menu button:focus {
-	outline-width: 1px;
-	outline-offset: 0.25em;
+.to-main-menu a:not(:hover), [role="banner"] a:not(:hover) {
+	border: 0;
 }
 
-.to-main-menu a, [role="banner"] a {
-	border: 0;
-	text-transform: uppercase;
+nav li + li::before {
+	content: '\00b7\0020';
 }
 
 .box {
@@ -410,6 +421,22 @@ body {
 .break-time img {
 	max-width: 8rem;
 	max-width: 160px;
+}
+
+[aria-label="menu options"] li {
+	clear: both;
+}
+
+[aria-label="menu options"] .half {
+	width: 50%;
+	float: left;
+	clear: none;
+	padding-right: 0.75em;
+}
+
+[aria-label="menu options"] .half + [aria-label="menu options"] .half {
+	padding-right: 0;
+	padding-left: 0.75em;
 }
 
 /* main menu
@@ -437,19 +464,17 @@ body {
 	font-size: 0.75em;
 }
 
-.ticks {
-	font-size: 1.25em;
-}
-
-.ticks li {
-	list-style: none;
-}
-
-.ticks li:before {
-	content: '\2713\0020';
-	font-size: 1.25em;
-	vertical-align: middle;
-	color: #008556;
+.tick::after {
+	margin-left: 0.25em;
+	content: '\0020\2713';
+	color: #dcf0fd;
+	font-weight: bold;
+	background: #008556;
+	border-radius: 50%;
+	display: inline-block;
+	width: 1.5em;
+	text-align: center;
+	font-size: 0.85em;
 }
 
 #main-menu:target ~ nav {
@@ -500,7 +525,7 @@ body {
 	animation: zoomzoom 0.5s linear 1;
 }
 
-/* how I'm doing
+/* my assessment
 ---------------------------------------------*/
 
 .q-and-a {
@@ -519,6 +544,24 @@ body {
 
 .q-and-a li + li {
 	margin-top: 0.75em;
+}
+
+.print-box {
+	padding: 1em;
+	border: 2px solid #008556;
+}
+
+.print-box:after {
+	content:'\0020';
+	display: block;
+	clear: both;
+	height: 0;
+}
+
+.print-box button {
+	margin: 0;
+	margin-left: 0.5em;
+	float: right;
 }
 
 /* things to remember
@@ -563,6 +606,15 @@ label span {
 	[aria-label$="menu"] button {
 		width: 100%;
 		margin: 0.25em 0;
+	}
+
+	.to-main-menu, [role="banner"] {
+		text-align: center;
+	}
+
+	.box {
+		margin: 0 0.5em;
+		padding: 1em 0.5em 0.5em;
 	}
 
 }
