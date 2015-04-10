@@ -217,7 +217,8 @@ nav li {
 	font-size: 1.5em;
 }
 
-.answers [type="radio"], .checklist [type="checkbox"] {
+.answers [type="radio"], .checklist [type="checkbox"], 
+.things-to-remember [type="checkbox"] {
 	border: 0; 
 	clip: rect(0 0 0 0); 
 	height: 1px; 
@@ -576,6 +577,25 @@ label span {
 	cursor: pointer;
 }
 
+.things-to-remember li {
+	padding: 0.125em 0
+}
+
+.things-to-remember [type="checkbox"] + span::before {
+	content: '+\0020';
+	font-weight: bold;
+}
+
+.things-to-remember [type="checkbox"]:checked + span {
+	color: #006541;
+}
+
+.things-to-remember [type="checkbox"]:checked + span::before {
+	content: '\2713\0020';
+	font-weight: bold;
+	color: #006541;
+}
+
 /* break points
 ---------------------------------------------*/
 
@@ -628,7 +648,7 @@ label span {
 	}
 
 	.no-print {
-		display: none;
+		display: none !important;
 	}
 
 	.q-and-a {

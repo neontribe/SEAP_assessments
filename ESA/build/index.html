@@ -720,7 +720,7 @@
 				<p class="description">Whether on the medical questionnaire, or in the face to face assessment, never answer a question before thinking carefully about what it actually means.</p>
 				<div class="things-to-remember">
 					<h3>Things to remember</h3>
-					<p>Check any items you want added to your <a data-action="stats" href="javascript:void(0)"><strong>reminders checklist</strong></a>.</p>
+					<p>Check any items you want added to <strong>Your Reminders</strong> checklist, which you can print out with <a data-action="stats" href="javascript:void(0)">your other assessment info</a>.</p>
 					<ul>
 						<li>
 							<label>
@@ -777,14 +777,14 @@
 				<h2 class="advice" tabindex="-1">
 					Travel
 				</h2>
-				<p class="description">You&#x27;ll need to be able to get to the venue. Some ideas on how best to prepare for this.</p>
+				<p class="description">The ESA assessment must take place in person, so you will need to travel to the venue.</p>
 				<div class="things-to-remember">
 					<h3>Things to remember</h3>
-					<p>Check any items you want added to your <a data-action="stats" href="javascript:void(0)"><strong>reminders checklist</strong></a>.</p>
+					<p>Check any items you want added to <strong>Your Reminders</strong> checklist, which you can print out with <a data-action="stats" href="javascript:void(0)">your other assessment info</a>.</p>
 					<ul>
 						<li>
 							<label>
-								<input type="checkbox" value="save" data-tip-id="try-to-arrive-ten-minutes-early"> <span>Try to arrive ten minutes early</span>
+								<input type="checkbox" value="save" data-tip-id="try-to-arrive-at-your-assessment-ten-minutes-early"> <span>Try to arrive at your assessment ten minutes early</span>
 							</label>
 						</li>
 						<li>
@@ -972,9 +972,9 @@
 			{{{qualifyEither}}}
 			{{{qualifyNone}}}
 			
-			<div class="message">
+			<div class="message" class="no-print">
 				<p>This is based on the questions you&#x2019;ve answered. You have answered <strong>{{accuracy}}</strong> of the questions available.</p>
-				{{#if incomplete}}<p style="margin-top: 0" class="no-print"><a href="javascript:void(0)" role="button" data-action="pick">Answer more questions <span aria-hidden="true">&#x2192;</span></a></p>{{/if}}
+				{{#if incomplete}}<p style="margin-top: 0"><a href="javascript:void(0)" role="button" data-action="pick">Answer more questions <span aria-hidden="true">&#x2192;</span></a></p>{{/if}}
 			</div>
 			
 			<h3>Important answers</h3>
