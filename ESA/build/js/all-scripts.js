@@ -14638,14 +14638,15 @@ $('body').on('change','[type="radio"]', function() {
 
 	if (points === 15) {
 
-		// no need to add up, just tell the user
-		loadSlide('qualify-high');
+		if (!db.get('ass.high')) {
 
-		// Set the points. We exclude integers of 15 in the tally
-		// db.set('ass.answers.' + category + '.' + context, points);
+			// record that the high qualification is true
+			db.set('ass.high', true);
 
-		// record that the high qualification is true
-		db.set('ass.high', true);
+			// no need to add up, just tell the user
+			loadSlide('ass.qualify-high');
+
+		}
 		
 	} else {
 
