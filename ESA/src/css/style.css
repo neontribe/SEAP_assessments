@@ -63,7 +63,7 @@ p + p {
 	margin-top: 0.66em;
 }
 
-#stats h3 {
+#stats * + h3 {
 	margin-top: 1.5em;
 }
 
@@ -562,7 +562,7 @@ nav li + li::before {
 
 .print-box {
 	padding: 1em;
-	border: 2px solid #008556;
+	border: 2px dashed #008556;
 }
 
 .print-box:after {
@@ -580,6 +580,11 @@ nav li + li::before {
 
 .print-box p:first-of-type {
 	margin: 0;
+}
+
+.paper {
+	background: #fff;
+	padding: 1.5em;
 }
 
 /* things to remember
@@ -617,6 +622,34 @@ label span {
 	content: '\2713\0020';
 	font-weight: bold;
 	color: #006541;
+}
+
+/* expandies
+---------------------------------------------*/
+
+h2 [aria-controls] {
+	display: block;
+	background: none;
+	padding: 0;
+	margin: 0;
+	font-size: 0.85em;
+}
+
+h2 [aria-controls]:hover {
+	outline: none;
+	color: #008556;
+}
+
+h2 + [aria-hidden="true"] {
+	display: none;
+}
+
+h2 [aria-expanded="false"]::before {
+	content: '+\0020';
+}
+
+h2 [aria-expanded="true"]::before {
+	content: '-\0020';
 }
 
 /* break points

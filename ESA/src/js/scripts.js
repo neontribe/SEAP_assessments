@@ -456,6 +456,28 @@ $('body').on('click','[data-action="break"]', function() {
 
 });
 
+$('.expandies').on('click','[aria-controls]', function() {
+
+	var expanded = $(this).attr('aria-expanded');
+
+	var controlled = $('#' + $(this).attr('aria-controls'));
+
+	if (expanded === 'false') {
+
+		$(this).attr('aria-expanded', 'true');
+
+		controlled.attr('aria-hidden','false');
+
+	} else {
+
+		$(this).attr('aria-expanded', 'false');
+
+		controlled.attr('aria-hidden','true');		
+
+	}
+
+});
+
 $('body').on('click','[data-action="resume"]', function() {
 
 	// run resume function defined in FUNCTIONS block

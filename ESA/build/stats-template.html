@@ -4,54 +4,56 @@
 	<p><button onClick="window.print()">Print Now</button> <strong>Important:</strong> This page contains useful info about how you should be assessed. You can print it out and take it with you to your assessment!</p> 
 </div>
 
-<h3>Would I qualify?</h3>
-{{#if answeredOne}}
-	{{{qualifyHigh}}}
-	{{{qualifyLow}}}
-	{{{qualifyEither}}}
-	{{{qualifyNone}}}
-{{/if}}
-
-<div class="message no-print">
+<div class="paper">
+	<h3>Would I qualify?</h3>
 	{{#if answeredOne}}
-		<p>This is based on the questions you&#x2019;ve answered. You have answered <strong>{{accuracy}}</strong> of the questions available.</p>
-		{{#if incomplete}}<p style="margin-top: 0"><a href="javascript:void(0)" role="button" data-action="pick">Answer more questions <span aria-hidden="true">&#x2192;</span></a></p>{{/if}}
+		{{{qualifyHigh}}}
+		{{{qualifyLow}}}
+		{{{qualifyEither}}}
+		{{{qualifyNone}}}
+	{{/if}}
+
+	<div class="message no-print">
+		{{#if answeredOne}}
+			<p>This is based on the questions you&#x2019;ve answered. You have answered <strong>{{accuracy}}</strong> of the questions available.</p>
+			{{#if incomplete}}<p style="margin-top: 0"><a href="javascript:void(0)" role="button" data-action="pick">Answer more questions <span aria-hidden="true">&#x2192;</span></a></p>{{/if}}
+		{{else}}
+			<p>It&#x2019;s not known at this stage because you haven&#x2019;t answered any practice questions. <a href="#start">Start answering practice questions <span aria-hidden="true">&#x2192;</span></a></p>
+		{{/if}}
+	</div>
+
+	<h3>Important answers</h3>
+	<p>These are the answers you gave that could mean you qualify. You should mention them in your assessment.</p>
+	<ul class="q-and-a">
+		{{#if keyAnswers}}
+			{{#each keyAnswers}}
+				<li>
+					<p><strong>Question:</strong> {{question}}</p> 
+					<p><strong>Your answer:</strong> {{answer}}</p>
+				</li>
+			{{/each}}
+		{{else}}
+			<p><strong>So far, you haven&#x2019;t provided any answers to questions to be listed</strong>.</p>
+		{{/if}}
+	</ul>
+
+	<h3>Your reminders</h3>
+	<p>Things to prepare and remember for your assessment. <span class="no-print">Tap items that you&#x2019;ve completed to check them off.</span></p>
+	{{#if reminders}}
+	<ul class="checklist">
+	{{#each reminders}}
+		<li>
+			<label>
+				<input type="checkbox" id="{{slug}}" value="done" {{#if done}}checked="checked"{{/if}} /> 
+				<span>{{tip}}</span>
+			</label>
+		</li>
+	{{/each}}
+	</ul>
 	{{else}}
-		<p>It&#x2019;s not known at this stage becuase you haven&#x2019;t answered any practice questions. <a href="#start">Start answering practice questions <span aria-hidden="true">&#x2192;</span></a></p>
+		<p><strong>You haven&#x2019;t set any reminders yet.</strong></p>
 	{{/if}}
 </div>
-
-<h3>Important answers</h3>
-<p>These are the answers you gave that could mean you qualify. You should mention them in your assessment.</p>
-<ul class="q-and-a">
-	{{#if keyAnswers}}
-		{{#each keyAnswers}}
-			<li>
-				<p><strong>Question:</strong> {{question}}</p> 
-				<p><strong>Your answer:</strong> {{answer}}</p>
-			</li>
-		{{/each}}
-	{{else}}
-		<p><strong>So far, you haven&#x2019;t provided any answers to questions to be listed</strong>.</p>
-	{{/if}}
-</ul>
-
-<h3>Your reminders</h3>
-<p>Things to prepare and remember for your assessment. <span class="no-print">Tap items that you&#x2019;ve completed to check them off.</span></p>
-{{#if reminders}}
-<ul class="checklist">
-{{#each reminders}}
-	<li>
-		<label>
-			<input type="checkbox" id="{{slug}}" value="done" {{#if done}}checked="checked"{{/if}} /> 
-			<span>{{tip}}</span>
-		</label>
-	</li>
-{{/each}}
-</ul>
-{{else}}
-	<p><strong>You haven&#x2019;t set any reminders yet.</strong></p>
-{{/if}}
 
 <ul aria-label="menu">
 	<li>
