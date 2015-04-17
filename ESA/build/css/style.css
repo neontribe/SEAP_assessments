@@ -43,6 +43,7 @@ body {
 	font-size: 20px;
 	color: #003555;
 	line-height: 1.5;
+	overflow-y: scroll;
 }
 
 body * + * {
@@ -204,6 +205,10 @@ a.nav-link:active, button.nav-link:active {
 	margin: 0.25em;
 }
 
+nav {
+	float: right;
+}
+
 nav li {
 	list-style: none;
 	display: inline;
@@ -334,6 +339,10 @@ small {
 	color: #fff;
 }
 
+.larger {
+	font-size: 1.25em;
+}
+
 /* layout
 ---------------------------------------------*/
 
@@ -364,6 +373,18 @@ body {
 	margin-top: 0;
 }
 
+.about h2 {
+	font-size: 2.25em;
+	text-align: left;
+	margin-top: 30px;
+	margin-top: 1.5rem;
+}
+
+.about h1 + h2 {
+	margin-top: 60px;
+	margin-top: 3rem;
+}
+
 .question h2 {
 	font-size: 1.75em;
 	line-height: 1.25;
@@ -373,30 +394,31 @@ body {
 	display: table-cell;
 }
 
-.to-main-menu, [role="banner"] {
+[role="banner"] {
 	position: fixed;
+	top: 0;
 	left: 0;
 	right: 0;
-	bottom: 0;
-	height: 60px;
-	line-height: 60px;
+	height: 80px;
+	line-height: 80px;
 	height: 3rem;
 	line-height: 3rem;
 	padding: 0 30px;
 	padding: 0 1.5rem;
-	text-align: right;
+	text-align: left;
 	margin: 0 !important;
-	border-top: 2px solid #79bde9;
 	background: #dcf0fd !important;
 	z-index: 2;
+	border-bottom: 2px solid #79bde9;
 }
 
-[role="banner"] {
-	top: 0;
-	bottom: auto;
-	text-align: left;
-	border-bottom: 2px solid #79bde9;
-	border-top: 0;
+[role="banner"] img {
+	height: 100%;
+	width: auto;
+}
+
+.to-main-menu {
+	margin-top: 0;
 }
 
 .to-main-menu button {
@@ -415,6 +437,7 @@ body {
 
 nav li + li::before {
 	content: '\00b7\0020';
+	padding: 0 0.25em;
 }
 
 .box {
@@ -470,10 +493,6 @@ nav li + li::before {
 	width: 1.5em;
 	text-align: center;
 	font-size: 0.85em;
-}
-
-#main-menu:target ~ nav {
-	display: none;
 }
 
 /* transitions
@@ -576,10 +595,14 @@ nav li + li::before {
 	height: 0;
 }
 
-.print-box button {
+.print-box button, .print-box .button-shaped {
 	margin: 0;
 	margin-left: 0.5em;
 	float: right;
+}
+
+.print-box p:first-of-type {
+	margin: 0;
 }
 
 /* things to remember
@@ -633,7 +656,7 @@ label span {
 @media (max-width: 650px) {
 
 	body {
-		font-size: 16px;
+		font-size: 17px;
 	}
 
 	[aria-label$="menu"] li {
@@ -645,13 +668,39 @@ label span {
 		margin: 0.25em 0;
 	}
 
-	.to-main-menu, [role="banner"] {
+	[role="banner"] {
 		text-align: center;
+	}
+
+	.to-main-menu {
+		text-align: center;
+		float: none;
+		display: inline-block;
 	}
 
 	.box {
 		margin: 0 0.5em;
 		padding: 1em 0.5em 0.5em;
+	}
+
+}
+
+@media (max-width: 450px) {
+
+	[role="banner"] {
+		height: auto;
+		line-height: 1.5em;
+		display: block;
+		width: 100%;
+		padding: 0.5em;
+	}
+
+	.to-main-menu {
+		display: block;
+	}
+
+	nav ul {
+		margin: 0;
 	}
 
 }

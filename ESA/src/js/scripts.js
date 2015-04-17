@@ -33,6 +33,7 @@ function initAss() {
 		unseenQuestions: window.allQuestions,
 		skippedQuestions: [], // the questions which have been viewed but not answered
 		started: false, // whether a practise has been started
+		answeredOne: false, // Whether any questions have been answered at all 
 		context: null, // the jQuery object for the slide in hand
 		slideType: null, // null or 'question' etc.
 		mode: 'unseenQuestions', // 'unseenQuestions' or 'skippedQuestions' (for switching between viewing unseen questions or seen but skipped)
@@ -52,6 +53,11 @@ function initAss() {
 }
 
 function loadSlide(id, type) {
+
+	// if you ran out of unseen questions and didn't skip any
+	if (_.isEmpty(db.get('ass.unseenQuestions')) && _.isEmpty(db.get('ass.skippedQuestions'))) {
+		db.set('ass.incomplete', false);
+	}
 
 	if (id === 'stats') {
 
@@ -109,7 +115,7 @@ function pickQuestion() {
 	var type = db.get('ass.slideType');
 	// the last slide seen
 	var context = db.get('ass.context');
-	// get mode
+	// get mode (unseen or skipped)
 	var mode = db.get('ass.mode');
 
 	console.log(window.answered);
@@ -197,10 +203,12 @@ function pickQuestion() {
 // clear data and go to start screen
 function restart() {
 
+	db.set('ass.unseenQuestions', window.allQuestions);
+	db.set('ass.skippedQuestions', []);
+	db.set('ass.started', false);
+	db.set('ass.mode', 'unseenQuestions');
+
 	console.log('restarting');
-
-	//
-
 
 	// go to start screen
 	loadSlide('start');
@@ -367,19 +375,19 @@ Handlebars.registerHelper('seenPercentage', function() {
 
 Handlebars.registerHelper('qualifyHigh', function() {
 	if (db.get('ass.high') && !db.get('ass.low')) {
-		return "<p>You may qualify for the high rate, placing you in <strong>Support Group</strong>.</p>";
+		return "<p>You may qualify for the highest allowance, placing you in <strong>Support Group</strong>.</p>";
 	}
 });
 
 Handlebars.registerHelper('qualifyLow', function() {
 	if (!db.get('ass.high') && db.get('ass.low')) {
-		return "<p>You may qualify for the standard rate, placing you in <strong>Work Related Activity Group</strong>.</p>";
+		return "<p>You may qualify for the standard allowance, placing you in what&#2019;s called the <strong>Work Related Activity Group</strong>.</p>";
 	}
 });
 
 Handlebars.registerHelper('qualifyEither', function() {
 	if (db.get('ass.high') && db.get('ass.low')) {
-		return "<p>It looks like you'll qualify for the standard rate (<strong>Support Group</strong>) or possibly the higher rate (<strong>Work Related Activity Group</strong>).</p>";
+		return "<p>It looks like you'll qualify for the standard allowance (placing you in what&#x2019;s called the <strong>Work Related Activity Group</strong>) or possibly the higher allowance (<strong>Support Group</strong>).</p>";
 	}
 });
 
@@ -417,9 +425,6 @@ $('body').on('click','[data-action="skipped"]', function() {
 
 // restart the questions part but keep the data
 $('body').on('click','[data-action="restart"]', function() {
-
-		db.set('ass.unseenQuestions', window.allQuestions);
-		db.set('ass.skippedQuestions', []);
 
 	// run restart function defined in FUNCTIONS block
 	restart();
@@ -498,10 +503,19 @@ $('body').on('click','[data-action="prep"]', function() {
 
 });
 
+$('body').on('click','[data-action="about-esa"]', function() {
+
+	// load slide
+	loadSlide('about-esa');
+
+});
+
 $('body').on('change','[type="radio"]', function() {
 
 	// record that change has been made
 	window.answered = true;
+
+	db.set('ass.answeredOne', true);
 
 	// get checked answer's value and the category the question belongs to
 	var context = db.get('ass.context');
@@ -542,7 +556,7 @@ $('body').on('change','[type="radio"]', function() {
 			db.set('ass.high', true);
 
 			// no need to add up, just tell the user
-			loadSlide('ass.qualify-high');
+			loadSlide('qualify-high');
 
 		}
 		

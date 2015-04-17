@@ -233,7 +233,7 @@
 			]
 		},
 		{		
-			"question": "Can you use one hand to press a button for example on a telephone key pad?",
+			"question": "Can you use one hand to press a button, for example on a telephone key pad?",
 			"hint": null,
 			"category": "Using your hands",
 			"answers": [
@@ -271,7 +271,7 @@
 			]
 		},
 		{		
-			"question": "Can you use one hand to pick up a pound coin or something similar with one or both hands?",
+			"question": "Can you pick up a pound coin (or something similar) with one hand?",
 			"hint": null,
 			"category": "Using your hands",
 			"answers": [
@@ -370,7 +370,7 @@
 			]
 		},
 		{		
-			"question": "How difficult would you find it to pass a simple message to stranger?",
+			"question": "How difficult would you find it to pass a simple message to a stranger?",
 			"hint": null,
 			"category": "Making yourself understood, by speaking, writing or typing",
 			"answers": [

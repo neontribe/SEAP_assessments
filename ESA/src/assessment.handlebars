@@ -5,14 +5,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="css/style.css" rel="stylesheet" media="all" />
 		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700,300" rel="stylesheet" type="text/css" media="none" onload="if(media!='all')media='all'">
-		<title>ESA Assessment</title>
+		<title>ESA Assessment Trainer</title>
 		<!--[if lt IE 9]>
 			<script src="js/html5.js"></script>
 		<![endif]-->
 	</head>
 	<body>
 		<header role="banner">
-			SEAP Assessments : ESA
+			<span role="image" aria-label="SEAP assessments ESA logo">SEAP Assessments: ESA</span>
+			<nav role="navigation" class="to-main-menu">
+				<ul>
+					<li>
+						<a href="javascript:void(0)" data-action="menu">Main Menu</a> 
+					</li>
+					<li>
+						<a href="javascript:void(0)" data-action="stats">My Assessment</a>
+					</li>
+				</ul>
+			</nav>
 		</header>
 		{{#each questions}}
 		<div class="slide question" id="{{sluggify question}}" data-category="{{sluggify category}}">
@@ -73,7 +83,7 @@
 					You may qualify for<br/>
 					<strong>Support Group</strong>
 				</h2>
-				<p>Your answer to the last question shows that you may qualify for the highest ESA rate, placing you in the &#x201c;Support Group&#x201d;. Do you want to try more questions?</p>
+				<p>Your answer to the last question shows that you may qualify for the highest ESA allowance, placing you in the &#x201c;Support Group&#x201d;. Do you want to try more questions?</p>
 				<ul aria-label="menu">
 					<li>	
 						<button class="nav-link" data-action="pick">Another question</button>
@@ -93,7 +103,7 @@
 					You may qualify for<br/>
 					<strong>Work Related Activity Group</strong>
 				</h2>
-				<p>Your answer to the last question shows that you may qualify for the standard ESA rate, placing you in the &#x201c;Work Related Activity Group&#x201d;. It&#x2019;s still possible that you may qualify for a higher rate. To find out, try some more questions.</p>
+				<p>Your answer to the last question shows that you may qualify for the standard ESA allowance, placing you in the &#x201c;Work Related Activity Group&#x201d;. It&#x2019;s still possible that you may qualify for a higher rate. To find out, try some more questions.</p>
 				<ul aria-label="menu">
 					<li>	
 						<button class="nav-link" data-action="pick">Another question</button>
@@ -125,14 +135,14 @@
 		<div class="slide get-started" id="start">
 			<div class="box">
 				<h2 tabindex="-1">Let&#x2019;s begin</h2>
-				<p>In your real assessment you'll be asked questions about your ability to do things. Here, you can try out some of these questions and get an idea of how you'd do in the real assessment. You can <a role="button" href="#break-time" data-action="break">take a break</a> at any time and come back later :-)</p>
+				<p>In your real assessment you&#x2019;ll be asked questions about your ability to do things. Here, you can try out some of these questions and be told how you might do in a real assessment. You can <a role="button" href="#break-time" data-action="break">take a break</a> at any time and come back later :-)</p>
 				<div><button class="nav-link" data-action="pick">Try a question</button></div>
 			</div>
 		</div>
 		<div class="slide get-started" id="seen-all">
 			<div class="box green">
 				<h2>No more new questions</h2>
-				<p>You&#x2019;ve seen all the questions (so you're pretty familiar with the assessment now!) but you skipped some. What would you like to do?</p>
+				<p>You&#x2019;ve seen all the questions (so you&#x2019;re pretty familiar with the assessment now!) but you skipped some. What would you like to do?</p>
 				<ul aria-label="menu">
 					<li>	
 						<button class="nav-link" data-action="skipped">Skipped questions</button>
@@ -149,7 +159,10 @@
 				<p>You&#x2019;ve answered all the practice questions available, so you&#x2019;re pretty well versed now. What would you like to do next?</p>
 				<ul aria-label="menu">
 					<li>
-						<button class="nav-link" data-action="stats">My assessment so far</button>
+						<button class="nav-link" data-action="stats">How did my assessment go?</button>
+					</li>
+					<li>
+						<button class="nav-link" data-action="restart">Practise again</button>
 					</li>
 					<li>
 						<button class="nav-link" data-action="menu">Main Menu</button>
@@ -160,7 +173,7 @@
 		<div class="slide get-started" id="resume">
 			<div class="box">
 				<h2 tabindex="-1">Hello again?</h2>
-				<p>Looks like you've been here before. Press &#x201c;continue&#x201d; if you want to carry on where you left off. Not been here before? Choose &#x201c;main menu&#x201d;.</p>
+				<p>Looks like you've been here before. Press &#x201c;continue&#x201d; if you want to go back to where you were. Not been here before? Choose &#x201c;main menu&#x201d;.</p>
 				<ul aria-label="menu">
 					<li>	
 						<button class="nav-link" data-action="resume">Continue</button>
@@ -174,29 +187,38 @@
 		<div class="slide stats" id="stats">
 			<div class="stats-container">
 				<div id="stats-content" class="flow"></div>
-				<div class="flow">
-					<ul aria-label="menu">
-						<li>
-							<button data-followup="#{{followUp}}" class="nav-link pick" data-action="pick">Practise some questions</button>
-						</li>
-						<li>
-							<button class="nav-link break" data-action="break">I&#x2019;ll have a break</button>
-						</li>
-						<li>
-							<button class="nav-link break" data-action="menu">Main menu</button>
-						</li>
-					</ul>
+			</div>
+		</div>
+		<div class="slide about" id="about-esa">
+			<div class="flow">
+				<h1>All About ESA</h1>
+				<div class="print-box">
+					<a class="button-shaped" aria-hidden="true" href="docs/All_About_ESA.pdf">Read The Guide (pdf)</a>
+					<p>Below is a quick run down of the ESA process or, if you&#x2019;re completely new to <abbr title="Employment and Support Allowance">ESA</abbr>, you can <a href="docs/All_About_ESA.pdf">read our in-depth guide <span class="vh">opens new tab</span></a>.</p>
+					<p></p>
 				</div>
+				<h2>What is ESA for</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac sapien non velit dapibus consequat et sed magna. Vestibulum sit amet pulvinar ligula, nec varius dolor. Curabitur porta eros bibendum sapien viverra ullamcorper. Phasellus quam sapien, maximus non dapibus in, posuere tempus tortor. Duis faucibus luctus fringilla. Nulla mauris orci, interdum vel purus non, ultrices elementum tortor. Quisque sit amet augue a tortor convallis viverra.</p>
+    			<h2>Who is it for</h2>
+    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac sapien non velit dapibus consequat et sed magna. Vestibulum sit amet pulvinar ligula, nec varius dolor. Curabitur porta eros bibendum sapien viverra ullamcorper. Phasellus quam sapien, maximus non dapibus in, posuere tempus tortor. Duis faucibus luctus fringilla. Nulla mauris orci, interdum vel purus non, ultrices elementum tortor. Quisque sit amet augue a tortor convallis viverra.</p>
+    			<h2>Application process</h2>
+    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac sapien non velit dapibus consequat et sed magna. Vestibulum sit amet pulvinar ligula, nec varius dolor. Curabitur porta eros bibendum sapien viverra ullamcorper. Phasellus quam sapien, maximus non dapibus in, posuere tempus tortor. Duis faucibus luctus fringilla. Nulla mauris orci, interdum vel purus non, ultrices elementum tortor. Quisque sit amet augue a tortor convallis viverra.</p>
+    			<h2>Assessment process</h2>
+    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac sapien non velit dapibus consequat et sed magna. Vestibulum sit amet pulvinar ligula, nec varius dolor. Curabitur porta eros bibendum sapien viverra ullamcorper. Phasellus quam sapien, maximus non dapibus in, posuere tempus tortor. Duis faucibus luctus fringilla. Nulla mauris orci, interdum vel purus non, ultrices elementum tortor. Quisque sit amet augue a tortor convallis viverra.</p>
+    			<h2>The decision</h2>
+    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac sapien non velit dapibus consequat et sed magna. Vestibulum sit amet pulvinar ligula, nec varius dolor. Curabitur porta eros bibendum sapien viverra ullamcorper. Phasellus quam sapien, maximus non dapibus in, posuere tempus tortor. Duis faucibus luctus fringilla. Nulla mauris orci, interdum vel purus non, ultrices elementum tortor. Quisque sit amet augue a tortor convallis viverra.</p>
+    			<h2>The outcome</h2>
+    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac sapien non velit dapibus consequat et sed magna. Vestibulum sit amet pulvinar ligula, nec varius dolor. Curabitur porta eros bibendum sapien viverra ullamcorper. Phasellus quam sapien, maximus non dapibus in, posuere tempus tortor. Duis faucibus luctus fringilla. Nulla mauris orci, interdum vel purus non, ultrices elementum tortor. Quisque sit amet augue a tortor convallis viverra.</p>
 			</div>
 		</div>
 		<div class="slide main-menu" id="main-menu">
 			<div class="flow">
-				<h1>ESA Assessment Trainer <span>from SEAP</span></h1>
-				<p>Welcome to your <abbr title="Employment And Support Allowance">ESA</abbr> training website, designed to help you get ready for your ESA medical assessment. This website&hellip; is <strong class="tick">run independently and impartially</strong> by <a href="http://www.seap.org.uk/">SEAP</a>, <strong class="tick">does not collect your personal data</strong> and contains <strong class="tick">no long, boring forms!</strong></p>
+				<h1>My ESA Assessment Trainer</h1>
+				<p class="larger">Welcome to your <abbr title="Employment And Support Allowance">ESA</abbr> training website, designed to help you get ready for your ESA medical assessment. This website is <strong class="tick">run independently and impartially</strong> by <a href="http://www.seap.org.uk/">SEAP</a>, <strong class="tick">does not collect your personal data</strong> and contains <strong class="tick">no long, boring forms!</strong></p>
 				<div role="toolbar" aria-label="menu options">
 					<ul>
 						<li class="half">
-							<button data-action="about">All about ESA <span>and your assessment</span></button>
+							<button data-action="about-esa">All about ESA <span>and your assessment</span></button>
 						</li>
 						<li class="half">
 							<button data-action="answering-questions">Answering <span>questions the right way</span></button>
@@ -211,16 +233,6 @@
 				</div>
 			</div>
 		</div>
-		<nav role="navigation" class="to-main-menu">
-			<ul>
-				<li>
-					<a href="javascript:void(0)" data-action="menu">Main Menu</a> 
-				</li>
-				<li>
-					<a href="javascript:void(0)" data-action="stats">My Assessment</a>
-				</li>
-			</ul>
-		</nav>
 		<script>
 			window.allQuestions = [{{#each questions}}'{{sluggify question}}',{{/each}}];
 		</script>
