@@ -3,7 +3,7 @@
 		{		
 			"question": "Can you move around and use steps without difficulty?",
 			"hint": null,
-			"category": "Mobilising unaided by another person with or without a walking stick, manual wheelchair or other aid if such aid is normally or could reasonably be worn or used",
+			"category": "Moving around and using steps",
 			"answers": [
 				{
 					"label": "Yes",
@@ -18,7 +18,7 @@
 		{		
 			"question": "What is the furthest you can move safely on level ground without needing to stop?",
 			"hint": "Answer this question even if you need a walking stick, manual wheelchair or other aid to help you.",
-			"category": "Mobilising unaided by another person with or without a walking stick, manual wheelchair or other aid if such aid is normally or could reasonably be worn or used",
+			"category": "Moving around and using steps",
 			"answers": [
 				{
 					"label": "0 - 50 metres",
@@ -41,7 +41,7 @@
 		{		
 			"question": "After moving once, how far can you move again within a short time without it causing you significant discomfort or exhaustion?",
 			"hint": null,
-			"category": "Mobilising unaided by another person with or without a walking stick, manual wheelchair or other aid if such aid is normally or could reasonably be worn or used",
+			"category": "Moving around and using steps",
 			"answers": [
 				{
 					"label": "0 - 50 metres",
@@ -64,7 +64,7 @@
 		{		
 			"question": "Can you go up or down two steps without being helped by another person even with the support of a handrail?",
 			"hint": null,
-			"category": "Mobilising unaided by another person with or without a walking stick, manual wheelchair or other aid if such aid is normally or could reasonably be worn or used",
+			"category": "Moving around and using steps",
 			"answers": [
 				{
 					"label": "Yes",
@@ -144,7 +144,7 @@
 		{		
 			"question": "Can you reach up with both your arms without difficulty?",
 			"hint": null,
-			"category": "Reaching",
+			"category": "Picking up and moving things",
 			"answers": [
 				{
 					"label": "Yes",
@@ -437,6 +437,131 @@
 					"value": 0
 				}
 			]
+		},
+		{		
+			"question": "Can you cross the road on you own, without needing help from someone else whether or not you need to use a guide dog or other aid?",
+			"hint": null,
+			"category": "Navigation and maintaining safety",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": 15
+				}
+			]
+		},
+		{		
+			"question": "Can you move around an unfamiliar place without help from someone else whether or not you need to use a guide dog or other aid?",
+			"hint": null,
+			"category": "Navigation and maintaining safety",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": 15
+				}
+			]
+		},
+		{		
+			"question": "Can you move around a familiar place without help from someone else whether or not you need to use a guide dog or other aid?",
+			"hint": null,
+			"category": "Navigation and maintaining safety",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": 9
+				}
+			]
+		},
+		{		
+			"question": "Can you learn to do everyday tasks without any difficulty?",
+			"hint": null,
+			"category": "Learning tasks",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": "Question text of the follow-up question (string)"
+				}
+			]
+		},
+		{		
+			"question": "Which of these best describes whether you can learn to do a simple task such as setting an alarm clock?",
+			"hint": null,
+			"category": "Learning tasks",
+			"answers": [
+				{
+					"label": "I would not have a problem learning a task like this",
+					"value": 0
+				},
+				{
+					"label": "I can sometimes learn some simple tasks",
+					"value": Null
+				},
+				{
+					"label": "I do not know",
+					"value": Null
+				},
+				{
+					"label": "I would never be able to learn how to complete a task like this",
+					"value": 15
+				},
+				{
+					"label": "I would never be able to learn how to complete a task like thi because I have learning difficulties or mental health impairments",
+					"value": 15
+				}		
+			]
+		},
+		{		
+			"question": "Can you learn something complex such as how to use a washing machine?",
+			"hint": null,
+			"category": "Learning tasks",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": 9
+				},
+				{
+					"label": "It varies",
+					"value": "Question text of the follow-up question (string)"
+				}
+			]
+		},
+		{		
+			"question": "Can you learn something more complicated than how to use a washing machine?",
+			"hint": null,
+			"category": "Learning tasks",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": 6
+				},
+				{
+					"label": "It varies",
+					"value": "Question text of the follow-up question (string)"
+				}
+			]
 		}
 	],
 	"advice": [
@@ -457,11 +582,11 @@
 		},
 		{
 			"title": "Travel",
-			"description": "The ESA assessment must take place in person, so you will need to travel to the venue.",
+			"description": "The ESA medical assessment must take place in person, so you will need to travel to the venue. Here are some suggestions to help you prepare your travel arrangements.",
 			"tips": [
 				"Try to arrive at your assessment ten minutes early",
 				"Plan your route to the assessment in advance",
-				"Keep hold of your bus / train tickets to claim money back"
+				"Keep hold of your bus / train tickets to claim the money back later"
 			]
 		}
 	]

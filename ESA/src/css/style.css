@@ -71,14 +71,24 @@ p + p {
 	font-style: italic;
 }
 
-.question-text:before { content: '\201c'; }
-.question-text:after { content: '\201d'; }
+.question-text .activity {
+	font-size: 0.75em !important;
+	display: block !important;
+	font-style: normal;
+	padding-bottom: 0.5em;
+}
 
+.question-text em:before { content: '\201c'; }
+.question-text em:after { content: '\201d'; }
 
 .sup {
 	font-size: 0.7em;
 	vertical-align: super;
 	line-height: 0;
+}
+
+button i {
+	color: #43ab7c;
 }
 
 /* headings
