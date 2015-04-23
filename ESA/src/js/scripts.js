@@ -207,6 +207,7 @@ function restart() {
 	db.set('ass.skippedQuestions', []);
 	db.set('ass.started', false);
 	db.set('ass.mode', 'unseenQuestions');
+	db.set('ass.incomplete', true);
 
 	console.log('restarting');
 
@@ -227,18 +228,24 @@ function resume() {
 
 }
 
-// add the high scores for each category together
 function tally() {
-	
 	// get all the answers
 	var answers = db.get('ass.answers');
 
 	// add up the highest values for each category
-	// by taking the max value that's not 15 from each
+	// by taking the max value that's not 16 from each
 	// category and adding them together
 	var total = _.reduce(answers, function(memo, cat){
-	    return memo + _.max(_.without( _.pluck(cat, 'points'), 15) );
+	    return memo + _.max(_.without( _.pluck(cat, 'points'), 16) );
 	}, 0);
+
+	return total;
+}
+
+// add the high scores for each category together
+function qualify() {
+
+	var total = tally();
 
 	if (total >= 15) {
 
@@ -269,6 +276,22 @@ function isNumeric(num) {
 function compileStats() {
 
 	db.set('ass.keyAnswers', flattenAnswers());
+
+	// check if support group status is true really or not (looks for 16)
+	var flatAnswers = db.get('ass.keyAnswers');
+	var support = _.find(flatAnswers, function(answer) { 
+	  return answer.points === 16;
+	});
+
+	// if support group a no, set to false
+	if (support === undefined) {
+		db.set('ass.high', false);
+	}
+
+	// if WRAGroup a no, set to false
+	if (tally() < 15) {
+		db.set('ass.low', false);
+	}	
 
 	// template up the stats with handlebars and 
 	// write to the stats file 
@@ -492,6 +515,13 @@ $('body').on('click','[data-action="menu"]', function() {
 
 });
 
+$('body').on('click','[data-action="data"]', function() {
+
+	// run resume function defined in FUNCTIONS block
+	loadSlide('data');
+
+});
+
 $('body').on('click','[data-action="clean-up"]', function() {
 
 	// set answered global to false
@@ -570,7 +600,7 @@ $('body').on('change','[type="radio"]', function() {
 	// set the new points for this question in this category
 	db.set('ass.answers.' + category + '.' + context, answerObject);
 
-	if (points === 15) {
+	if (points === 16) {
 
 		if (!db.get('ass.high')) {
 
@@ -586,7 +616,7 @@ $('body').on('change','[type="radio"]', function() {
 
 		// fire the adding up function
 		// to see if there are enough points to qualify
-		tally();
+		qualify();
 
 	}
 

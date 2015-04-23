@@ -21,6 +21,9 @@
 					<li>
 						<a href="javascript:void(0)" data-action="stats">My Assessment</a>
 					</li>
+					<li>
+						<a href="javascript:void(0)" data-action="data">My Data</a>
+					</li>
 				</ul>
 			</nav>
 		</header>
@@ -122,7 +125,7 @@
 			<div class="box">
 				<img src="images/tea.png" alt="steaming cup of tea" />
 				<h2 tabindex="-1">You&#x2019;re on a break</h2>
-				<p>Feel free to close the window or turn off your computer and come back when you&#x2019;re ready :-)</p>
+				<p>Feel free to close the window or turn off your computer and come back when you&#x2019;re ready. Everything will be as you left it :-)</p>
 				<ul aria-label="menu">
 					<li>	
 						<button class="nav-link" data-action="resume">Continue</button>
@@ -136,7 +139,7 @@
 		<div class="slide get-started" id="start">
 			<div class="box">
 				<h2 tabindex="-1">Let&#x2019;s begin</h2>
-				<p>In your real assessment you&#x2019;ll be asked questions about your ability to do things. Here, you can try out some of these questions and be told how you might do in a real assessment. You can <a role="button" href="#break-time" data-action="break">take a break</a> at any time and come back later :-)</p>
+				<p>In your real assessment you&#x2019;ll be asked questions about your ability to do things. Here, you can try out some of these questions and be told how you might do in a real assessment. You can <a role="button" href="#break-time" data-action="break">take a break</a> at any time and come back later. Your computer will remember where you were in the app :-)</p>
 				<div><button class="nav-link" data-action="pick">Try a question</button></div>
 			</div>
 		</div>
@@ -156,7 +159,7 @@
 		</div>
 		<div class="slide get-started" id="seen-all-even-skipped">
 			<div class="box green">
-				<h2>Practise!</h2>
+				<h2>Practise Complete!</h2>
 				<p>You&#x2019;ve answered all the practice questions available, so you&#x2019;re pretty well versed now. What would you like to do next?</p>
 				<ul aria-label="menu">
 					<li>
@@ -193,7 +196,7 @@
 		<div class="slide about" id="about-esa">
 			<div class="flow">
 				<h1>All About ESA</h1>
-				<p>You can choose a topic from the options below. Not in the mood for reading? <a role="button" data-action="start-or-resume" href="javascript:void(0)">Practice some assessment questions instead &#x2192;</a></p>
+				<p>You can choose a topic from the options below. <br>Not in the mood for reading? <a role="button" data-action="start-or-resume" href="javascript:void(0)">Practice some assessment questions instead &#x2192;</a></p>
 				<div class="expandies">
 					<h2><button aria-controls="what-is-esa-for" aria-expanded="false">What is ESA for?</button></h2>
 					<div id="what-is-esa-for" aria-hidden="true">
@@ -237,7 +240,7 @@
 		<div class="slide main-menu" id="main-menu">
 			<div class="flow">
 				<h1>My ESA Assessment</h1>
-				<p class="larger">Welcome to our <abbr title="Employment And Support Allowance">ESA</abbr> website, designed to help you get ready for your ESA assessment. This website is <strong class="tick">run independently and impartially</strong> by <a href="http://www.seap.org.uk/">SEAP</a>, <strong class="tick">does not collect your personal data</strong> and contains <strong class="tick">no long, boring forms!</strong></p>
+				<p class="larger">Welcome to our <abbr title="Employment And Support Allowance">ESA</abbr> website, designed to help you get ready for your ESA assessment. This website is <strong class="tick">run independently and impartially</strong> by the charity SEAP, <strong class="tick">does not collect your personal data</strong> and contains <strong class="tick">no long, boring forms!</strong></p>
 				<div role="toolbar" aria-label="menu options">
 					<ul>
 						<li class="half">
@@ -247,16 +250,34 @@
 							<button data-action="start-or-resume"><i aria-hidden="true">&#x2605;</i> Practise <i aria-hidden="true">&#x2605;</i> <span>by assessing yourself</span></button>
 						</li>
 						<li>
-							<button data-action="stats">My Assessment <span>How it&#x2019;s going so far</span></button>
+							<button data-action="stats">My Assessment <span>and how it&#x2019;s going so far</span></button>
 						</li>
 						<!--<li class="half">
 							<button data-action="answering-questions">Answering <span>questions the right way</span></button>
-						</li>-->
+						</li>
 						<li class="half">
 							<button data-action="prep" data-prep-slug="travel">Travelling <span>to your assessment</span></button>
-						</li>
+						</li>-->
 					</ul>
 				</div>
+			</div>
+		</div>
+		<div class="slide data" id="data">
+			<div class="flow">
+				<h1>My Data</h1>
+				<p>This app does not send any of your data anywhere or keep any for itself. However, it <em>does</em> save some data just on the computer you&#x2019;re using in order to work properly.</p> 
+				<p>If this is not your computer, tablet or phone you can delete all this data when you are done using the app. This way, no one else will see it.</p>
+				<ul aria-label="menu">
+					<li>
+						<button class="nav-link red" data-action="clean-up">I'm done! Delete my stuff</button>
+					</li>
+					<li>
+						<button class="nav-link" data-action="stats">I want to see my data first</button>
+					</li>
+					<li>
+						<button class="nav-link" data-action="menu">Main menu</button>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<script>

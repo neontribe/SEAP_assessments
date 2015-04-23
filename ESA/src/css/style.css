@@ -9,7 +9,7 @@ mid blue = #3389c1
 light blue = #79bde9
 lightest blue = #dcf0fd
 dark green = #006541
-mid green = #008556
+mid green = #0a8f60
 light green = #00a56b
 lightest green = #6fe9bf
 
@@ -131,6 +131,8 @@ button, .button-shaped, [type="radio"] + span {
 	margin: 0.5em;
 	color: #006541;
 	line-height: 1.125;
+	border-radius: 0.1875em;
+	box-shadow: 0 0.125em #0a8f60;
 }
 
 button span {
@@ -139,13 +141,18 @@ button span {
 
 button:focus, .button-shaped:focus, [type="radio"]:focus + span, 
 button:hover, .button-shaped:hover, [type="radio"]:hover + span {
-	outline: 4px solid #006541;
+	background: #006541;
+	color: #6fe9bf;
 }
 
-button[aria-pressed="true"], [type="radio"]:checked + span {
+button[aria-pressed="true"], [type="radio"]:checked + span, 
+button:active, .button-shaped:active {
 	background: #006541;
 	color: #6fe9bf;
 	border: 0 !important;
+	box-shadow: none;
+	position: relative;
+	top: 0.125em;
 }
 
 [type="radio"]:checked + span::before {
@@ -180,7 +187,7 @@ a:hover {
 
 a:focus {
 	border: 0;
-	outline: 1px solid #008556;
+	outline: 1px solid #0a8f60;
 	outline-offset: 0.25em;
 }
 
@@ -195,13 +202,14 @@ a.nav-link, button.nav-link {
 	background: transparent;
 }
 
-a.nav-link:hover, button.nav-link:hover {
-	outline: 2px solid #006541;
+a.nav-link:hover, button.nav-link:hover, 
+a.nav-link:focus, button.nav-link:focus {
+	color: #fff;
+	background: #00a56b;
 }
 
 a.nav-link:active, button.nav-link:active {
-	position: static;
-	top: 0;
+	background: #006541;
 }
 
 [aria-label$="menu"] {
@@ -269,7 +277,7 @@ nav li {
 }
 
 [type="checkbox"]:hover + span {
-	color: #008556;
+	color: #0a8f60;
 }
 
 [type="checkbox"]:focus + span {
@@ -343,6 +351,7 @@ small {
 	background: #00a56b;
 	padding: 0.5em;
 	color: #fff;
+	border-radius: 0.125em;
 }
 
 .message a  {
@@ -351,6 +360,19 @@ small {
 
 .larger {
 	font-size: 1.25em;
+}
+
+.nav-link.red {
+	border-color: #e25c43;
+	color: #e25c43;
+}
+
+.huge {
+	font-size: 3em;
+}
+
+.center {
+	text-align: center;
 }
 
 /* layout
@@ -456,10 +478,11 @@ nav li + li::before {
 	border: 5px solid #3389c1;
 	padding: 20px;
 	padding: 1.5rem;
+	border-radius: 0.1875em;
 }
 
 .green {
-	border-color: #008556;
+	border-color: #0a8f60;
 }
 
 .break-time img {
@@ -497,7 +520,7 @@ nav li + li::before {
 	content: '\0020\2713';
 	color: #dcf0fd;
 	font-weight: bold;
-	background: #008556;
+	background: #3389c1;
 	border-radius: 50%;
 	display: inline-block;
 	width: 1.5em;
@@ -564,6 +587,7 @@ nav li + li::before {
 	background: #6fe9bf;
 	padding: 1em;
 	list-style: none;
+	border-radius: 0.125em;
 }
 
 .q-and-a li + li {
@@ -572,7 +596,8 @@ nav li + li::before {
 
 .print-box {
 	padding: 1em;
-	border: 2px dashed #008556;
+	border: 2px dashed #0a8f60;
+	border-radius: 0.125em;
 }
 
 .print-box:after {
@@ -643,11 +668,17 @@ h2 [aria-controls] {
 	padding: 0;
 	margin: 0;
 	font-size: 0.85em;
+	box-shadow: none;
+	position: static !important;
 }
 
-h2 [aria-controls]:hover {
-	outline: none;
-	color: #008556;
+h2 [aria-controls]:hover, 
+h2 [aria-controls]:focus {
+	color: #0a8f60;
+}
+
+h2 [aria-controls]:focus {
+	outline: thin solid;
 }
 
 h2 + [aria-hidden="true"] {
