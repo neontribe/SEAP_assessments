@@ -72,10 +72,12 @@ p + p {
 }
 
 .question-text .activity {
-	font-size: 0.75em !important;
+	font-size: 0.66em !important;
 	display: block !important;
 	font-style: normal;
 	padding-bottom: 0.5em;
+	font-weight: normal;
+	color: #3389c1;
 }
 
 .question-text em:before { content: '\201c'; }
@@ -367,6 +369,22 @@ small {
 	color: #e25c43;
 }
 
+.warn {
+	text-align: center;
+	background: #e25c43;
+	padding: 0.25em;
+	border-radius: 0.1em;
+	margin-bottom: 0.75em;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 0.85em;
+	font-weight: bold;
+}
+
+.warn.amber {
+	background: #e2ac43;
+}
+
 .huge {
 	font-size: 3em;
 }
@@ -492,6 +510,11 @@ nav li + li::before {
 .break-time img {
 	max-width: 8rem;
 	max-width: 160px;
+}
+
+[data-action="change"] {
+	display: inline-block;
+	margin-top: 0.75em;
 }
 
 /* main menu

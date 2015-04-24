@@ -14377,28 +14377,20 @@ function isNumeric(num) {
 
 function compileStats() {
 
-	db.set('ass.keyAnswers', flattenAnswers());
+	divideAnswers();
 
-	// check if support group status is true really or not (looks for 16)
-	var flatAnswers = db.get('ass.keyAnswers');
-	var support = _.find(flatAnswers, function(answer) { 
-	  return answer.points === 16;
-	});
-
-	// if support group a no, set to false
-	if (support === undefined) {
+	if (_.isEmpty(db.get('ass.supportAnswers'))) {
 		db.set('ass.high', false);
 	}
 
 	// if WRAGroup a no, set to false
-	if (tally() < 15) {
+	if (_.isEmpty(db.get('ass.WRAGAnswers'))) {
 		db.set('ass.low', false);
-	}	
+	}
 
 	// template up the stats with handlebars and 
 	// write to the stats file 
 	var template = Handlebars.compile(document.getElementById("stats-template").innerHTML);
-
 	var assData = db.get('ass');
 	var output = template(assData);
 	$('#stats-content').html(output);
@@ -14406,28 +14398,39 @@ function compileStats() {
 }
 
 // remove answers from category nesting for easy iteration
-function flattenAnswers() {
+function divideAnswers() {
 	
 	var answers = db.get('ass.answers');
 
-	var set = [];
+	var supportAnswers = [];
+	var WRAGAnswers = [];
 
 	// ugly nested each to make a handelebars #each iterable array of question objects
 	$.each(answers, function(key, value) {
 		$.each(value, function(k, v) {
-			// exclude answers that have 0 points
-			if (v.points > 0) {
+			// include support group answers
+			if (v.points === 16) {
 				// push to flattened array
-				set.push({
+				supportAnswers.push({
 					question: v.question,
 					answer: v.answer,
 					points: v.points
 				});
 			}
+			// include WRAG answers
+			if (v.points > 0 && v.points !== 16) {
+				WRAGAnswers.push({
+					question: v.question,
+					answer: v.answer,
+					points: v.points
+				});					
+			}
 		});
 	});
 
-	return set;
+	// set these to be access by template
+	db.set('ass.supportAnswers', supportAnswers);
+	db.set('ass.WRAGAnswers', WRAGAnswers);
 
 }
 
@@ -14500,19 +14503,19 @@ Handlebars.registerHelper('seenPercentage', function() {
 
 Handlebars.registerHelper('qualifyHigh', function() {
 	if (db.get('ass.high') && !db.get('ass.low')) {
-		return "<p>You may qualify for the highest allowance, placing you in <strong>Support Group</strong>.</p>";
+		return "<p>You may qualify for the highest allowance, placing you in the Support Group.</p>";
 	}
 });
 
 Handlebars.registerHelper('qualifyLow', function() {
 	if (!db.get('ass.high') && db.get('ass.low')) {
-		return "<p>You may qualify for the standard allowance, placing you in what&#2019;s called the <strong>Work Related Activity Group</strong>.</p>";
+		return "<p>You may qualify for the standard allowance, placing you in what&#x2019;s called the Work Related Activity Group.</p>";
 	}
 });
 
 Handlebars.registerHelper('qualifyEither', function() {
 	if (db.get('ass.high') && db.get('ass.low')) {
-		return "<p>It looks like you'll qualify for the standard allowance (placing you in what&#x2019;s called the <strong>Work Related Activity Group</strong>) or possibly the higher allowance (<strong>Support Group</strong>).</p>";
+		return "<p>It looks like you'll qualify for the standard allowance (placing you in what&#x2019;s called the Work Related Activity Group) or possibly the higher allowance (Support Group).</p>";
 	}
 });
 

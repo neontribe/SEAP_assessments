@@ -311,7 +311,7 @@
 		{		
 			"question": "Can you communicate with other people without any difficulty?",
 			"hint": null,
-			"category": "Making yourself understood, by speaking, writing or typing",
+			"category": "Making yourself understood",
 			"answers": [
 				{
 					"label": "Yes",
@@ -326,7 +326,7 @@
 		{		
 			"question": "Can you make yourself understood through speaking, writing, typing, or any other means you normally use, without help from another person?",
 			"hint": null,
-			"category": "Making yourself understood, by speaking, writing or typing",
+			"category": "Making yourself understood",
 			"answers": [
 				{
 					"label": "All of the time",
@@ -353,7 +353,7 @@
 		{		
 			"question": "Can you give a simple message to someone such as a message explaining how dangerous something is?",
 			"hint": null,
-			"category": "Making yourself understood, by speaking, writing or typing",
+			"category": "Making yourself understood",
 			"answers": [
 				{
 					"label": "Yes",
@@ -372,7 +372,7 @@
 		{		
 			"question": "How difficult would you find it to pass a simple message to a stranger?",
 			"hint": null,
-			"category": "Making yourself understood, by speaking, writing or typing",
+			"category": "Making yourself understood",
 			"answers": [
 				{
 					"label": "Too difficult",
