@@ -420,6 +420,14 @@ Handlebars.registerHelper('qualifyNone', function() {
 	}
 });
 
+Handlebars.registerHelper('sluggify', function(words) {
+	var slug = words
+		.toLowerCase()
+		.replace(/[^\w ]+/g,'')
+		.replace(/ +/g,'-');
+	return slug;
+});
+
 /**********************************************************************
 EVENTS
 **********************************************************************/
@@ -579,7 +587,7 @@ $('body').on('change','[type="radio"]', function() {
 
 	if (isNumeric(points)) {
 
-		// cast to real number
+		// cast to real integer
 		points = +points;
 
 	}
@@ -677,5 +685,15 @@ $('body').on('change','.checklist [type="checkbox"]', function() {
 	}
 
 	db.set('ass.reminders', reminders);
+
+});
+
+$('body').on('click','[data-action="change"]', function() { 
+
+	// get question slug
+	var slug = $(this).attr('data-question');
+
+	// just show the question slide
+	loadSlide(slug, 'question');
 
 });
