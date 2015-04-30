@@ -1109,6 +1109,17 @@
 				</ul>
 			</div>
 		</div>
+		<div class="slide deleted" id="deleted">
+			<div class="box">
+				<h2 tabindex="-1" style="red">Deleted</h2>
+				<p>All of your assessment data has been successfully deleted from your computer.</p>
+				<ul aria-label="menu">
+					<li>
+						<button class="nav-link" data-action="menu">Main menu</button>
+					</li>
+				</ul>
+			</div>
+		</div>
 		<div class="slide get-started" id="start">
 			<div class="box">
 				<h2 tabindex="-1">Let&#x2019;s begin</h2>
@@ -1242,7 +1253,7 @@
 				<p>If this is not your computer, tablet or phone you can delete all this data when you are done using the app. This way, no one else will see it.</p>
 				<ul aria-label="menu">
 					<li>
-						<button class="nav-link red" data-action="clean-up">I'm done! Delete my stuff</button>
+						<button class="nav-link red" data-action="delete-data">I'm done! Delete my stuff</button>
 					</li>
 					<li>
 						<button class="nav-link" data-action="stats">I want to see my data first</button>
@@ -1265,6 +1276,22 @@
 			</div>
 			
 			<div class="paper">
+			
+				<h3>Basic info</h3>
+				<p class="no-print">Enter the venue, date and time of your assessment, as reminders to yourself.</p>
+				<div class="label-input">
+					<label for="venue">Venue</label> 
+					<input data-action="save-basic-info" type="text" id="venue" value="{{venue}}" placeholder="eg. 4, Hall Road">
+				</div>
+				<div class="label-input">
+					<label for="date">Date</label>
+					<input data-action="save-basic-info" type="text" id="date" value="{{date}}" placeholder="eg. March 4th">
+				</div>
+				<div class="label-input">
+					<label for="time">Time</label> 
+					<input data-action="save-basic-info" type="text" id="time" value="{{time}}" placeholder="eg. 2.30pm">
+				</div>
+			
 				<h3>Would I qualify?</h3>
 				{{#if answeredOne}}
 					{{{qualifyHigh}}}

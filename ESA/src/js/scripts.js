@@ -41,7 +41,10 @@ function initAss() {
 		low: false, // low qualification?
 		high: false, // high qualification?
 		reminders: [], // list of reminders form "Things to remember" checkboxes
-		incomplete: true // whether all the questions have been answered
+		incomplete: true, // whether all the questions have been answered
+		date: '',
+		venue: '',
+		time: ''
 	};
 
 	// Save the virgin ass to local storage
@@ -546,6 +549,19 @@ $('body').on('click','[data-action="clean-up"]', function() {
 
 });
 
+$('body').on('click','[data-action="delete-data"]', function() {
+
+	// set answered global to false
+	window.answered = false;
+
+	// initialize database
+	initAss();
+
+	// load the deleted data slide
+	loadSlide('deleted');
+
+});
+
 $('body').on('click','[data-action="stats"]', function() {
 
 	// load the stats slide
@@ -570,6 +586,12 @@ $('body').on('click','[data-action="about-esa"]', function() {
 
 	// load slide
 	loadSlide('about-esa');
+
+});
+
+$('body').on('keyup','[data-action="save-basic-info"]', function() {
+
+	db.set('ass.' + $(this).attr('id'), $(this).val());
 
 });
 
