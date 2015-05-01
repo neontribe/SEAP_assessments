@@ -589,7 +589,7 @@ $('body').on('click','[data-action="about-esa"]', function() {
 
 });
 
-$('body').on('keyup','[data-action="save-basic-info"]', function() {
+$('body').on('change','[data-action="save-basic-info"]', function() {
 
 	db.set('ass.' + $(this).attr('id'), $(this).val());
 

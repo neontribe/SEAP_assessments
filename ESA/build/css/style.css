@@ -432,6 +432,7 @@ input:focus {
 
 label {
 	font-weight: bold;
+	padding-right: 0.5em;
 }
 
 /* layout
@@ -928,10 +929,12 @@ h2 [aria-expanded="true"]::before {
 		width: 100%;
 	}
 
-	input {
+	.label-input input {
 		border: 0;
 		padding: 0;
 		font-style: italic;
+		border-bottom: 1px dashed;
+		width: 50%;
 	}
 
 }
