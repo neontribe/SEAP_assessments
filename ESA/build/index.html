@@ -875,10 +875,10 @@
 			            <input type="radio" value="0" name="learning-tasks"> <span>I would not have a problem learning a task like this</span>
 			        </label>
 					<label>
-			            <input type="radio" value="Null" name="learning-tasks"> <span>I can sometimes learn some simple tasks</span>
+			            <input type="radio" value="" name="learning-tasks"> <span>I can sometimes learn some simple tasks</span>
 			        </label>
 					<label>
-			            <input type="radio" value="Null" name="learning-tasks"> <span>I do not know</span>
+			            <input type="radio" value="" name="learning-tasks"> <span>I do not know</span>
 			        </label>
 					<label>
 			            <input type="radio" value="15" name="learning-tasks"> <span>I would never be able to learn how to complete a task like this</span>
@@ -1123,8 +1123,8 @@
 		<div class="slide get-started" id="start">
 			<div class="box">
 				<h2 tabindex="-1">Let&#x2019;s begin</h2>
-				<p>In your real assessment you&#x2019;ll be asked questions about your ability to do things. Here, you can try out some of these questions and be told how you might do in a real assessment. You can <a role="button" href="#break-time" data-action="break">take a break</a> at any time and come back later. Your computer will remember where you were in the app :-)</p>
-				<div><button class="nav-link" data-action="pick">Try a question</button></div>
+				<p>In your real assessment you&#x2019;ll be asked questions about your ability to do activities. Here, you can try out some of these questions and be told how you might do in a real assessment. You can <a role="button" href="#break-time" data-action="break">take a break</a> at any time and come back later. Your computer will remember where you were in the app :-)</p>
+				<div><button class="nav-link" data-action="categories">Pick an activity</button></div>
 			</div>
 		</div>
 		<div class="slide get-started" id="seen-all">
@@ -1246,6 +1246,10 @@
 				</div>
 			</div>
 		</div>
+		<div class="slide categories" id="categories">
+			<div class="box" id="categories-content">
+			</div>
+		</div>
 		<div class="slide data" id="data">
 			<div class="flow">
 				<h1>My Data</h1>
@@ -1265,11 +1269,12 @@
 			</div>
 		</div>
 		<script>
-			window.allQuestions = ['can-you-move-around-and-use-steps-without-difficulty','what-is-the-furthest-you-can-move-safely-on-level-ground-without-needing-to-stop','after-moving-once-how-far-can-you-move-again-within-a-short-time-without-it-causing-you-significant-discomfort-or-exhaustion','can-you-go-up-or-down-two-steps-without-being-helped-by-another-person-even-with-the-support-of-a-handrail','can-you-stand-and-sit-without-difficulty','if-two-seats-are-placed-next-to-each-other-could-you-move-from-one-to-the-other-without-help-from-someone-else','how-long-could-you-either-sit-or-stand-or-both-at-a-workstation-for-the-majority-of-time-without-help-from-someone-else-before-it-caused-you-significant-discomfort-or-exhaustion-and-you-had-to-move-away','can-you-reach-up-with-both-your-arms-without-difficulty','can-you-pick-up-and-move-things-without-any-difficulty','can-you-pick-up-and-move-a-half-litre-pint-carton-of-liquid','can-you-pick-up-and-move-a-litre-2-pint-carton-of-liquid','can-you-pick-up-and-move-a-light-but-bulky-object-like-an-empty-cardboard-box','can-you-use-one-hand-to-press-a-button-for-example-on-a-telephone-key-pad','can-you-turn-the-pages-of-a-book-with-one-or-both-hands','can-you-pick-up-a-pound-coin-or-something-similar-with-one-hand','can-you-use-one-hand-to-operate-a-computer-keyboard-or-mouse-it-does-not-matter-whether-or-not-it-has-been-specially-adapted-for-you-or-you-know-how-to-use-a-computer','can-you-communicate-with-other-people-without-any-difficulty','can-you-make-yourself-understood-through-speaking-writing-typing-or-any-other-means-you-normally-use-without-help-from-another-person','can-you-give-a-simple-message-to-someone-such-as-a-message-explaining-how-dangerous-something-is','how-difficult-would-you-find-it-to-pass-a-simple-message-to-a-stranger','can-you-understand-other-people-without-any-difficulty','which-of-these-best-describes-how-well-you-can-understand-a-simple-message-such-as-the-location-of-a-fire-escape','can-you-cross-the-road-on-you-own-without-needing-help-from-someone-else-whether-or-not-you-need-to-use-a-guide-dog-or-other-aid','can-you-move-around-an-unfamiliar-place-without-help-from-someone-else-whether-or-not-you-need-to-use-a-guide-dog-or-other-aid','can-you-move-around-a-familiar-place-without-help-from-someone-else-whether-or-not-you-need-to-use-a-guide-dog-or-other-aid','can-you-learn-to-do-everyday-tasks-without-any-difficulty','which-of-these-best-describes-whether-you-can-learn-to-do-a-simple-task-such-as-setting-an-alarm-clock','can-you-learn-something-complex-such-as-how-to-use-a-washing-machine','can-you-learn-something-more-complicated-than-how-to-use-a-washing-machine',];
+			window.allQuestions = [{ question: 'can-you-move-around-and-use-steps-without-difficulty', category: 'moving-around-and-using-steps' },{ question: 'what-is-the-furthest-you-can-move-safely-on-level-ground-without-needing-to-stop', category: 'moving-around-and-using-steps' },{ question: 'after-moving-once-how-far-can-you-move-again-within-a-short-time-without-it-causing-you-significant-discomfort-or-exhaustion', category: 'moving-around-and-using-steps' },{ question: 'can-you-go-up-or-down-two-steps-without-being-helped-by-another-person-even-with-the-support-of-a-handrail', category: 'moving-around-and-using-steps' },{ question: 'can-you-stand-and-sit-without-difficulty', category: 'sitting-and-standing' },{ question: 'if-two-seats-are-placed-next-to-each-other-could-you-move-from-one-to-the-other-without-help-from-someone-else', category: 'sitting-and-standing' },{ question: 'how-long-could-you-either-sit-or-stand-or-both-at-a-workstation-for-the-majority-of-time-without-help-from-someone-else-before-it-caused-you-significant-discomfort-or-exhaustion-and-you-had-to-move-away', category: 'sitting-and-standing' },{ question: 'can-you-reach-up-with-both-your-arms-without-difficulty', category: 'picking-up-and-moving-things' },{ question: 'can-you-pick-up-and-move-things-without-any-difficulty', category: 'picking-up-and-moving-things' },{ question: 'can-you-pick-up-and-move-a-half-litre-pint-carton-of-liquid', category: 'picking-up-and-moving-things' },{ question: 'can-you-pick-up-and-move-a-litre-2-pint-carton-of-liquid', category: 'picking-up-and-moving-things' },{ question: 'can-you-pick-up-and-move-a-light-but-bulky-object-like-an-empty-cardboard-box', category: 'picking-up-and-moving-things' },{ question: 'can-you-use-one-hand-to-press-a-button-for-example-on-a-telephone-key-pad', category: 'using-your-hands' },{ question: 'can-you-turn-the-pages-of-a-book-with-one-or-both-hands', category: 'using-your-hands' },{ question: 'can-you-pick-up-a-pound-coin-or-something-similar-with-one-hand', category: 'using-your-hands' },{ question: 'can-you-use-one-hand-to-operate-a-computer-keyboard-or-mouse-it-does-not-matter-whether-or-not-it-has-been-specially-adapted-for-you-or-you-know-how-to-use-a-computer', category: 'using-your-hands' },{ question: 'can-you-communicate-with-other-people-without-any-difficulty', category: 'making-yourself-understood' },{ question: 'can-you-make-yourself-understood-through-speaking-writing-typing-or-any-other-means-you-normally-use-without-help-from-another-person', category: 'making-yourself-understood' },{ question: 'can-you-give-a-simple-message-to-someone-such-as-a-message-explaining-how-dangerous-something-is', category: 'making-yourself-understood' },{ question: 'how-difficult-would-you-find-it-to-pass-a-simple-message-to-a-stranger', category: 'making-yourself-understood' },{ question: 'can-you-understand-other-people-without-any-difficulty', category: 'understanding-verbal-communication' },{ question: 'which-of-these-best-describes-how-well-you-can-understand-a-simple-message-such-as-the-location-of-a-fire-escape', category: 'understanding-verbal-communication' },{ question: 'can-you-cross-the-road-on-you-own-without-needing-help-from-someone-else-whether-or-not-you-need-to-use-a-guide-dog-or-other-aid', category: 'navigation-and-maintaining-safety' },{ question: 'can-you-move-around-an-unfamiliar-place-without-help-from-someone-else-whether-or-not-you-need-to-use-a-guide-dog-or-other-aid', category: 'navigation-and-maintaining-safety' },{ question: 'can-you-move-around-a-familiar-place-without-help-from-someone-else-whether-or-not-you-need-to-use-a-guide-dog-or-other-aid', category: 'navigation-and-maintaining-safety' },{ question: 'can-you-learn-to-do-everyday-tasks-without-any-difficulty', category: 'learning-tasks' },{ question: 'which-of-these-best-describes-whether-you-can-learn-to-do-a-simple-task-such-as-setting-an-alarm-clock', category: 'learning-tasks' },{ question: 'can-you-learn-something-complex-such-as-how-to-use-a-washing-machine', category: 'learning-tasks' },{ question: 'can-you-learn-something-more-complicated-than-how-to-use-a-washing-machine', category: 'learning-tasks' },];
+			window.allCategories = ['Moving around and using steps','Moving around and using steps','Moving around and using steps','Moving around and using steps','Sitting and standing','Sitting and standing','Sitting and standing','Picking up and moving things','Picking up and moving things','Picking up and moving things','Picking up and moving things','Picking up and moving things','Using your hands','Using your hands','Using your hands','Using your hands','Making yourself understood','Making yourself understood','Making yourself understood','Making yourself understood','Understanding verbal communication','Understanding verbal communication','Navigation and maintaining safety','Navigation and maintaining safety','Navigation and maintaining safety','Learning tasks','Learning tasks','Learning tasks','Learning tasks',];
 		</script>
 		<script src="js/all-scripts.js"></script>
 		<script id="stats-template" type="text/x-handlebars-template">
-			<h2>My Assessment</h2>
+			<h2 tabindex="-1">My Assessment</h2>
 			
 			<div class="print-box no-print">
 				<p><button onClick="window.print()">Print Now</button> <strong>Important:</strong> This page contains useful info about how you should be assessed. You can print it out and take it with you to your assessment!</p> 
@@ -1372,6 +1377,22 @@
 					<button class="nav-link break" data-action="menu">Main menu</button>
 				</li>
 			</ul>
+		</script>
+		<script id="categories-template" type="text/x-handlebars-template">
+			<h2 tabindex="-1">Choose an activity</h2>
+			<p>Which of the following activities would you like to talk about? Try to choose one that is relevant to any problems you experience. It&#x2019;s okay to choose &#x201c;I don&#x2019;t know&#x201d;.</p>
+			<div class="category-list" role="toolbar" aria-label="menu options">
+				<ul>
+					{{#each remainingCategories}}
+						<li>
+							<button data-action="set-cat" data-category="{{sluggify this}}">{{this}}</button>
+						</li>
+					{{/each}}
+					<li>
+						<button data-action="set-cat" data-category="i-dont-know">I don&#x2019;t know</button>
+					</li>
+				</ul>
+			</div>
 		</script>
 	</body>
 </html>

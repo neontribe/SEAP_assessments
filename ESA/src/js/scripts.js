@@ -7,6 +7,8 @@ var db = $.localStorage;
 
 if (db.isEmpty('ass')) {
 
+	console.log('empty');
+
 	// setup the database ass object
 	initAss();
 
@@ -18,8 +20,11 @@ if (db.isEmpty('ass')) {
 
 } else {
 
+	console.log('not empty');
+
 	// welcome back users or allow new users to restart
 	loadSlide('resume');
+
 }
 
 /**********************************************************************
@@ -30,13 +35,15 @@ function initAss() {
 
 	// model the database 'ass' object
 	var assTemplate = { // the questions which haven't been viewed
-		unseenQuestions: window.allQuestions,
+		unseenQuestions: [],
 		skippedQuestions: [], // the questions which have been viewed but not answered
+		remainingCategories: _.uniq(window.allCategories), // the categories not yet viewed
 		started: false, // whether a practise has been started
 		answeredOne: false, // Whether any questions have been answered at all 
 		context: null, // the jQuery object for the slide in hand
 		slideType: null, // null or 'question' etc.
-		mode: 'unseenQuestions', // 'unseenQuestions' or 'skippedQuestions' (for switching between viewing unseen questions or seen but skipped)
+		mode: 'unseenQuestions', // 'unseenQuestions' or 'skippedQuestions'
+		categoryBased: true, // are we looking at questions per activity
 		answers: {}, // the master object of category high scores for tallying
 		low: false, // low qualification?
 		high: false, // high qualification?
@@ -55,6 +62,18 @@ function initAss() {
 
 }
 
+function getCatQuestions(slug) {
+
+	var questions = _.where(window.allQuestions, {category: slug});
+
+	db.set('ass.unseenQuestions', questions);
+
+	db.set('ass.categoryBased', true);
+
+	pickQuestion();
+
+}
+
 function loadSlide(id, type) {
 
 	// if you ran out of unseen questions and didn't skip any
@@ -66,6 +85,12 @@ function loadSlide(id, type) {
 
 		// compile the stats before showing slide
 		compileStats();
+
+	}
+
+	if (id === 'categories') {
+
+		compileCategories();
 
 	}
 
@@ -135,6 +160,12 @@ function pickQuestion() {
 
 	// get the appropriate set
 	var questions = db.get('ass.' + mode);
+
+	if (_.isEmpty(db.get('ass.unseenQuestions')) && db.get('ass.categoryBased')) {
+
+		areThereCategories();
+
+	}
 
 	// if you ran out of unseen questions and didn't skip any
 	if (_.isEmpty(db.get('ass.unseenQuestions')) && _.isEmpty(db.get('ass.skippedQuestions'))) {
@@ -290,11 +321,22 @@ function compileStats() {
 	}
 
 	// template up the stats with handlebars and 
-	// write to the stats file 
+	// write to the stats container
 	var template = Handlebars.compile(document.getElementById("stats-template").innerHTML);
 	var assData = db.get('ass');
 	var output = template(assData);
 	$('#stats-content').html(output);
+
+}
+
+function compileCategories() {
+
+	// template up the stats with handlebars and 
+	// write to the categories container
+	var template = Handlebars.compile(document.getElementById("categories-template").innerHTML);
+	var assData = db.get('ass');
+	var output = template(assData);
+	$('#categories-content').html(output);
 
 }
 
@@ -655,6 +697,12 @@ $('body').on('change','[type="radio"]', function() {
 
 });
 
+$('body').on('click','[data-action="categories"]', function() { 
+
+	loadSlide('categories');
+
+});
+
 $('body').on('change','.things-to-remember [type="checkbox"]', function() {
 
 	// get tip text from span
@@ -720,5 +768,15 @@ $('body').on('click','[data-action="change"]', function() {
 
 	// just show the question slide
 	loadSlide(slug, 'question');
+
+});
+
+$('body').on('click','[data-action="set-cat"]', function() { 
+
+	var slug = $(this).attr('data-category');
+
+	getCatQuestions(slug);
+
+	db.set('ass.remainingQuestions', _.without(db.get('ass.remainingQuestions', slug)));
 
 });

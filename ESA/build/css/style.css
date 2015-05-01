@@ -225,6 +225,10 @@ a.nav-link:active, button.nav-link:active {
 	margin: 0.25em;
 }
 
+.category-list {
+	font-size: 0.66em;
+}
+
 nav {
 	float: right;
 }
