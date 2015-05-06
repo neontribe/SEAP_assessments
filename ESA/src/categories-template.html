@@ -2,13 +2,13 @@
 <p>Which of the following activities would you like to talk about? Try to choose one that is relevant to any problems you experience. It&#x2019;s okay to choose &#x201c;I don&#x2019;t know&#x201d;.</p>
 <div class="category-list" role="toolbar" aria-label="menu options">
 	<ul>
+		<li>
+			<button data-action="set-cat" data-category="i-dont-know">I don&#x2019;t know</button>
+		</li>
 		{{#each remainingCategories}}
 			<li>
 				<button data-action="set-cat" data-category="{{this}}">{{this}}</button>
 			</li>
 		{{/each}}
-		<li>
-			<button data-action="set-cat" data-category="i-dont-know">I don&#x2019;t know</button>
-		</li>
 	</ul>
 </div>
