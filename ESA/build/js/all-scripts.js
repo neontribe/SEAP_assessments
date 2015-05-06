@@ -14135,17 +14135,25 @@ FUNCTIONS
 
 function initAss() {
 
+	var categories = _.uniq(window.allCategories);
+
+
+
 	// model the database 'ass' object
 	var assTemplate = { // the questions which haven't been viewed
 		unseenQuestions: [],
 		skippedQuestions: [], // the questions which have been viewed but not answered
-		remainingCategories: _.uniq(window.allCategories), // the categories not yet viewed
+		/*remainingCategories: _.map(_.uniq(window.allCategories), function(cat) { 
+			return cat.toLowerCase()
+					  .replace(/[^\w ]+/g,'')
+					  .replace(/ +/g,'-'); }), // the categories not yet viewed*/
+		remainingCategories: _.uniq(window.allCategories),
 		started: false, // whether a practise has been started
 		answeredOne: false, // Whether any questions have been answered at all 
 		context: null, // the jQuery object for the slide in hand
 		slideType: null, // null or 'question' etc.
 		mode: 'unseenQuestions', // 'unseenQuestions' or 'skippedQuestions'
-		categoryBased: true, // are we looking at questions per activity
+		category: null, // or the name of the current category (activity)
 		answers: {}, // the master object of category high scores for tallying
 		low: false, // low qualification?
 		high: false, // high qualification?
@@ -14166,11 +14174,30 @@ function initAss() {
 
 function getCatQuestions(slug) {
 
-	var questions = _.where(window.allQuestions, {category: slug});
+	if (slug === "i-dont-know") {
 
-	db.set('ass.unseenQuestions', questions);
+		if (_.isEmpty(db.get('ass.unseenQuestions'))) {
+			db.set('ass.unseenQuestions', window.allQuestions);
+		}
 
-	db.set('ass.categoryBased', true);
+		db.set('ass.category', null);
+
+	} else {
+
+		var reducedToCat = _.where(window.allQuestions, {category: slug});
+
+		var questions = [];
+
+		$.each(reducedToCat, function(i, v) {
+			questions.push(v.question);
+		});
+
+		db.set('ass.unseenQuestions', questions);
+
+		db.set('ass.category', slug);
+
+	}
+
 
 	pickQuestion();
 
@@ -14184,16 +14211,16 @@ function loadSlide(id, type) {
 	}
 
 	if (id === 'stats') {
-
 		// compile the stats before showing slide
 		compileStats();
-
 	}
 
 	if (id === 'categories') {
-
 		compileCategories();
+	}
 
+	if (id === 'category-finished') {
+		$('#this-activity').text(db.get('ass.category').toLowerCase());
 	}
 
 	$('.slide > *').removeClass('loaded');
@@ -14213,7 +14240,7 @@ function loadSlide(id, type) {
 
 	// focus title to announce title in AT
 	$('#' + id)
-		.find('h2')
+		.find('[tabindex="-1"]')
 		.focus();
 
 	// find out if we've gone to one of the locations that don't need saving
@@ -14255,7 +14282,6 @@ function pickQuestion() {
 		// put the unanswered question into the array of skipped questions
 		var skipped = db.get('ass.skippedQuestions');
 		skipped.push(db.get('ass.context'));
-		console.log(skipped);
 		db.set('ass.skippedQuestions', _.uniq(skipped));
 
 	}
@@ -14263,14 +14289,14 @@ function pickQuestion() {
 	// get the appropriate set
 	var questions = db.get('ass.' + mode);
 
-	if (_.isEmpty(db.get('ass.unseenQuestions')) && db.get('ass.categoryBased')) {
-
-		areThereCategories();
-
-	}
-
 	// if you ran out of unseen questions and didn't skip any
 	if (_.isEmpty(db.get('ass.unseenQuestions')) && _.isEmpty(db.get('ass.skippedQuestions'))) {
+		if (db.get('ass.category')) {
+			if (!_.isEmpty(db.get('ass.remainingCategories'))) {
+				loadSlide('category-finished');
+				return;
+			}
+		}
 		db.set('ass.incomplete', false);
 		loadSlide('seen-all-even-skipped');
 		return;
@@ -14278,6 +14304,14 @@ function pickQuestion() {
 
 	// if unseen questions have run out but there are skipped
 	if (questions.length < 1 && mode === 'unseenQuestions') {
+		if (!db.get('ass.category')) {
+			if (_.isEmpty(db.get('ass.remainingCategories'))) {
+				db.set('ass.incomplete', false);
+				db.set('ass.category', null);
+				loadSlide('seen-all-even-skipped');
+				return;
+			}
+		} 
 		loadSlide('seen-all');
 		return;
 	}
@@ -14473,7 +14507,7 @@ function divideAnswers() {
 		});
 	});
 
-	// set these to be access by template
+	// set these to be accessible by template
 	db.set('ass.supportAnswers', supportAnswers);
 	db.set('ass.WRAGAnswers', WRAGAnswers);
 
@@ -14877,8 +14911,10 @@ $('body').on('click','[data-action="set-cat"]', function() {
 
 	var slug = $(this).attr('data-category');
 
-	getCatQuestions(slug);
+	var reduced = _.without(db.get('ass.remainingCategories'), slug);
 
-	db.set('ass.remainingQuestions', _.without(db.get('ass.remainingQuestions', slug)));
+	db.set('ass.remainingCategories', reduced);
+
+	getCatQuestions(slug);
 
 });

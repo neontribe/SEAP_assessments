@@ -1056,10 +1056,10 @@
 		</div>
 		<div class="slide qualify" id="qualify-high">
 			<div class="box green">
-				<h2 tabindex="-1">
+				<h1 tabindex="-1">
 					You may qualify for<br/>
 					<strong>Support Group</strong>
-				</h2>
+				</h1>
 				<p>Your answer to the last question shows that you may qualify for the highest ESA allowance, placing you in the &#x201c;Support Group&#x201d;. Do you want to try more questions?</p>
 				<ul aria-label="menu">
 					<li>	
@@ -1076,10 +1076,10 @@
 		</div>
 		<div class="slide qualify" id="qualify-low">
 			<div class="box green">
-				<h2 tabindex="-1">
+				<h1 tabindex="-1">
 					You may qualify for<br/>
 					<strong>Work Related Activity Group</strong>
-				</h2>
+				</h1>
 				<p>Your answer to the last question shows that you may qualify for the standard ESA allowance, placing you in the &#x201c;Work Related Activity Group&#x201d;. It&#x2019;s still possible that you may qualify for a higher rate. To find out, try some more questions.</p>
 				<ul aria-label="menu">
 					<li>	
@@ -1097,7 +1097,7 @@
 		<div class="slide break-time" id="break-time">
 			<div class="box">
 				<img src="images/tea.png" alt="steaming cup of tea" />
-				<h2 tabindex="-1">You&#x2019;re on a break</h2>
+				<h1 tabindex="-1">You&#x2019;re on a break</h1>
 				<p>Feel free to close the window or turn off your computer and come back when you&#x2019;re ready. Everything will be as you left it :-)</p>
 				<ul aria-label="menu">
 					<li>	
@@ -1111,7 +1111,7 @@
 		</div>
 		<div class="slide deleted" id="deleted">
 			<div class="box">
-				<h2 tabindex="-1" style="red">Deleted</h2>
+				<h1 tabindex="-1" style="red">Deleted</h1>
 				<p>All of your assessment data has been successfully deleted from your computer.</p>
 				<ul aria-label="menu">
 					<li>
@@ -1122,14 +1122,14 @@
 		</div>
 		<div class="slide get-started" id="start">
 			<div class="box">
-				<h2 tabindex="-1">Let&#x2019;s begin</h2>
+				<h1 tabindex="-1">Let&#x2019;s begin</h1>
 				<p>In your real assessment you&#x2019;ll be asked questions about your ability to do activities. Here, you can try out some of these questions and be told how you might do in a real assessment. You can <a role="button" href="#break-time" data-action="break">take a break</a> at any time and come back later. Your computer will remember where you were in the app :-)</p>
 				<div><button class="nav-link" data-action="categories">Pick an activity</button></div>
 			</div>
 		</div>
 		<div class="slide get-started" id="seen-all">
 			<div class="box green">
-				<h2>No more new questions</h2>
+				<h1 tabindex="-1">No more new questions</h1>
 				<p>You&#x2019;ve seen all the questions (so you&#x2019;re pretty familiar with the assessment now!) but you skipped some. What would you like to do?</p>
 				<ul aria-label="menu">
 					<li>	
@@ -1143,7 +1143,7 @@
 		</div>
 		<div class="slide get-started" id="seen-all-even-skipped">
 			<div class="box green">
-				<h2>Practise Complete!</h2>
+				<h1 tabindex="-1">Practise Complete!</h1>
 				<p>You&#x2019;ve answered all the practice questions available, so you&#x2019;re pretty well versed now. What would you like to do next?</p>
 				<ul aria-label="menu">
 					<li>
@@ -1160,7 +1160,7 @@
 		</div>
 		<div class="slide get-started" id="resume">
 			<div class="box">
-				<h2 tabindex="-1">Hello again?</h2>
+				<h1 tabindex="-1">Hello again?</h1>
 				<p>Looks like you've been here before. Press &#x201c;continue&#x201d; if you want to go back to where you were. Not been here before? Choose &#x201c;main menu&#x201d;.</p>
 				<ul aria-label="menu">
 					<li>	
@@ -1179,7 +1179,7 @@
 		</div>
 		<div class="slide about" id="about-esa">
 			<div class="flow">
-				<h1>All About ESA</h1>
+				<h1 tabindex="-1">All About ESA</h1>
 				<p>You can choose a topic from the options below. <br>Not in the mood for reading? <a role="button" data-action="start-or-resume" href="javascript:void(0)">Practice some assessment questions instead &#x2192;</a></p>
 				<div class="expandies">
 					<h2><button aria-controls="what-is-esa-for" aria-expanded="false">What is ESA for?</button></h2>
@@ -1223,7 +1223,7 @@
 		</div>
 		<div class="slide main-menu" id="main-menu">
 			<div class="flow">
-				<h1>My ESA Assessment</h1>
+				<h1 tabindex="-1">My ESA Assessment</h1>
 				<p class="larger">Welcome to our <abbr title="Employment And Support Allowance">ESA</abbr> website, designed to help you get ready for your ESA assessment. This website is <strong class="tick">run independently and impartially</strong> by the charity SEAP, <strong class="tick">does not collect your personal data</strong> and contains <strong class="tick">no long, boring forms!</strong></p>
 				<div role="toolbar" aria-label="menu options">
 					<ul>
@@ -1246,13 +1246,26 @@
 				</div>
 			</div>
 		</div>
-		<div class="slide categories" id="categories">
-			<div class="box" id="categories-content">
+		<div class="slide category-finished" id="category-finished">
+			<div class="box">
+				<h1 tabindex="-1">Well done!</h1>
+				<p>You&#x2019;ve seen all the practise questions about <strong id="this-activity">this activity</strong>. What would you like to look at next?</p>
+				<ul aria-label="menu">
+					<li>
+						<button class="nav-link" data-action="categories">A new activity</button>
+					</li>
+					<li>
+						<button class="nav-link" data-action="stats">My assessment so far</button>
+					</li>
+					<li>
+						<button class="nav-link" data-action="menu">Main menu</button>
+					</li>
+				</ul>				
 			</div>
 		</div>
 		<div class="slide data" id="data">
 			<div class="flow">
-				<h1>My Data</h1>
+				<h1 tabindex="-1">My Data</h1>
 				<p>This app does not send any of your data anywhere or keep any for itself. However, it <em>does</em> save some data just on the computer you&#x2019;re using in order to work properly.</p> 
 				<p>If this is not your computer, tablet or phone you can delete all this data when you are done using the app. This way, no one else will see it.</p>
 				<ul aria-label="menu">
@@ -1268,8 +1281,12 @@
 				</ul>
 			</div>
 		</div>
+		<div class="slide categories" id="categories">
+			<div class="box" id="categories-content">
+			</div>
+		</div>
 		<script>
-			window.allQuestions = [{ question: 'can-you-move-around-and-use-steps-without-difficulty', category: 'moving-around-and-using-steps' },{ question: 'what-is-the-furthest-you-can-move-safely-on-level-ground-without-needing-to-stop', category: 'moving-around-and-using-steps' },{ question: 'after-moving-once-how-far-can-you-move-again-within-a-short-time-without-it-causing-you-significant-discomfort-or-exhaustion', category: 'moving-around-and-using-steps' },{ question: 'can-you-go-up-or-down-two-steps-without-being-helped-by-another-person-even-with-the-support-of-a-handrail', category: 'moving-around-and-using-steps' },{ question: 'can-you-stand-and-sit-without-difficulty', category: 'sitting-and-standing' },{ question: 'if-two-seats-are-placed-next-to-each-other-could-you-move-from-one-to-the-other-without-help-from-someone-else', category: 'sitting-and-standing' },{ question: 'how-long-could-you-either-sit-or-stand-or-both-at-a-workstation-for-the-majority-of-time-without-help-from-someone-else-before-it-caused-you-significant-discomfort-or-exhaustion-and-you-had-to-move-away', category: 'sitting-and-standing' },{ question: 'can-you-reach-up-with-both-your-arms-without-difficulty', category: 'picking-up-and-moving-things' },{ question: 'can-you-pick-up-and-move-things-without-any-difficulty', category: 'picking-up-and-moving-things' },{ question: 'can-you-pick-up-and-move-a-half-litre-pint-carton-of-liquid', category: 'picking-up-and-moving-things' },{ question: 'can-you-pick-up-and-move-a-litre-2-pint-carton-of-liquid', category: 'picking-up-and-moving-things' },{ question: 'can-you-pick-up-and-move-a-light-but-bulky-object-like-an-empty-cardboard-box', category: 'picking-up-and-moving-things' },{ question: 'can-you-use-one-hand-to-press-a-button-for-example-on-a-telephone-key-pad', category: 'using-your-hands' },{ question: 'can-you-turn-the-pages-of-a-book-with-one-or-both-hands', category: 'using-your-hands' },{ question: 'can-you-pick-up-a-pound-coin-or-something-similar-with-one-hand', category: 'using-your-hands' },{ question: 'can-you-use-one-hand-to-operate-a-computer-keyboard-or-mouse-it-does-not-matter-whether-or-not-it-has-been-specially-adapted-for-you-or-you-know-how-to-use-a-computer', category: 'using-your-hands' },{ question: 'can-you-communicate-with-other-people-without-any-difficulty', category: 'making-yourself-understood' },{ question: 'can-you-make-yourself-understood-through-speaking-writing-typing-or-any-other-means-you-normally-use-without-help-from-another-person', category: 'making-yourself-understood' },{ question: 'can-you-give-a-simple-message-to-someone-such-as-a-message-explaining-how-dangerous-something-is', category: 'making-yourself-understood' },{ question: 'how-difficult-would-you-find-it-to-pass-a-simple-message-to-a-stranger', category: 'making-yourself-understood' },{ question: 'can-you-understand-other-people-without-any-difficulty', category: 'understanding-verbal-communication' },{ question: 'which-of-these-best-describes-how-well-you-can-understand-a-simple-message-such-as-the-location-of-a-fire-escape', category: 'understanding-verbal-communication' },{ question: 'can-you-cross-the-road-on-you-own-without-needing-help-from-someone-else-whether-or-not-you-need-to-use-a-guide-dog-or-other-aid', category: 'navigation-and-maintaining-safety' },{ question: 'can-you-move-around-an-unfamiliar-place-without-help-from-someone-else-whether-or-not-you-need-to-use-a-guide-dog-or-other-aid', category: 'navigation-and-maintaining-safety' },{ question: 'can-you-move-around-a-familiar-place-without-help-from-someone-else-whether-or-not-you-need-to-use-a-guide-dog-or-other-aid', category: 'navigation-and-maintaining-safety' },{ question: 'can-you-learn-to-do-everyday-tasks-without-any-difficulty', category: 'learning-tasks' },{ question: 'which-of-these-best-describes-whether-you-can-learn-to-do-a-simple-task-such-as-setting-an-alarm-clock', category: 'learning-tasks' },{ question: 'can-you-learn-something-complex-such-as-how-to-use-a-washing-machine', category: 'learning-tasks' },{ question: 'can-you-learn-something-more-complicated-than-how-to-use-a-washing-machine', category: 'learning-tasks' },];
+			window.allQuestions = [{ question: 'can-you-move-around-and-use-steps-without-difficulty', category: 'Moving around and using steps' },{ question: 'what-is-the-furthest-you-can-move-safely-on-level-ground-without-needing-to-stop', category: 'Moving around and using steps' },{ question: 'after-moving-once-how-far-can-you-move-again-within-a-short-time-without-it-causing-you-significant-discomfort-or-exhaustion', category: 'Moving around and using steps' },{ question: 'can-you-go-up-or-down-two-steps-without-being-helped-by-another-person-even-with-the-support-of-a-handrail', category: 'Moving around and using steps' },{ question: 'can-you-stand-and-sit-without-difficulty', category: 'Sitting and standing' },{ question: 'if-two-seats-are-placed-next-to-each-other-could-you-move-from-one-to-the-other-without-help-from-someone-else', category: 'Sitting and standing' },{ question: 'how-long-could-you-either-sit-or-stand-or-both-at-a-workstation-for-the-majority-of-time-without-help-from-someone-else-before-it-caused-you-significant-discomfort-or-exhaustion-and-you-had-to-move-away', category: 'Sitting and standing' },{ question: 'can-you-reach-up-with-both-your-arms-without-difficulty', category: 'Picking up and moving things' },{ question: 'can-you-pick-up-and-move-things-without-any-difficulty', category: 'Picking up and moving things' },{ question: 'can-you-pick-up-and-move-a-half-litre-pint-carton-of-liquid', category: 'Picking up and moving things' },{ question: 'can-you-pick-up-and-move-a-litre-2-pint-carton-of-liquid', category: 'Picking up and moving things' },{ question: 'can-you-pick-up-and-move-a-light-but-bulky-object-like-an-empty-cardboard-box', category: 'Picking up and moving things' },{ question: 'can-you-use-one-hand-to-press-a-button-for-example-on-a-telephone-key-pad', category: 'Using your hands' },{ question: 'can-you-turn-the-pages-of-a-book-with-one-or-both-hands', category: 'Using your hands' },{ question: 'can-you-pick-up-a-pound-coin-or-something-similar-with-one-hand', category: 'Using your hands' },{ question: 'can-you-use-one-hand-to-operate-a-computer-keyboard-or-mouse-it-does-not-matter-whether-or-not-it-has-been-specially-adapted-for-you-or-you-know-how-to-use-a-computer', category: 'Using your hands' },{ question: 'can-you-communicate-with-other-people-without-any-difficulty', category: 'Making yourself understood' },{ question: 'can-you-make-yourself-understood-through-speaking-writing-typing-or-any-other-means-you-normally-use-without-help-from-another-person', category: 'Making yourself understood' },{ question: 'can-you-give-a-simple-message-to-someone-such-as-a-message-explaining-how-dangerous-something-is', category: 'Making yourself understood' },{ question: 'how-difficult-would-you-find-it-to-pass-a-simple-message-to-a-stranger', category: 'Making yourself understood' },{ question: 'can-you-understand-other-people-without-any-difficulty', category: 'Understanding verbal communication' },{ question: 'which-of-these-best-describes-how-well-you-can-understand-a-simple-message-such-as-the-location-of-a-fire-escape', category: 'Understanding verbal communication' },{ question: 'can-you-cross-the-road-on-you-own-without-needing-help-from-someone-else-whether-or-not-you-need-to-use-a-guide-dog-or-other-aid', category: 'Navigation and maintaining safety' },{ question: 'can-you-move-around-an-unfamiliar-place-without-help-from-someone-else-whether-or-not-you-need-to-use-a-guide-dog-or-other-aid', category: 'Navigation and maintaining safety' },{ question: 'can-you-move-around-a-familiar-place-without-help-from-someone-else-whether-or-not-you-need-to-use-a-guide-dog-or-other-aid', category: 'Navigation and maintaining safety' },{ question: 'can-you-learn-to-do-everyday-tasks-without-any-difficulty', category: 'Learning tasks' },{ question: 'which-of-these-best-describes-whether-you-can-learn-to-do-a-simple-task-such-as-setting-an-alarm-clock', category: 'Learning tasks' },{ question: 'can-you-learn-something-complex-such-as-how-to-use-a-washing-machine', category: 'Learning tasks' },{ question: 'can-you-learn-something-more-complicated-than-how-to-use-a-washing-machine', category: 'Learning tasks' },];
 			window.allCategories = ['Moving around and using steps','Moving around and using steps','Moving around and using steps','Moving around and using steps','Sitting and standing','Sitting and standing','Sitting and standing','Picking up and moving things','Picking up and moving things','Picking up and moving things','Picking up and moving things','Picking up and moving things','Using your hands','Using your hands','Using your hands','Using your hands','Making yourself understood','Making yourself understood','Making yourself understood','Making yourself understood','Understanding verbal communication','Understanding verbal communication','Navigation and maintaining safety','Navigation and maintaining safety','Navigation and maintaining safety','Learning tasks','Learning tasks','Learning tasks','Learning tasks',];
 		</script>
 		<script src="js/all-scripts.js"></script>
@@ -1303,6 +1320,8 @@
 					{{{qualifyLow}}}
 					{{{qualifyEither}}}
 					{{{qualifyNone}}}
+				{{else}}
+					<p>You have not answered any practise questions, so this is not known.</p>
 				{{/if}}
 			
 				<div class="message no-print">
@@ -1310,7 +1329,7 @@
 						<p>This is based on the questions you&#x2019;ve answered. You have answered <strong>{{accuracy}}</strong> of the questions available.</p>
 						{{#if incomplete}}<p style="margin-top: 0"><a href="javascript:void(0)" role="button" data-action="pick">Answer more questions <span aria-hidden="true">&#x2192;</span></a></p>{{/if}}
 					{{else}}
-						<p>It&#x2019;s not known at this stage because you haven&#x2019;t answered any practice questions. <a href="#start">Start answering practice questions <span aria-hidden="true">&#x2192;</span></a></p>
+						<p><a href="#start">Start answering practice questions <span aria-hidden="true">&#x2192;</span></a></p>
 					{{/if}}
 				</div>
 			
@@ -1379,13 +1398,13 @@
 			</ul>
 		</script>
 		<script id="categories-template" type="text/x-handlebars-template">
-			<h2 tabindex="-1">Choose an activity</h2>
+			<h1 tabindex="-1">Choose an activity</h1>
 			<p>Which of the following activities would you like to talk about? Try to choose one that is relevant to any problems you experience. It&#x2019;s okay to choose &#x201c;I don&#x2019;t know&#x201d;.</p>
 			<div class="category-list" role="toolbar" aria-label="menu options">
 				<ul>
 					{{#each remainingCategories}}
 						<li>
-							<button data-action="set-cat" data-category="{{sluggify this}}">{{this}}</button>
+							<button data-action="set-cat" data-category="{{this}}">{{this}}</button>
 						</li>
 					{{/each}}
 					<li>

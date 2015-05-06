@@ -27,6 +27,8 @@
 		{{{qualifyLow}}}
 		{{{qualifyEither}}}
 		{{{qualifyNone}}}
+	{{else}}
+		<p>You have not answered any practise questions, so this is not known.</p>
 	{{/if}}
 
 	<div class="message no-print">
@@ -34,7 +36,7 @@
 			<p>This is based on the questions you&#x2019;ve answered. You have answered <strong>{{accuracy}}</strong> of the questions available.</p>
 			{{#if incomplete}}<p style="margin-top: 0"><a href="javascript:void(0)" role="button" data-action="pick">Answer more questions <span aria-hidden="true">&#x2192;</span></a></p>{{/if}}
 		{{else}}
-			<p>It&#x2019;s not known at this stage because you haven&#x2019;t answered any practice questions. <a href="#start">Start answering practice questions <span aria-hidden="true">&#x2192;</span></a></p>
+			<p><a href="#start">Start answering practice questions <span aria-hidden="true">&#x2192;</span></a></p>
 		{{/if}}
 	</div>
 

@@ -83,10 +83,10 @@
 		{{/each}}
 		<div class="slide qualify" id="qualify-high">
 			<div class="box green">
-				<h2 tabindex="-1">
+				<h1 tabindex="-1">
 					You may qualify for<br/>
 					<strong>Support Group</strong>
-				</h2>
+				</h1>
 				<p>Your answer to the last question shows that you may qualify for the highest ESA allowance, placing you in the &#x201c;Support Group&#x201d;. Do you want to try more questions?</p>
 				<ul aria-label="menu">
 					<li>	
@@ -103,10 +103,10 @@
 		</div>
 		<div class="slide qualify" id="qualify-low">
 			<div class="box green">
-				<h2 tabindex="-1">
+				<h1 tabindex="-1">
 					You may qualify for<br/>
 					<strong>Work Related Activity Group</strong>
-				</h2>
+				</h1>
 				<p>Your answer to the last question shows that you may qualify for the standard ESA allowance, placing you in the &#x201c;Work Related Activity Group&#x201d;. It&#x2019;s still possible that you may qualify for a higher rate. To find out, try some more questions.</p>
 				<ul aria-label="menu">
 					<li>	
@@ -124,7 +124,7 @@
 		<div class="slide break-time" id="break-time">
 			<div class="box">
 				<img src="images/tea.png" alt="steaming cup of tea" />
-				<h2 tabindex="-1">You&#x2019;re on a break</h2>
+				<h1 tabindex="-1">You&#x2019;re on a break</h1>
 				<p>Feel free to close the window or turn off your computer and come back when you&#x2019;re ready. Everything will be as you left it :-)</p>
 				<ul aria-label="menu">
 					<li>	
@@ -138,7 +138,7 @@
 		</div>
 		<div class="slide deleted" id="deleted">
 			<div class="box">
-				<h2 tabindex="-1" style="red">Deleted</h2>
+				<h1 tabindex="-1" style="red">Deleted</h1>
 				<p>All of your assessment data has been successfully deleted from your computer.</p>
 				<ul aria-label="menu">
 					<li>
@@ -149,14 +149,14 @@
 		</div>
 		<div class="slide get-started" id="start">
 			<div class="box">
-				<h2 tabindex="-1">Let&#x2019;s begin</h2>
+				<h1 tabindex="-1">Let&#x2019;s begin</h1>
 				<p>In your real assessment you&#x2019;ll be asked questions about your ability to do activities. Here, you can try out some of these questions and be told how you might do in a real assessment. You can <a role="button" href="#break-time" data-action="break">take a break</a> at any time and come back later. Your computer will remember where you were in the app :-)</p>
 				<div><button class="nav-link" data-action="categories">Pick an activity</button></div>
 			</div>
 		</div>
 		<div class="slide get-started" id="seen-all">
 			<div class="box green">
-				<h2>No more new questions</h2>
+				<h1 tabindex="-1">No more new questions</h1>
 				<p>You&#x2019;ve seen all the questions (so you&#x2019;re pretty familiar with the assessment now!) but you skipped some. What would you like to do?</p>
 				<ul aria-label="menu">
 					<li>	
@@ -170,7 +170,7 @@
 		</div>
 		<div class="slide get-started" id="seen-all-even-skipped">
 			<div class="box green">
-				<h2>Practise Complete!</h2>
+				<h1 tabindex="-1">Practise Complete!</h1>
 				<p>You&#x2019;ve answered all the practice questions available, so you&#x2019;re pretty well versed now. What would you like to do next?</p>
 				<ul aria-label="menu">
 					<li>
@@ -187,7 +187,7 @@
 		</div>
 		<div class="slide get-started" id="resume">
 			<div class="box">
-				<h2 tabindex="-1">Hello again?</h2>
+				<h1 tabindex="-1">Hello again?</h1>
 				<p>Looks like you've been here before. Press &#x201c;continue&#x201d; if you want to go back to where you were. Not been here before? Choose &#x201c;main menu&#x201d;.</p>
 				<ul aria-label="menu">
 					<li>	
@@ -206,7 +206,7 @@
 		</div>
 		<div class="slide about" id="about-esa">
 			<div class="flow">
-				<h1>All About ESA</h1>
+				<h1 tabindex="-1">All About ESA</h1>
 				<p>You can choose a topic from the options below. <br>Not in the mood for reading? <a role="button" data-action="start-or-resume" href="javascript:void(0)">Practice some assessment questions instead &#x2192;</a></p>
 				<div class="expandies">
 					<h2><button aria-controls="what-is-esa-for" aria-expanded="false">What is ESA for?</button></h2>
@@ -250,7 +250,7 @@
 		</div>
 		<div class="slide main-menu" id="main-menu">
 			<div class="flow">
-				<h1>My ESA Assessment</h1>
+				<h1 tabindex="-1">My ESA Assessment</h1>
 				<p class="larger">Welcome to our <abbr title="Employment And Support Allowance">ESA</abbr> website, designed to help you get ready for your ESA assessment. This website is <strong class="tick">run independently and impartially</strong> by the charity SEAP, <strong class="tick">does not collect your personal data</strong> and contains <strong class="tick">no long, boring forms!</strong></p>
 				<div role="toolbar" aria-label="menu options">
 					<ul>
@@ -273,13 +273,26 @@
 				</div>
 			</div>
 		</div>
-		<div class="slide categories" id="categories">
-			<div class="box" id="categories-content">
+		<div class="slide category-finished" id="category-finished">
+			<div class="box">
+				<h1 tabindex="-1">Well done!</h1>
+				<p>You&#x2019;ve seen all the practise questions about <strong id="this-activity">this activity</strong>. What would you like to look at next?</p>
+				<ul aria-label="menu">
+					<li>
+						<button class="nav-link" data-action="categories">A new activity</button>
+					</li>
+					<li>
+						<button class="nav-link" data-action="stats">My assessment so far</button>
+					</li>
+					<li>
+						<button class="nav-link" data-action="menu">Main menu</button>
+					</li>
+				</ul>				
 			</div>
 		</div>
 		<div class="slide data" id="data">
 			<div class="flow">
-				<h1>My Data</h1>
+				<h1 tabindex="-1">My Data</h1>
 				<p>This app does not send any of your data anywhere or keep any for itself. However, it <em>does</em> save some data just on the computer you&#x2019;re using in order to work properly.</p> 
 				<p>If this is not your computer, tablet or phone you can delete all this data when you are done using the app. This way, no one else will see it.</p>
 				<ul aria-label="menu">
@@ -295,8 +308,12 @@
 				</ul>
 			</div>
 		</div>
+		<div class="slide categories" id="categories">
+			<div class="box" id="categories-content">
+			</div>
+		</div>
 		<script>
-			window.allQuestions = [{{#each questions}}{ question: '{{sluggify question}}', category: '{{sluggify category}}' },{{/each}}];
+			window.allQuestions = [{{#each questions}}{ question: '{{sluggify question}}', category: '{{category}}' },{{/each}}];
 			window.allCategories = [{{#each questions}}'{{category}}',{{/each}}];
 		</script>
 		<script src="js/all-scripts.js"></script>
