@@ -14174,10 +14174,18 @@ function initAss() {
 
 function getCatQuestions(slug) {
 
+	var questions = [];
+
 	if (slug === "i-dont-know") {
 
 		if (_.isEmpty(db.get('ass.unseenQuestions'))) {
-			db.set('ass.unseenQuestions', window.allQuestions);
+
+			$.each(window.allQuestions, function(i, v) {
+				questions.push(v.question);
+			});
+
+			db.set('ass.unseenQuestions', questions);
+			
 		}
 
 		db.set('ass.category', null);
@@ -14185,8 +14193,6 @@ function getCatQuestions(slug) {
 	} else {
 
 		var reducedToCat = _.where(window.allQuestions, {category: slug});
-
-		var questions = [];
 
 		$.each(reducedToCat, function(i, v) {
 			questions.push(v.question);
@@ -14378,6 +14384,7 @@ function restart() {
 	db.set('ass.started', false);
 	db.set('ass.mode', 'unseenQuestions');
 	db.set('ass.incomplete', true);
+	db.set('ass.category', null);
 
 	console.log('restarting');
 
