@@ -691,6 +691,10 @@ nav li + li::before {
 	padding: 1.5em;
 }
 
+.paper h3 + p {
+	margin-top: 0;
+}
+
 /* things to remember
 ---------------------------------------------*/
 
@@ -762,6 +766,36 @@ h2 [aria-expanded="true"]::before {
 	content: '-\0020';
 }
 
+/* footer
+---------------------------------------------*/
+
+footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 3em;
+	line-height: 3em;
+}
+
+footer p {
+	text-align: right;
+	padding-right: 0.75em;
+}
+
+footer img {
+	height: 50px;
+	width: auto;
+	vertical-align: middle;
+  position: relative;
+	top: -3px;
+	margin-left: 0.5em;
+}
+
+footer a {
+	border: 0;
+}
+
 /* break points
 ---------------------------------------------*/
 
@@ -803,6 +837,11 @@ h2 [aria-expanded="true"]::before {
 		padding: 1em 0.5em 0.5em;
 	}
 
+	footer p {
+		text-align: center;
+		padding-right: 0;
+	}
+
 }
 
 @media (min-width: 600px) {
@@ -828,9 +867,8 @@ h2 [aria-expanded="true"]::before {
 	[aria-label="menu options"] .half {
 		width: 50%;
 	}
-	
-}
 
+}
 
 @media (max-width: 500px) {
 
