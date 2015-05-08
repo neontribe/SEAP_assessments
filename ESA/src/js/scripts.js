@@ -32,14 +32,10 @@ FUNCTIONS
 **********************************************************************/
 
 function initAss() {
-
-	var categories = _.uniq(window.allCategories);
-
-
-
 	// model the database 'ass' object
 	var assTemplate = { // the questions which haven't been viewed
 		unseenQuestions: [],
+		seenQuestions: [],
 		skippedQuestions: [], // the questions which have been viewed but not answered
 		/*remainingCategories: _.map(_.uniq(window.allCategories), function(cat) { 
 			return cat.toLowerCase()
@@ -76,16 +72,16 @@ function getCatQuestions(slug) {
 
 	if (slug === "i-dont-know") {
 
-		if (_.isEmpty(db.get('ass.unseenQuestions'))) {
+		// Remove seen questions from 
+		var all = [];
 
-			$.each(window.allQuestions, function(i, v) {
-				questions.push(v.question);
-			});
+		$.each(window.allQuestions, function(i, v) {
+			all.push(v.question);
+		});		
 
-			db.set('ass.unseenQuestions', questions);
-			
-		}
+		var seen = db.get('ass.seenQuestions');
 
+		db.set('ass.unseenQuestions', _.difference(all, seen));
 		db.set('ass.category', null);
 
 	} else {
@@ -109,14 +105,16 @@ function getCatQuestions(slug) {
 
 function loadSlide(id, type) {
 
-	// if you ran out of unseen questions and didn't skip any
-	if (_.isEmpty(db.get('ass.unseenQuestions')) && _.isEmpty(db.get('ass.skippedQuestions'))) {
-		db.set('ass.incomplete', false);
-	}
-
 	if (id === 'stats') {
+
+		// if you ran out of unseen questions and didn't skip any
+		if (_.isEmpty(db.get('ass.unseenQuestions')) && _.isEmpty(db.get('ass.skippedQuestions')) && db.get('ass.started')) {
+			db.set('ass.incomplete', false);
+		}
+
 		// compile the stats before showing slide
 		compileStats();
+
 	}
 
 	if (id === 'categories') {
@@ -193,31 +191,35 @@ function pickQuestion() {
 	// get the appropriate set
 	var questions = db.get('ass.' + mode);
 
-	// if you ran out of unseen questions and didn't skip any
-	if (_.isEmpty(db.get('ass.unseenQuestions')) && _.isEmpty(db.get('ass.skippedQuestions'))) {
-		if (db.get('ass.category')) {
-			if (!_.isEmpty(db.get('ass.remainingCategories'))) {
+	if (db.get('ass.category')) {
+		if (_.isEmpty(db.get('ass.unseenQuestions'))) {
+			if (_.isEmpty(db.get('ass.remainingCategories'))) {
+
+				db.set('ass.category', null);
+
+				if (_.isEmpty(db.get('ass.skippedQuestions'))) {
+					loadSlide('seen-all-even-skipped');
+					db.set('ass.incomplete', false);
+					return;
+				} else {
+					loadSlide('seen-all');
+					return;
+				}
+			} else {
 				loadSlide('category-finished');
-				return;
+				return;				
 			}
 		}
-		db.set('ass.incomplete', false);
-		loadSlide('seen-all-even-skipped');
-		return;
-	}
-
-	// if unseen questions have run out but there are skipped
-	if (questions.length < 1 && mode === 'unseenQuestions') {
-		if (!db.get('ass.category')) {
-			if (_.isEmpty(db.get('ass.remainingCategories'))) {
-				db.set('ass.incomplete', false);
-				db.set('ass.category', null);
-				loadSlide('seen-all-even-skipped');
-				return;
-			}
-		} 
-		loadSlide('seen-all');
-		return;
+	} else {
+		if (mode === 'unseenQuestions' && _.isEmpty(db.get('ass.unseenQuestions'))) {
+			loadSlide('seen-all');
+			return;
+		}
+		if (mode === 'skippedQuestions' && _.isEmpty(db.get('ass.skippedQuestions'))) {
+			loadSlide('seen-all-even-skipped');
+			db.set('ass.incomplete', false);
+			return;
+		}		
 	}
 
 	// init individual question var
@@ -266,6 +268,14 @@ function pickQuestion() {
 
 	}
 
+	// get seen questions array
+	var seen = db.get('ass.seenQuestions');
+
+	// add this new question
+	seen.push(question);
+
+	db.set('ass.seenQuestions', seen);
+
 	// load question slide and set slide type global to 'question' 
 	loadSlide(question, 'question');
 
@@ -277,12 +287,14 @@ function pickQuestion() {
 // clear data and go to start screen
 function restart() {
 
-	db.set('ass.unseenQuestions', window.allQuestions);
+	db.set('ass.unseenQuestions', []);
+	db.set('ass.seenQuestions', []);
 	db.set('ass.skippedQuestions', []);
 	db.set('ass.started', false);
 	db.set('ass.mode', 'unseenQuestions');
 	db.set('ass.incomplete', true);
 	db.set('ass.category', null);
+	db.set('ass.remainingCategories', _.uniq(window.allCategories));
 
 	console.log('restarting');
 
@@ -479,12 +491,6 @@ Handlebars.registerHelper('accuracy', function(array) {
 	return accuracy;
 });
 
-Handlebars.registerHelper('seenPercentage', function() {
-	var seen = window.allQuestions.length - db.get('ass.unseenQuestions').length;
-	var percent = Math.round((seen / window.allQuestions.length) * 100) + '%';
-	return percent;
-});
-
 Handlebars.registerHelper('qualifyHigh', function() {
 	if (db.get('ass.high') && !db.get('ass.low')) {
 		return "<p>You may qualify for the highest allowance, placing you in the Support Group.</p>";
@@ -626,6 +632,8 @@ $('body').on('click','[data-action="clean-up"]', function() {
 
 	// initialize database
 	initAss();
+
+	console.log(db.get('ass.incomplete'));
 
 	// load the intro slide
 	loadSlide('main-menu');
