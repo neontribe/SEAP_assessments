@@ -14329,8 +14329,16 @@ function pickQuestion() {
 
 	if (mode === 'unseenQuestions') {
 
-		// use underscore to get random question slug
-		question = _.sample(questions);
+		if (db.get('ass.category')) { 
+
+			question = questions[0];
+
+		} else {
+
+			// use underscore to get random question slug
+			question = _.sample(questions);
+
+		}
 
 		// set collection with this question removed
 		db.set('ass.' + mode, _.without(questions, question));
@@ -14343,7 +14351,16 @@ function pickQuestion() {
 
 			db.set('ass.' + mode, questions);
 
-			question = _.sample(questions);
+			if (db.get('ass.category')) { 
+
+				question = questions[0];
+
+			} else {
+
+				// use underscore to get random question slug
+				question = _.sample(questions);
+
+			}
 
 			// if the array is empty, all the skipped questions are answered
 			if (question === undefined) {
@@ -14364,7 +14381,16 @@ function pickQuestion() {
 				questions = _.without(questions, context);
 			}
 
-			question = _.sample(questions);
+			if (db.get('ass.category')) { 
+
+				question = questions[0];
+
+			} else {
+
+				// use underscore to get random question slug
+				question = _.sample(questions);
+
+			}
 
 		}
 
