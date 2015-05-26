@@ -1,4 +1,9 @@
 language: node_js
 node_js:
   - "0.12"
-
+before_install:
+  - npm install -g casperjs
+before_script:
+  - phantomjs --version
+  - casperjs --version
+script: casperjs test ESA/src/tests/init-test.js
