@@ -14107,6 +14107,8 @@ START UP
 // define the database
 var db = $.localStorage;
 
+window.hashHistory = [];
+
 if (db.isEmpty('ass')) {
 
 	console.log('empty');
@@ -14957,5 +14959,23 @@ $('body').on('click','[data-action="set-cat"]', function() {
 	db.set('ass.remainingCategories', reduced);
 
 	getCatQuestions(slug);
+
+});
+
+$(window).on('hashchange', function(e) {
+
+	// add hash to history
+	window.hashHistory.push(window.location.hash);
+
+	console.log(hashHistory);
+
+	if (window.location.hash.substr(0,9) === '#question') {
+		if (hashHistory.indexOf(window.location.hash > -1)) {
+			loadSlide(window.location.hash.substr(1));
+
+			// TODO Need to remove this question from working data here
+
+		}
+	}
 
 });

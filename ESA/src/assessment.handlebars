@@ -28,7 +28,7 @@
 			</nav>
 		</header>
 		{{#each questions}}
-		<div class="slide question" id="{{sluggify question}}" data-category="{{sluggify category}}">
+		<div class="slide question" id="question-{{sluggify question}}" data-category="{{sluggify category}}">
 			<div class="question-container">
 				<!--<img src="path/to/question-icon.svg" alt="" />-->
 				<h2 class="question-text" tabindex="-1">
@@ -316,7 +316,7 @@
 			<p>Brought to you by <a href="http://www.seap.org.uk/"><img src="images/logo.png" alt="The Charity, SEAP" /></a></p>
 		</footer>
 		<script>
-			window.allQuestions = [{{#each questions}}{ question: '{{sluggify question}}', category: '{{category}}' },{{/each}}];
+			window.allQuestions = [{{#each questions}}{ question: 'question-{{sluggify question}}', category: '{{category}}' },{{/each}}];
 			window.allCategories = [{{#each questions}}'{{category}}',{{/each}}];
 		</script>
 		<script src="js/all-scripts.js"></script>

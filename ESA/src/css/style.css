@@ -554,6 +554,10 @@ nav li + li::before {
 	max-width: 160px;
 }
 
+img + h1 {
+	margin-top: 0;
+}
+
 [data-action="change"] {
 	display: inline-block;
 	margin-top: 0.75em;
