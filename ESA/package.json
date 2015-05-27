@@ -23,5 +23,9 @@
   "scripts": {
     "build": "grunt generate",
     "postinstall": "npm run build"
+  },
+  "devDependencies": {
+    "grunt-contrib-connect": "^0.10.1",
+    "grunt-ghost": "^1.1.0"
   }
 }

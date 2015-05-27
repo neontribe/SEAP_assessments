@@ -98,9 +98,35 @@ module.exports = function(grunt){
             'build/index.html': 'build/index.html'
           }
         }
+      },
+      connect: {
+        www: {
+          options: {
+            base: 'source',
+            port: 4545
+          }
+        }
+      },
+      ghost: {
+        test: {
+          files:[{
+            src: ['tests/*_test.js']
+          }]
+        },
+        options: {
+          args: {
+            baseUrl: 'http://localhost:' +
+              '<%= connect.www.options.port %>/'
+          },
+          direct: false,
+          logLevel: 'error',
+          printCommand: false,
+          printFilePaths: true
+        }
       }
     });
-  
+
+    grunt.registerTask('test', ['clean:initial', 'copy', 'compile-handlebaars', 'bake','htmlhint', 'jshint', 'connect', 'ghost']);
     grunt.registerTask('generate', ['clean:initial', 'copy','compile-handlebars','bake', 'htmlhint', 'jshint', 'concat', 'autoprefixer', 'clean:tidyup']);
     grunt.registerTask('generate-production', ['clean:initial','compile-handlebars', 'htmlhint', 'jshint', 'copy', 'concat', 'uglify', 'autoprefixer','cssmin', 'clean:tidyup']);
 };
