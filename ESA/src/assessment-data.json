@@ -399,7 +399,7 @@
 		{		
 			"question": "Can you understand other people without any difficulty?",
 			"hint": null,
-			"category": "Understanding verbal communication",
+			"category": "Verbal communication",
 			"answers": [
 				{
 					"label": "Yes",
@@ -418,7 +418,7 @@
 		{		
 			"question": "Which of these best describes how well you can understand a simple message such as the location of a fire escape?",
 			"hint": null,
-			"category": "Understanding verbal communication",
+			"category": "Verbal communication",
 			"answers": [
 				{
 					"label": "I can't understand at all due to hearing/sight difficulties",
