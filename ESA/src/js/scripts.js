@@ -53,6 +53,7 @@ function initAss() {
 		answers: {}, // the master object of category high scores for tallying
 		low: false, // low qualification?
 		high: false, // high qualification?
+		promote: false, // whether a food/drink question has promoted the user from WRAG to Support
 		reminders: [], // list of reminders form "Things to remember" checkboxes
 		incomplete: true, // whether all the questions have been answered
 		date: '',
@@ -322,6 +323,7 @@ function restart() {
 	db.set('ass.seenQuestions', []);
 	db.set('ass.skippedQuestions', []);
 	db.set('ass.started', false);
+	db.set('ass.promote', false);
 	db.set('ass.mode', 'unseenQuestions');
 	db.set('ass.incomplete', true);
 	db.set('ass.category', null);
@@ -354,7 +356,7 @@ function tally() {
 	// by taking the max value that's not 16 from each
 	// category and adding them together
 	var total = _.reduce(answers, function(memo, cat){
-	    return memo + _.max(_.without( _.pluck(cat, 'points'), 16) );
+	    return memo + _.max(_.without( _.pluck(cat, 'points'), 16, '*') );
 	}, 0);
 
 	return total;
@@ -786,6 +788,14 @@ $('body').on('change','[type="radio"]', function() {
 		}
 		
 	} else {
+
+		// if it is an asterisk end question, make sure a score
+		// of 15+ promotes the user's qualification to high
+		if (points === '*') {
+
+			db.set('ass.promote', true);
+
+		}
 
 		// fire the adding up function
 		// to see if there are enough points to qualify

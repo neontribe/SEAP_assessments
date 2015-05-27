@@ -14155,6 +14155,7 @@ function initAss() {
 		answers: {}, // the master object of category high scores for tallying
 		low: false, // low qualification?
 		high: false, // high qualification?
+		promote: false, // whether a food/drink question has promoted the user from WRAG to Support
 		reminders: [], // list of reminders form "Things to remember" checkboxes
 		incomplete: true, // whether all the questions have been answered
 		date: '',
@@ -14424,6 +14425,7 @@ function restart() {
 	db.set('ass.seenQuestions', []);
 	db.set('ass.skippedQuestions', []);
 	db.set('ass.started', false);
+	db.set('ass.promote', false);
 	db.set('ass.mode', 'unseenQuestions');
 	db.set('ass.incomplete', true);
 	db.set('ass.category', null);
@@ -14456,7 +14458,7 @@ function tally() {
 	// by taking the max value that's not 16 from each
 	// category and adding them together
 	var total = _.reduce(answers, function(memo, cat){
-	    return memo + _.max(_.without( _.pluck(cat, 'points'), 16) );
+	    return memo + _.max(_.without( _.pluck(cat, 'points'), 16, '*') );
 	}, 0);
 
 	return total;
@@ -14469,15 +14471,34 @@ function qualify() {
 
 	if (total >= 15) {
 
-		// don't show the slide if you have already
-		if (!db.get('ass.high') && !db.get('ass.low')) {
+		// if an end question was set to promote from low to high
+		if (db.get('ass.promote')) {
 
-			loadSlide('qualify-low');
+			// record that low qualification is possible
+			db.set('ass.low', true);
+			// AND record that high qualification is possible
+			db.set('ass.high', true);
+
+			//don't show the slide if you have already
+			if (!db.get('ass.high') && !db.get('ass.low')) {
+
+				loadSlide('qualify-high');
+
+			}			
+
+		} else {
+
+			// record that low qualification is possible
+			db.set('ass.low', true);
+
+			//don't show the slide if you have already
+			if (!db.get('ass.high') && !db.get('ass.low')) {
+
+				loadSlide('qualify-low');
+
+			}				
 
 		}
-
-		// record that low qualification is possible
-		db.set('ass.low', true);
 
 	} else {
 
@@ -14870,6 +14891,14 @@ $('body').on('change','[type="radio"]', function() {
 		
 	} else {
 
+		// if it is an asterisk end question, make sure a score
+		// of 15+ promotes the user's qualification to high
+		if (points === '*') {
+
+			db.set('ass.promote', true);
+
+		}
+
 		// fire the adding up function
 		// to see if there are enough points to qualify
 		qualify();
@@ -14881,41 +14910,6 @@ $('body').on('change','[type="radio"]', function() {
 $('body').on('click','[data-action="categories"]', function() { 
 
 	loadSlide('categories');
-
-});
-
-$('body').on('change','.things-to-remember [type="checkbox"]', function() {
-
-	// get tip text from span
-	var tip = $(this).next().text();
-	// get slug
-	var slug = $(this).attr('data-tip-id');
-	// get or define reminders array
-	var reminders = db.get('ass.reminders') || [];
-
-	if ($(this).is(':checked')) {
-
-		reminders.push({
-				slug: slug,
-				tip: tip,
-				done: false
-			});
-
-		console.log('added', reminders);
-
-    } else {
-
-    	// get rid of this reminder
-    	reminders = _.reject(reminders, function(reminder) { 
-    		return reminder.slug === slug;
-    	});
-
-    	console.log('removed', reminders);
-
-    }
-
-    // set new reminders
-    db.set('ass.reminders', reminders);
 
 });
 

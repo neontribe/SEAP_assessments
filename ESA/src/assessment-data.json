@@ -936,24 +936,203 @@
 			]
 		},
 		{		
-			"question": "How often do you behave in an uncontrollable aggressive way towards other people?",
+			"question": "Can you get food to and from your mouth without physical help form someone else?",
 			"hint": null,
-			"category": "Final questions",
+			"category": "Eating food and drink",
 			"answers": [
 				{
-					"label": "Every day",
-					"value": 16
+					"label": "Yes",
+					"value": 0
 				},
 				{
-					"label": "Not every day, but quite often",
-					"value": 15
+					"label": "No",
+					"value": "*"
 				},
 				{
-					"label": "Occassionally",
-					"value": 9
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Can you get food to and from your own mouth without repeatedly stopping, experiencing breathlessness or severe discomfort?",
+			"hint": null,
+			"category": "Eating food and drink",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
 				},
 				{
-					"label": "Never",
+					"label": "No",
+					"value": "*"
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Can you get food to and from your own mouth without someone regularly telling you to do it?",
+			"hint": null,
+			"category": "Eating food and drink",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": "*"
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Do you have a severe mood or behavioural disorder which means you can't get food or drink to your own mouth without physical help from someone else?",
+			"hint": null,
+			"category": "Eating food and drink",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": "*"
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Do you have a severe mood or behavioural disorder which means you need someone with you to tell you to get food or drink to your own mouth?",
+			"hint": null,
+			"category": "Eating food and drink",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": "*"
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Can you chew or swallow food or drink?",
+			"hint": null,
+			"category": "Eating food and drink",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "Most of the time",
+					"value": 0
+				},
+				{
+					"label": "Not at all",
+					"value": "*"
+				},
+				{
+					"label": "Not very often",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Can you chew or swallow food and drink without repeatedly stopping, experiencing breathlessness or severe discomfort?",
+			"hint": null,
+			"category": "Eating food and drink",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "Most of the time",
+					"value": 0
+				},
+				{
+					"label": "Not at all",
+					"value": "*"
+				},
+				{
+					"label": "Not very often",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Do you need someone with you to help you repeatedly swallow food or drink?",
+			"hint": null,
+			"category": "Eating food and drink",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": "*"
+				},
+				{
+					"label": "No",
+					"value": 0
+				},
+				{
+					"label": "Yes, but not all the time",
+					"value": 0
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Do you have a severe mood or behavioural disorder which means you can't chew or swallow food?",
+			"hint": null,
+			"category": "Eating food and drink",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": "*"
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Do you have a severe mood or behavioural disorder which means you need someone with you regularly to tell you to chew or swallow food or drink?",
+			"hint": null,
+			"category": "Eating food and drink",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": "*"
+				},
+				{
+					"label": "It varies",
 					"value": 0
 				}
 			]
