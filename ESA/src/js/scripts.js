@@ -367,15 +367,34 @@ function qualify() {
 
 	if (total >= 15) {
 
-		// don't show the slide if you have already
-		if (!db.get('ass.high') && !db.get('ass.low')) {
+		// if an end question was set to promote from low to high
+		if (db.get('ass.promote')) {
 
-			loadSlide('qualify-low');
+			// record that low qualification is possible
+			db.set('ass.low', true);
+			// AND record that high qualification is possible
+			db.set('ass.high', true);
+
+			//don't show the slide if you have already
+			if (!db.get('ass.high') && !db.get('ass.low')) {
+
+				loadSlide('qualify-high');
+
+			}			
+
+		} else {
+
+			// record that low qualification is possible
+			db.set('ass.low', true);
+
+			//don't show the slide if you have already
+			if (!db.get('ass.high') && !db.get('ass.low')) {
+
+				loadSlide('qualify-low');
+
+			}				
 
 		}
-
-		// record that low qualification is possible
-		db.set('ass.low', true);
 
 	} else {
 
@@ -779,41 +798,6 @@ $('body').on('change','[type="radio"]', function() {
 $('body').on('click','[data-action="categories"]', function() { 
 
 	loadSlide('categories');
-
-});
-
-$('body').on('change','.things-to-remember [type="checkbox"]', function() {
-
-	// get tip text from span
-	var tip = $(this).next().text();
-	// get slug
-	var slug = $(this).attr('data-tip-id');
-	// get or define reminders array
-	var reminders = db.get('ass.reminders') || [];
-
-	if ($(this).is(':checked')) {
-
-		reminders.push({
-				slug: slug,
-				tip: tip,
-				done: false
-			});
-
-		console.log('added', reminders);
-
-    } else {
-
-    	// get rid of this reminder
-    	reminders = _.reject(reminders, function(reminder) { 
-    		return reminder.slug === slug;
-    	});
-
-    	console.log('removed', reminders);
-
-    }
-
-    // set new reminders
-    db.set('ass.reminders', reminders);
 
 });
 

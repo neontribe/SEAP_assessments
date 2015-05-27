@@ -934,6 +934,29 @@
 					"value": 0
 				}
 			]
+		},
+		{		
+			"question": "How often do you behave in an uncontrollable aggressive way towards other people?",
+			"hint": null,
+			"category": "Final questions",
+			"answers": [
+				{
+					"label": "Every day",
+					"value": 16
+				},
+				{
+					"label": "Not every day, but quite often",
+					"value": 15
+				},
+				{
+					"label": "Occassionally",
+					"value": 9
+				},
+				{
+					"label": "Never",
+					"value": 0
+				}
+			]
 		}
 	]
 }
