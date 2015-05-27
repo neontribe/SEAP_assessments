@@ -14274,6 +14274,9 @@ function loadSlide(id, type) {
 // show a random unseen question
 function pickQuestion() {
 
+	// We've started practicing
+	db.set('ass.started', true);
+
 	// the type of the previous slide if any
 	var type = db.get('ass.slideType');
 	// the last slide seen
@@ -14698,7 +14701,6 @@ $('body').on('click','[data-action="start-or-resume"]', function() {
 	} else {
 
 		loadSlide('start');
-		db.set('ass.started', true);
 
 	}
 

@@ -588,7 +588,7 @@ img + h1 {
 	font-size: 0.75em;
 }
 
-.tick::after {
+.tick::after, .ticks li::before {
 	margin-left: 0.25em;
 	content: '\0020\2713';
 	color: #dcf0fd;
@@ -599,6 +599,21 @@ img + h1 {
 	width: 1.5em;
 	text-align: center;
 	font-size: 0.85em;
+}
+
+.ticks li {
+	list-style: none;
+}
+
+.ticks li + li {
+	margin-top: 0.25em;
+	padding-top: 0.25em;
+	border-top: 1px solid #79bde9;
+}
+
+.ticks li::before {
+	margin-left: 0;
+	margin-right: 0.25em;
 }
 
 /* transitions
@@ -767,9 +782,10 @@ h2 [aria-controls] {
 	background: none;
 	padding: 0;
 	margin: 0;
-	font-size: 0.85em;
+	font-size: 0.75em;
 	box-shadow: none;
 	position: static !important;
+	text-align: left;
 }
 
 h2 [aria-controls]:hover, 

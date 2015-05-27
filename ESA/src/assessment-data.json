@@ -562,31 +562,377 @@
 					"value": "Question text of the follow-up question (string)"
 				}
 			]
-		}
-	],
-	"advice": [
-		{
-			"title": "Answering assessment questions",
-			"description": "Whether on the medical questionnaire, or in the face to face assessment, never answer a question before thinking carefully about what it actually means.",
-			"tips": [
-				"If you don't understand the question, ask the assessor to repeat or explain it.",
-				"If you can do an activity but it is painful, stressful or exhausting to do, make sure you say so.",
-				"You need to make clear how the impact of your health condition or disability varies day to day.",
-				"You should make sure that anyone providing written evidence to support your claim includes information about how your condition varies.",
-				"If an activity causes you pain, make sure you explain where it affects you, what type of pain it is, and how severe it is.",
-				"When thinking about any difficulties standing up, use an example of how you feel in a specific situation, for example boiling a kettle.",
-				"When talking about communication and understanding, be clear about the barriers that you face to being understood.",
-				"If you can only swing on crutches rather than walk with the help of crutches you are assessed as if you can’t walk.",
-				"If you struggle with balance when you are walking or standing, make that clear."
+		},
+		{		
+			"question": "Can you stay safe when doing everyday tasks such as boiling water or using sharp objects?",
+			"hint": null,
+			"category": "Awareness",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
 			]
 		},
-		{
-			"title": "Travel",
-			"description": "The ESA medical assessment must take place in person, so you will need to travel to the venue. Here are some suggestions to help you prepare your travel arrangements.",
-			"tips": [
-				"Try to arrive at your assessment ten minutes early",
-				"Plan your route to the assessment in advance",
-				"Keep hold of your bus / train tickets to claim the money back later"
+		{		
+			"question": "How often do you need someone to stay with you to keep you safe because you are not aware how everyday hazards (such as boiling water or sharp objects) can injure you/other people or cause damage to property/possessions?",
+			"hint": null,
+			"category": "Awareness",
+			"answers": [
+				{
+					"label": "All the time",
+					"value": 15
+				},
+				{
+					"label": "Majority of the time",
+					"value": 15
+				},
+				{
+					"label": "Quite often",
+					"value": 9
+				},
+				{
+					"label": "Occassionally",
+					"value": 6
+				},
+				{
+					"label": "Never",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Do you have any learning impairments of mental disorders which mean you are at significant risk of harm or injury to yourself or others?",
+			"hint": null,
+			"category": "Awareness",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 16
+				},
+				{
+					"label": "No",
+					"value": "Question text of the follow-up question (string)"
+				}
+			]
+		},
+		{		
+			"question": "Do you have any learning impairments or mental disorders which mean someone needs to be with you most of the time to prevent significant risk of damage to property or possessions?",
+			"hint": null,
+			"category": "Awareness",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 16
+				},
+				{
+					"label": "No",
+					"value": 0
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Can you manage to plan, start and finish daily tasks without any difficulty?",
+			"hint": null,
+			"category": "Initiating and completing tasks",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 16
+				},
+				{
+					"label": "No",
+					"value": 0
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Thinking about your mental health, which of these best describes how often you could reliably start and finish at least two personal actions (such as getting up, washing and dressing, cooking a meal or going shopping) one after the other?",
+			"hint": null,
+			"category": "Initiating and completing tasks",
+			"answers": [
+				{
+					"label": "All the time",
+					"value": 0
+				},
+				{
+					"label": "Never because of mental health",
+					"value": 16
+				},
+				{
+					"label": "Cannot most of the time because of mental health",
+					"value": 9
+				},
+				{
+					"label": "Cannot frequently because of mental health",
+					"value": 6
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "How well do you cope with any change?",
+			"hint": null,
+			"category": "Coping with change",
+			"answers": [
+				{
+					"label": "I can't cope to the extent I can't manage my day-to-day life at all",
+					"value": 16
+				},
+				{
+					"label": "I can't cope to the extent is causes me a lot of distress",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "I can cope, but it will make me anxious or worried",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "I can cope without any difficulties",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "If you are due to meet someone, but a few days before they change the date, how well would you cope with this change to your routine?",
+			"hint": null,
+			"category": "Coping with change",
+			"answers": [
+				{
+					"label": "I can't cope to the extent I can't manage my day-to-day life at all",
+					"value": 15
+				},
+				{
+					"label": "I can't cope, it would make day-to-day life very difficult to manage",
+					"value": 9
+				},
+				{
+					"label": "I can't cope. It would make me feel anxious",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "I can cope without any difficulties",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "I have a learning difficulty or mental health problem which makes it impossible to cope with any change and would make my day-to-day life unmanageable",
+					"value": 16
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "If you are asked to attend an appointment, but on the day you are contacted to say the time has been changed, how well would you cope with this change?",
+			"hint": null,
+			"category": "Coping with change",
+			"answers": [
+				{
+					"label": "I can't cope at all to the extent I would not be able to manage day-to-day life",
+					"value": 15
+				},
+				{
+					"label": "I can't cope, it would make day-to-day life very difficult to manage",
+					"value": 6
+				},
+				{
+					"label": "It would make day-to-day life difficult to manage",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "I can cope without any difficulties",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "I would not meet anyone in the first place",
+					"value": 0
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Can you go out on your own?",
+			"hint": null,
+			"category": "Getting about",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "No",
+					"value": "Question text of the follow-up question (string)"
+				}
+			]
+		},
+		{		
+			"question": "Can you leave home and go out to places you know?",
+			"hint": null,
+			"category": "Getting about",
+			"answers": [
+				{
+					"label": "Yes",
+					"value": 0
+				},
+				{
+					"label": "Not at all",
+					"value": 15
+				},
+				{
+					"label": "Only if someone goes with me",
+					"value": 9
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "How well do you cope in social situations?",
+			"hint": null,
+			"category": "Social engagement",
+			"answers": [
+				{
+					"label": "I have no difficulty",
+					"value": 0
+				},
+				{
+					"label": "I find it very difficult",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "I have some difficulty",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "It varies",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Which of these best describes how you relate to other people in social situations?",
+			"hint": null,
+			"category": "Social engagement",
+			"answers": [
+				{
+					"label": "I have no difficulty relating to other people",
+					"value": 0
+				},
+				{
+					"label": "I can sometimes relate to other people, but I will feel anxious or distressed",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "I can never relate to other people",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "I never meet other people because it makes me quite distressed",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "I never speak to other people, socially because it makes me extremely distressed",
+					"value": 16
+				}
+			]
+		},
+		{		
+			"question": "Which of these best describes how you feel when you engage socially with someone you do not know?",
+			"hint": null,
+			"category": "Social engagement",
+			"answers": [
+				{
+					"label": "I do not have any problems meeting new people",
+					"value": 0
+				},
+				{
+					"label": "I will feel anxious or distressed sometimes",
+					"value": 0
+				},
+				{
+					"label": "I never meet people I do not know because it makes me extremely distressed",
+					"value": 9
+				},
+				{
+					"label": "Most of the time it is not possible because I get extremely distressed",
+					"value": 6
+				},
+				{
+					"label": "I will feel anxious or distressed all the time",
+					"value": 0
+				}
+			]
+		},
+		{		
+			"question": "Do you have learning or mental health difficulties which affect how you behave towards other people?",
+			"hint": null,
+			"category": "Appropriate behaviour",
+			"answers": [
+				{
+					"label": "No",
+					"value": 0
+				},
+				{
+					"label": "Yes",
+					"value": "Question text of the follow-up question (string)"
+				},
+				{
+					"label": "It varies",
+					"value": "Question text of the follow-up question (string)"
+				}
+			]
+		},
+		{		
+			"question": "How often do you behave in an uncontrollable aggressive way towards other people?",
+			"hint": null,
+			"category": "Appropriate behaviour",
+			"answers": [
+				{
+					"label": "Every day",
+					"value": 16
+				},
+				{
+					"label": "Not every day, but quite often",
+					"value": 15
+				},
+				{
+					"label": "Occassionally",
+					"value": 9
+				},
+				{
+					"label": "Never",
+					"value": 0
+				}
 			]
 		}
 	]

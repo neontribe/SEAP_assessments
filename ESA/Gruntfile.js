@@ -65,7 +65,7 @@ module.exports = function(grunt){
       },
       clean: {
         initial: ['build'],
-        tidyup: ['build/js/jquery.js', 'build/js/scripts.js', 'build/helpers', 'build/assessment-data.json', 'build/assessment.handlebars', 'build/stats-template.html', 'build/categories-template.html']
+        tidyup: ['src/index.html', 'build/js/jquery.js', 'build/js/scripts.js', 'build/helpers', 'build/assessment-data.json', 'build/assessment.handlebars', 'build/stats-template.html', 'build/categories-template.html']
       },
       jshint: {
         options: {
