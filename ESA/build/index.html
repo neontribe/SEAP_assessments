@@ -2202,7 +2202,7 @@
 								<p class="warn">Very Important</p>
 								<p><strong>Question:</strong> {{question}}</p> 
 								<p><strong>Your answer:</strong> {{answer}}</p>
-								<p class="right"><a href="javascript:void(0)" role="button" data-action="change" data-question="{{sluggify question}}">Change your answer?</a></p>
+								<p class="right"><a href="javascript:void(0)" role="button" data-action="change" data-question="question-{{sluggify question}}">Change your answer?</a></p>
 							</li>
 						{{/each}}
 					{{/if}}
@@ -2259,7 +2259,7 @@
 		</script>
 		<script id="categories-template" type="text/x-handlebars-template">
 			<h1 tabindex="-1">Choose an activity</h1>
-			<p>Try to choose an activity that is relevant to any problems you experience. When you&#x2019; had a chance to answer questions about this activity, you can try another one or have a break. It&#x2019;s okay to choose &#x201c;I don&#x2019;t know&#x201d; if you&#x2019;re not sure.</p>
+			<p>Try to choose an activity that is relevant to any problems you experience. When you&#x2019;ve had a chance to answer questions about this activity, you can try another one or have a break. It&#x2019;s okay to choose &#x201c;I don&#x2019;t know&#x201d; if you&#x2019;re not sure.</p>
 			<div class="category-list" role="toolbar" aria-label="menu options">
 				<ul>
 					<li>
